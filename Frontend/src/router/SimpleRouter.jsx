@@ -3,6 +3,9 @@ import LandingPage from '../pages/LandingPage';
 import LoginPage from '../pages/LoginPage';
 import OfficerDashboard from '../pages/OfficerDashboard';
 import BidderDashboard from '../pages/BidderDashboard';
+import TendersPage from '../pages/TendersPage';
+import BidderTendersPage from '../pages/BidderTendersPage';
+import BidderSubmissionsPage from '../pages/BidderSubmissionsPage';
 import AppLayout from '../layouts/AppLayout';
 
 export default function SimpleRouter() {
@@ -40,6 +43,36 @@ export default function SimpleRouter() {
   }
 
   if (currentPath === '/bidder/dashboard') {
+    return <BidderDashboard navigate={navigate} currentPath={currentPath} />;
+  }
+
+  if (currentPath === '/officer/tenders') {
+    return <TendersPage navigate={navigate} currentPath={currentPath} />;
+  }
+
+  if (currentPath === '/bidder/tenders') {
+    return <BidderTendersPage navigate={navigate} currentPath={currentPath} />;
+  }
+
+  if (currentPath === '/bidder/submissions') {
+    return <BidderSubmissionsPage navigate={navigate} currentPath={currentPath} />;
+  }
+
+  // Officer bidder-submission view
+  if (currentPath === '/officer/tenders/bidders') {
+    return <BidderSubmissionsPage navigate={navigate} currentPath={currentPath} role="officer" />;
+  }
+
+  if (currentPath === '/officer/bids/compliance' || currentPath === '/officer/bids/risk') {
+    return <OfficerDashboard navigate={navigate} currentPath={currentPath} />;
+  }
+
+  if (currentPath === '/officer/audit') {
+    return <OfficerDashboard navigate={navigate} currentPath={currentPath} />;
+  }
+
+  // Bidder sidebar routes — redirect to nearest real page
+  if (currentPath === '/bidder/digilocker') {
     return <BidderDashboard navigate={navigate} currentPath={currentPath} />;
   }
 

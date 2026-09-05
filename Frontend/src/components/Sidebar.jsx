@@ -179,7 +179,15 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
               Main Navigation
             </p>
             {items.map((item) => {
-              const isActive = currentPath === item.path;
+              // Only routes that do not have their own sidebar item should inherit a
+              // parent's active state. For example, /officer/tenders/bidders is the
+              // Bidder Submissions page, not the Tenders & Requirements page.
+              const hasMoreSpecificItem = items.some(
+                (otherItem) => otherItem.path !== item.path && currentPath === otherItem.path,
+              );
+              const isActive =
+                currentPath === item.path ||
+                (!hasMoreSpecificItem && currentPath.startsWith(item.path + '/'));
               return (
                 <button
                   key={item.id}
