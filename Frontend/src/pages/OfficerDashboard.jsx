@@ -304,3 +304,4 @@ export default function OfficerDashboard({ navigate, currentPath }) {
     </AppLayout>
   );
 }
+

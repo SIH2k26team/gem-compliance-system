@@ -6,6 +6,7 @@ import BidderDashboard from '../pages/BidderDashboard';
 import TendersPage from '../pages/TendersPage';
 import BidderTendersPage from '../pages/BidderTendersPage';
 import BidderSubmissionsPage from '../pages/BidderSubmissionsPage';
+import DigiLockerIntegrationPage from '../pages/DigiLockerIntegrationPage';
 import AppLayout from '../layouts/AppLayout';
 
 export default function SimpleRouter() {
@@ -71,9 +72,8 @@ export default function SimpleRouter() {
     return <OfficerDashboard navigate={navigate} currentPath={currentPath} />;
   }
 
-  // Bidder sidebar routes — redirect to nearest real page
   if (currentPath === '/bidder/digilocker') {
-    return <BidderDashboard navigate={navigate} currentPath={currentPath} />;
+    return <DigiLockerIntegrationPage navigate={navigate} currentPath={currentPath} />;
   }
 
   // Placeholder route handler for Phase 2+ routes

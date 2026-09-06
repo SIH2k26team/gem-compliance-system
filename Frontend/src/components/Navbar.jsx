@@ -60,30 +60,6 @@ export default function Navbar({ role = 'officer', onToggleSidebar, navigate }) 
 
         {/* Right Controls */}
         <div className="flex items-center gap-3">
-          {/* Role Switcher */}
-          <div className="flex items-center bg-slate-100 p-0.5 rounded border border-slate-300 text-xs font-bold">
-            <button
-              onClick={() => navigate('/officer/dashboard')}
-              className={`px-3 py-1 rounded transition-all cursor-pointer text-xs ${
-                isOfficer
-                  ? 'bg-blue-700 text-white shadow-xs'
-                  : 'text-slate-700 hover:text-blue-900'
-              }`}
-            >
-              Officer Portal
-            </button>
-            <button
-              onClick={() => navigate('/bidder/dashboard')}
-              className={`px-3 py-1 rounded transition-all cursor-pointer text-xs ${
-                !isOfficer
-                  ? 'bg-blue-700 text-white shadow-xs'
-                  : 'text-slate-700 hover:text-blue-900'
-              }`}
-            >
-              Bidder Portal
-            </button>
-          </div>
-
           {/* Notifications button */}
           <div className="relative">
             <button
@@ -106,17 +82,15 @@ export default function Navbar({ role = 'officer', onToggleSidebar, navigate }) 
                 <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-200 font-bold text-slate-900">
                   <span>Procurement Notifications</span>
                   <span className="text-[10px] bg-blue-100 text-blue-900 px-1.5 py-0.5 rounded font-bold">
-                    3 Unread
+                    unread
                   </span>
                 </div>
                 <div className="space-y-2">
                   <div className="p-2 bg-rose-50 border border-rose-200 rounded text-rose-900">
-                    <p className="font-bold">⚠️ Red Flag Alert</p>
-                    <p className="text-[11px] text-rose-800">Apex Marine: Address contradiction across GST & Exp certificate.</p>
+                    <p className="font-bold">NOTIFICATION 1</p>
                   </div>
                   <div className="p-2 bg-emerald-50 border border-emerald-200 rounded text-emerald-900">
-                    <p className="font-bold">✅ DigiLocker Verification Passed</p>
-                    <p className="text-[11px] text-emerald-800">Alpha Energy Infra GST records verified against GSTN portal.</p>
+                    <p className="font-bold">NOTIFICATION 2</p>
                   </div>
                 </div>
               </div>
