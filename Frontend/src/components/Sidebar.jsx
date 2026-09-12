@@ -254,10 +254,7 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
             </section>
           )}
 
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-600" />
-            <span className="text-slate-700 font-semibold text-[11px]">NIC Gateway: Connected</span>
-          </div>
+  
           {isOfficer && (
             <button
               type="button"
@@ -271,15 +268,7 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
               <span>Ask AI Assistant</span>
             </button>
           )}
-          <button
-            onClick={() => navigate('/')}
-            className="w-full py-1.5 px-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-          >
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span>Back to Portal Home</span>
-          </button>
+         
         </div>
       </aside>
     </>
