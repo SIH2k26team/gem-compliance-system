@@ -1,4 +1,5 @@
 import React from 'react';
+import gemLogo from '../assets/gemLogo.png';
 
 export default function LandingPage({ navigate }) {
   const workflowSteps = [
@@ -96,16 +97,7 @@ export default function LandingPage({ navigate }) {
       <nav className="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded bg-blue-900 flex flex-col items-center justify-center text-white font-extrabold text-sm shadow-xs border border-blue-950">
-              <span className="text-[10px] tracking-widest uppercase leading-none">GOI</span>
-              <span className="text-[8px] font-semibold opacity-90 leading-none mt-0.5">SIH26</span>
-            </div>
-            <div>
-              <span className="font-extrabold text-blue-950 text-sm tracking-tight block leading-none">
-                AI Tender Compliance Portal
-              </span>
-              <span className="text-[11px] text-slate-500 font-semibold">Ministry of Petroleum & Natural Gas</span>
-            </div>
+            <img src={gemLogo} alt="GEM Logo" className="h-17 w-50 px-4 py-2" />
           </div>
 
           <div className="flex items-center gap-3">
@@ -116,16 +108,10 @@ export default function LandingPage({ navigate }) {
               Sign In
             </button>
             <button
-              onClick={() => navigate('/officer/dashboard')}
-              className="px-4 py-2 bg-blue-900 hover:bg-blue-800 text-white rounded text-xs font-bold shadow-xs transition-all cursor-pointer"
+              onClick={() => navigate('/register')}
+              className="px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:text-blue-900 hover:bg-blue-400 hover:border hover:border-blue-900 rounded-xl transition-colors cursor-pointer"
             >
-              Officer Portal
-            </button>
-            <button
-              onClick={() => navigate('/bidder/dashboard')}
-              className="px-4 py-2 bg-emerald-800 hover:bg-emerald-700 text-white rounded text-xs font-bold shadow-xs transition-all cursor-pointer"
-            >
-              Bidder Portal
+              Register
             </button>
           </div>
         </div>

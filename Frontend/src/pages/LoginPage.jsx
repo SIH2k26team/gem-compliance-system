@@ -108,26 +108,7 @@ export default function LoginPage({ navigate }) {
           </button>
         </form>
 
-        {/* Quick Demo Access */}
-        <div className="mt-6 pt-5 border-t border-slate-200 text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2">
-            Phase 1 Quick Access Demo
-          </p>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <button
-              onClick={handleDemoOfficer}
-              className="py-1.5 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 rounded font-bold transition-colors cursor-pointer"
-            >
-              Demo Officer
-            </button>
-            <button
-              onClick={handleDemoBidder}
-              className="py-1.5 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 rounded font-bold transition-colors cursor-pointer"
-            >
-              Demo Bidder
-            </button>
-          </div>
-        </div>
+      
       </div>
     </div>
   );
