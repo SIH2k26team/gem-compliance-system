@@ -8,8 +8,6 @@ export default function Navbar({ role = 'officer', onToggleSidebar, navigate }) 
 
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-2xs">
-      {/* Top Tricolor Accent Stripe (Govt of India style) */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-amber-500 via-white to-emerald-600" />
 
       <div className="h-14 px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -23,17 +21,6 @@ export default function Navbar({ role = 'officer', onToggleSidebar, navigate }) 
             </svg>
           </button>
 
-          {/* Department Header text */}
-          <div className="hidden sm:flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue-700" />
-            <span className="text-xs font-black text-blue-900 tracking-tight">
-              Ministry of Petroleum & Natural Gas
-            </span>
-            <span className="text-slate-300">|</span>
-            <span className="text-xs font-bold text-slate-600">
-              Government of India
-            </span>
-          </div>
 
           {/* Search bar */}
           <div className="relative hidden lg:block w-72">
@@ -74,7 +61,7 @@ export default function Navbar({ role = 'officer', onToggleSidebar, navigate }) 
                   d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 01-6 0v-1m6 0H9"
                 />
               </svg>
-              <span className="absolute top-1 right-1 w-2 h-2 bg-rose-600 rounded-full ring-2 ring-white" />
+              {/* <span className="absolute top-1 right-1 w-2 h-2 bg-rose-600 rounded-full ring-2 ring-white" /> */}
             </button>
 
             {showNotifications && (

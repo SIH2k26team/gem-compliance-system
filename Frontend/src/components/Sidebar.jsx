@@ -1,8 +1,9 @@
-import React from 'react';
-import gemLogo from "../assets/gemLogo.png";
+import React, { useState } from 'react';
+import gemLogo from "../assets/gem-logo.png";
 
 export default function Sidebar({ role = 'officer', currentPath = '/', navigate, isOpen, onClose }) {
   const isOfficer = role === 'officer';
+  const [isAssistantOpen, setIsAssistantOpen] = useState(false);
 
   const officerNav = [
     {
@@ -213,11 +214,63 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
         </div>
 
         {/* Footer */}
-        <div className="p-3 border-t border-slate-200 bg-slate-50 text-xs">
+        <div className="relative p-3 border-t border-slate-200 bg-slate-50 text-xs">
+          {isOfficer && isAssistantOpen && (
+            <section
+              aria-label="AI evaluation assistant"
+              className="absolute bottom-full left-3 right-3 mb-3 overflow-hidden rounded-lg border border-blue-200 bg-white shadow-lg"
+            >
+              <div className="flex items-center justify-between bg-blue-900 px-3 py-2 text-white">
+                <div className="flex items-center gap-2">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
+                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z" />
+                    </svg>
+                  </div>
+                  <span className="text-xs font-bold">AI Evaluation Assistant</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsAssistantOpen(false)}
+                  className="rounded p-0.5 text-blue-100 hover:bg-white/10 hover:text-white"
+                  aria-label="Close AI assistant"
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="p-3">
+                <p className="rounded bg-blue-50 px-2.5 py-2 text-[11px] leading-relaxed text-slate-700">
+                  I can help explain tender requirements, risk flags, and compliance evidence.
+                </p>
+                <button
+                  type="button"
+                  className="mt-2 w-full rounded border border-slate-200 px-2.5 py-1.5 text-left text-[11px] font-semibold text-slate-600 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-900"
+                >
+                  Summarise today’s risk flags
+                </button>
+              </div>
+            </section>
+          )}
+
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2 h-2 rounded-full bg-emerald-600" />
             <span className="text-slate-700 font-semibold text-[11px]">NIC Gateway: Connected</span>
           </div>
+          {isOfficer && (
+            <button
+              type="button"
+              onClick={() => setIsAssistantOpen((isOpen) => !isOpen)}
+              aria-expanded={isAssistantOpen}
+              className="mb-2 w-full rounded bg-blue-700 px-2.5 py-2 text-xs font-bold text-white shadow-xs transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1 cursor-pointer flex items-center justify-center gap-1.5"
+            >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z" />
+              </svg>
+              <span>Ask AI Assistant</span>
+            </button>
+          )}
           <button
             onClick={() => navigate('/')}
             className="w-full py-1.5 px-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"

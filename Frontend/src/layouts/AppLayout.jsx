@@ -28,8 +28,7 @@ export default function AppLayout({ children, role = 'officer', currentPath = '/
 
         <footer className="py-3 px-6 bg-white border-t border-slate-200 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div>
-            <span className="font-bold text-slate-800">SIH26100 e-Procurement Compliance System</span>
-            <span className="ml-2 font-mono text-[10px] bg-slate-100 px-1.5 py-0.5 rounded text-slate-600">Phase 1 Frontend</span>
+            <span className="font-bold text-slate-800"> AI-Powered Tender Compliance & Bid Evaluation Platform</span>
           </div>
           <div className="font-semibold text-slate-700">Ministry of Petroleum & Natural Gas (Govt. of India)</div>
         </footer>

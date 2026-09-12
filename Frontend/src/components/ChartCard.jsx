@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // 1. Vertical / Grouped Bar Chart comparing Bidders for Tender Evaluation
 export function BidderComparisonBarChart() {
-  const [metricFilter, setMetricFilter] = useState('compliance'); // 'compliance', 'both'
+  const [metricFilter, setMetricFilter] = useState('both'); // 'compliance', 'both'
   const [hoveredBidder, setHoveredBidder] = useState(null);
 
   const biddersData = [
@@ -14,9 +14,7 @@ export function BidderComparisonBarChart() {
       riskScore: 12,
       mandatory: '5 / 5',
       decision: 'Recommended',
-      color: 'from-emerald-500 to-teal-600',
-      barColor: 'bg-emerald-500',
-      riskColor: 'bg-emerald-400',
+      riskColor: 'bg-blue-900',
       badge: 'bg-emerald-100 text-emerald-800 border-emerald-300',
     },
     {
@@ -27,9 +25,7 @@ export function BidderComparisonBarChart() {
       riskScore: 18,
       mandatory: '5 / 5',
       decision: 'Recommended',
-      color: 'from-blue-600 to-indigo-700',
-      barColor: 'bg-blue-600',
-      riskColor: 'bg-emerald-400',
+      riskColor: 'bg-blue-900',
       badge: 'bg-blue-100 text-blue-800 border-blue-300',
     },
     {
@@ -40,9 +36,7 @@ export function BidderComparisonBarChart() {
       riskScore: 38,
       mandatory: '5 / 5',
       decision: 'Pending Review',
-      color: 'from-amber-500 to-orange-600',
-      barColor: 'bg-amber-500',
-      riskColor: 'bg-amber-400',
+      riskColor: 'bg-blue-900',
       badge: 'bg-amber-100 text-amber-900 border-amber-300',
     },
     {
@@ -53,9 +47,7 @@ export function BidderComparisonBarChart() {
       riskScore: 68,
       mandatory: '4 / 5',
       decision: 'High Risk Flagged',
-      color: 'from-rose-500 to-red-700',
-      barColor: 'bg-rose-500',
-      riskColor: 'bg-rose-500',
+      riskColor: 'bg-blue-900',
       badge: 'bg-rose-100 text-rose-900 border-rose-300',
     },
   ];
@@ -79,16 +71,6 @@ export function BidderComparisonBarChart() {
         {/* View Switcher */}
         <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-[11px] font-bold">
           <button
-            onClick={() => setMetricFilter('compliance')}
-            className={`px-2.5 py-1 rounded transition-all cursor-pointer ${
-              metricFilter === 'compliance'
-                ? 'bg-blue-900 text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Compliance Score
-          </button>
-          <button
             onClick={() => setMetricFilter('both')}
             className={`px-2.5 py-1 rounded transition-all cursor-pointer ${
               metricFilter === 'both'
@@ -97,6 +79,16 @@ export function BidderComparisonBarChart() {
             }`}
           >
             Compliance vs Risk
+          </button>
+          <button
+            onClick={() => setMetricFilter('compliance')}
+            className={`px-2.5 py-1 rounded transition-all cursor-pointer ${
+              metricFilter === 'compliance'
+                ? 'bg-blue-900 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            Compliance Score
           </button>
         </div>
       </div>
@@ -128,8 +120,8 @@ export function BidderComparisonBarChart() {
               {hoveredBidder?.id === b.id && (
                 <div className="absolute -top-12 bg-slate-900 text-white text-[11px] px-3 py-1.5 rounded-lg shadow-xl border border-slate-700 z-30 font-sans pointer-events-none whitespace-nowrap animate-fadeIn">
                   <span className="font-extrabold">{b.fullName}</span>: Compliance{' '}
-                  <span className="text-emerald-400 font-bold">{b.score}%</span> | Risk{' '}
-                  <span className="text-rose-400 font-bold">{b.riskScore}/100</span>
+                  <span className="text-blue-400 font-bold">{b.score}%</span> | Risk{' '}
+                  <span className="text-blue-400 font-bold">{b.riskScore}/100</span>
                 </div>
               )}
 
@@ -137,7 +129,7 @@ export function BidderComparisonBarChart() {
               <div className="w-full max-w-[56px] flex items-end justify-center gap-1 h-full relative">
                 {/* Main Compliance Bar */}
                 <div
-                  className={`w-full rounded-t-lg bg-gradient-to-t ${b.color} transition-all duration-500 shadow-sm group-hover:brightness-110 relative flex flex-col justify-between items-center py-1`}
+                  className="w-full rounded-t-lg bg-blue-900 transition-all duration-500 shadow-sm group-hover:brightness-110 relative flex flex-col justify-between items-center py-1"
                   style={{ height: `${b.score}%` }}
                 >
                   <span className="text-[11px] font-black text-white drop-shadow-xs font-mono">

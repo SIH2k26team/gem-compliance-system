@@ -114,7 +114,7 @@ export default function LoginPage({ navigate }) {
             onClick={() => navigate('/register')}
             className="text-blue-900 font-bold hover:underline cursor-pointer"
           >
-            Register / Onboard here
+            Registe
           </button>
         </div>
       </div>

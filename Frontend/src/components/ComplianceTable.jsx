@@ -42,13 +42,7 @@ export default function ComplianceTable({ bidders = [] }) {
                 </div>
                 <div className="w-20 bg-slate-200 rounded-full h-1.5 mx-auto mt-1 overflow-hidden">
                   <div
-                    className={`h-1.5 rounded-full ${
-                      b.complianceScore >= 85
-                        ? 'bg-emerald-600'
-                        : b.complianceScore >= 70
-                        ? 'bg-amber-500'
-                        : 'bg-rose-600'
-                    }`}
+                    className="h-1.5 rounded-full bg-emerald-600"
                     style={{ width: `${b.complianceScore}%` }}
                   />
                 </div>

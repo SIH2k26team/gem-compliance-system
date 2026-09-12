@@ -1,5 +1,5 @@
 import React from 'react';
-import gemLogo from '../assets/gemLogo.png';
+import gemLogo from '../assets/gem-new-logo.svg';
 
 export default function LandingPage({ navigate }) {
   const workflowSteps = [
@@ -88,28 +88,45 @@ export default function LandingPage({ navigate }) {
     },
   ];
 
+  const footerSections = [
+    {
+      title: 'PLATFORM',
+      links: ['About the Platform', 'How It Works', 'Security & Privacy', 'Accessibility'],
+    },
+    {
+      title: 'COMPLIANCE',
+      links: ['Tender Evaluation', 'Document Verification', 'Risk Assessment', 'Audit Trail'],
+    },
+    {
+      title: 'RESOURCES',
+      links: ['User Guide', 'Evaluation Framework', 'DigiLocker Integration', 'FAQs'],
+    },
+    {
+      title: 'SUPPORT',
+      links: ['Officer Help Centre', 'Bidder Help Centre', 'Raise a Support Ticket', 'Contact Support'],
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-900 selection:text-white">
-      {/* Top Tricolor Accent Ribbon */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-amber-500 via-white to-emerald-600" />
 
       {/* Navigation Header */}
-      <nav className="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-2xs">
+      <nav className="border-b border-slate-200 bg-blue-900 sticky top-0 z-50 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={gemLogo} alt="GEM Logo" className="h-17 w-50 px-4 py-2" />
+            <img src={gemLogo} alt="GEM Logo" className="h-17 w-80 px-4 py-2 color-white" />
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => navigate('/login')}
-              className="px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:text-blue-900 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-bold text-white hover:text-white-900 transition-colors cursor-pointer"
             >
               Sign In
             </button>
             <button
               onClick={() => navigate('/register')}
-              className="px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:text-blue-900 hover:bg-blue-400 hover:border hover:border-blue-900 rounded-xl transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-bold text-white hover:text-white-900 hover:bg-blue-400 hover:border hover:border-blue-900 rounded-xl transition-colors cursor-pointer"
             >
               Register
             </button>
@@ -119,10 +136,6 @@ export default function LandingPage({ navigate }) {
 
       {/* Hero Section */}
       <section className="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold mb-6">
-          <span className="w-2 h-2 rounded-full bg-blue-900" />
-          Official e-Procurement Compliance Solution (SIH26100)
-        </div>
 
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight max-w-4xl mx-auto leading-tight">
           AI-Powered Tender Compliance & Bid Evaluation Platform
@@ -138,9 +151,7 @@ export default function LandingPage({ navigate }) {
             className="w-full sm:w-auto px-7 py-3 bg-blue-900 hover:bg-blue-800 text-white font-bold rounded text-xs shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
             <span>Procurement Officer Dashboard</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+
           </button>
 
           <button
@@ -172,68 +183,56 @@ export default function LandingPage({ navigate }) {
         </div>
       </section>
 
-      {/* Core Workflow Section */}
-      <section className="py-14 bg-white border-y border-slate-200 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
-              Standard Public Procurement Evaluation Workflow
-            </h2>
-            <p className="text-xs text-slate-500 mt-1">
-              End-to-end transparent process from tender upload to auditable decision report.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-            {workflowSteps.map((step) => (
-              <div
-                key={step.number}
-                className="p-4 bg-slate-50 border border-slate-200 rounded flex flex-col justify-between hover:border-blue-800 transition-all"
-              >
-                <div>
-                  <span className="text-[10px] font-mono font-bold text-blue-900 bg-blue-100 px-2 py-0.5 rounded">
-                    Step {step.number}
-                  </span>
-                  <h3 className="text-xs font-bold text-slate-900 mt-2">{step.title}</h3>
-                  <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">{step.desc}</p>
-                </div>
+
+
+      {/* Footer */}
+      <footer className="mt-12 border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-10">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,1fr)]">
+            <div className="max-w-xs">
+              <img src={gemLogo} alt="GeM" className="h-9 w-auto" />
+              <p className="mt-4 text-sm leading-6 text-slate-600">
+                AI-powered tender compliance and bid evaluation for transparent, evidence-backed public procurement.
+              </p>
+              <p className="mt-4 text-xs font-semibold leading-5 text-slate-500">
+                Ministry of Petroleum & Natural Gas<br />Government of India
+              </p>
+            </div>
+
+            {footerSections.map((section) => (
+              <div key={section.title}>
+                <h2 className="text-sm font-extrabold tracking-tight text-slate-950">{section.title}</h2>
+                <ul className="mt-4 space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link}>
+                      <a
+                        href="#"
+                        onClick={(event) => event.preventDefault()}
+                        className="text-sm text-slate-500 transition-colors hover:text-blue-900 hover:underline underline-offset-4"
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Key System Capabilities */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
-            Key System Capabilities & Differentiators
-          </h2>
-          <p className="text-xs text-slate-500 mt-1">
-            Built specifically around government e-procurement guidelines.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {features.map((f, i) => (
-            <div
-              key={i}
-              className="p-5 bg-white border border-slate-200 rounded-lg shadow-2xs hover:shadow-sm transition-all"
-            >
-              <div className="p-2 bg-slate-50 rounded w-fit border border-slate-200 mb-3">
-                {f.icon}
-              </div>
-              <h3 className="text-xs font-bold text-slate-900">{f.title}</h3>
-              <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">{f.desc}</p>
+          <div className="mt-10 flex flex-col gap-4 border-t border-slate-200 pt-5 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+            <p>AI-Powered Tender Compliance & Bid Evaluation Platform.</p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2">
+              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-blue-900">Terms of Use</a>
+              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-blue-900">Website Policies</a>
+              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-blue-900">Privacy Policy</a>
             </div>
-          ))}
+          </div>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white py-6 px-4 text-center text-xs text-slate-600">
-        <p className="font-bold text-slate-800">SIH26100 AI-Powered Integrated Bid Compliance Verification Platform</p>
+        {/* Legacy footer copy removed from the prototype.
+        <p className="font-bold text-slate-800"> AI-Powered Integrated Bid Compliance Verification Platform</p>
         <p className="mt-1 text-[11px] text-slate-500">Ministry of Petroleum & Natural Gas • Government of India</p>
+        */}
       </footer>
     </div>
   );
