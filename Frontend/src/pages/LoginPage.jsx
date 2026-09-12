@@ -108,7 +108,15 @@ export default function LoginPage({ navigate }) {
           </button>
         </form>
 
-      
+        <div className="mt-6 pt-4 border-t border-slate-200 text-center text-xs text-slate-600">
+          Don't have an account?{' '}
+          <button
+            onClick={() => navigate('/register')}
+            className="text-blue-900 font-bold hover:underline cursor-pointer"
+          >
+            Register / Onboard here
+          </button>
+        </div>
       </div>
     </div>
   );

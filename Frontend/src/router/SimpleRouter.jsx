@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LandingPage from '../pages/LandingPage';
 import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
 import OfficerDashboard from '../pages/OfficerDashboard';
 import BidderDashboard from '../pages/BidderDashboard';
 import TendersPage from '../pages/TendersPage';
@@ -40,6 +41,10 @@ export default function SimpleRouter() {
 
   if (currentPath === '/login') {
     return <LoginPage navigate={navigate} />;
+  }
+
+  if (currentPath === '/register') {
+    return <RegisterPage navigate={navigate} />;
   }
 
   if (currentPath === '/officer/dashboard') {
