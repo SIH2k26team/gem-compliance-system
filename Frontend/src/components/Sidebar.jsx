@@ -1,4 +1,5 @@
 import React from 'react';
+import gemLogo from "../assets/gemLogo.png";
 
 export default function Sidebar({ role = 'officer', currentPath = '/', navigate, isOpen, onClose }) {
   const isOfficer = role === 'officer';
@@ -124,7 +125,7 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
       )}
 
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-white text-slate-800 flex flex-col justify-between border-r border-slate-200 shadow-xs transition-transform duration-300 ease-in-out md:static md:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-64 bg-white text-slate-800 flex flex-col justify-between border-r border-slate-200 shadow-xs transition-transform duration-300 ease-in-out overflow-y-auto md:sticky md:top-0 md:h-screen md:shrink-0 md:z-30 md:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -135,18 +136,7 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
               onClick={() => navigate('/')}
               className="flex items-center gap-2.5 cursor-pointer group"
             >
-              <div className="w-9 h-9 rounded bg-blue-700 flex flex-col items-center justify-center text-white shadow-xs font-bold">
-                <span className="text-[10px] tracking-widest uppercase leading-none">GOI</span>
-                <span className="text-[8px] font-semibold opacity-90 leading-none mt-0.5">SIH26</span>
-              </div>
-              <div>
-                <span className="font-black text-blue-900 tracking-tight text-xs block leading-tight">
-                  Tender Compliance
-                </span>
-                <span className="text-[10px] text-slate-500 font-semibold block leading-tight">
-                  e-Procurement Portal
-                </span>
-              </div>
+                <img src={gemLogo} alt="GEM Logo" /> 
             </div>
 
             <button

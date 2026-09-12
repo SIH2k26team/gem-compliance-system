@@ -315,22 +315,6 @@ export const MOCK_AUDIT_TRAIL = [
     details: "Flagged address mismatch between GST and Experience Certificate for Apex Marine Services.",
     tenderId: "MOPNG-2026-001",
   },
-  {
-    id: "AUD-804",
-    time: "2026-03-01 11:20",
-    actor: "DigiLocker Integration",
-    action: "DigiLocker Records Fetched",
-    details: "Verified authentic GSTIN (27AAACP1234A1Z5) directly from Govt GST portal via DigiLocker Sandbox.",
-    tenderId: "MOPNG-2026-001",
-  },
-  {
-    id: "AUD-805",
-    time: "2026-02-28 09:30",
-    actor: "Rajesh Kumar (Officer)",
-    action: "Tender Published",
-    details: "Published tender MOPNG-2026-001: Pipeline Maintenance & Inspection Services.",
-    tenderId: "MOPNG-2026-001",
-  },
 ];
 
 export const MOCK_BIDDER_SUBMISSIONS_LIST = [

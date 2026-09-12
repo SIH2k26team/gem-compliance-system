@@ -7,6 +7,9 @@ import TendersPage from '../pages/TendersPage';
 import BidderTendersPage from '../pages/BidderTendersPage';
 import BidderSubmissionsPage from '../pages/BidderSubmissionsPage';
 import DigiLockerIntegrationPage from '../pages/DigiLockerIntegrationPage';
+import ComplianceEvaluationPage from '../pages/ComplianceEvaluationPage';
+import RiskVerificationPage from '../pages/RiskVerificationPage';
+import AuditLogsPage from '../pages/AuditLogsPage';
 import AppLayout from '../layouts/AppLayout';
 
 export default function SimpleRouter() {
@@ -64,12 +67,16 @@ export default function SimpleRouter() {
     return <BidderSubmissionsPage navigate={navigate} currentPath={currentPath} role="officer" />;
   }
 
-  if (currentPath === '/officer/bids/compliance' || currentPath === '/officer/bids/risk') {
-    return <OfficerDashboard navigate={navigate} currentPath={currentPath} />;
+  if (currentPath === '/officer/bids/compliance') {
+    return <ComplianceEvaluationPage navigate={navigate} currentPath={currentPath} />;
+  }
+
+  if (currentPath === '/officer/bids/risk') {
+    return <RiskVerificationPage navigate={navigate} currentPath={currentPath} />;
   }
 
   if (currentPath === '/officer/audit') {
-    return <OfficerDashboard navigate={navigate} currentPath={currentPath} />;
+    return <AuditLogsPage navigate={navigate} currentPath={currentPath} />;
   }
 
   if (currentPath === '/bidder/digilocker') {
