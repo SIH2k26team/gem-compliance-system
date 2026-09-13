@@ -96,9 +96,9 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               Compliance Evaluation Matrix & Scoring
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5 font-medium">
+            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
               Compare bidder compliance against extracted tender clauses, inspect evidence fragments & apply officer score overrides.
-            </p>
+            </p> */}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">

@@ -93,9 +93,9 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                 5 Active Alerts
               </span>
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5 font-medium">
+            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
               Deterministic rule engine flagging address contradictions, font/OCR metadata anomalies & omitted mandatory certificates.
-            </p>
+            </p> */}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
@@ -112,7 +112,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
         </div>
 
         {/* Risk KPI Metric Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <div className="bg-white border border-rose-200 rounded-lg p-4 shadow-xs ">
             <span className="text-xs font-bold text-slate-500 block uppercase">Critical Red Flags</span>
             <div className="flex items-center justify-between mt-1">
@@ -156,7 +156,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
             </div>
             <p className="text-[11px] text-slate-500 mt-1 font-medium">ISO certification renewal required</p>
           </div>
-        </div>
+        </div> */}
 
         {/* Formula Explainer Bar */}
         <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 text-xs text-amber-900 flex items-start gap-2.5 font-medium shadow-2xs">
@@ -274,10 +274,10 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                           <span
                             className={`px-2 py-0.5 text-[10px] font-black rounded uppercase ${
                               flag.severity === 'Critical'
-                                ? 'bg-rose-600 text-white'
+                                ? 'text-rose-600  border border-rose-300'
                                 : flag.severity === 'High'
-                                ? 'bg-rose-100 text-rose-900 border border-rose-300'
-                                : 'bg-amber-100 text-amber-900 border border-amber-300'
+                                ? ' text-rose-900 border border-rose-300'
+                                : ' text-amber-900 border border-amber-300'
                             }`}
                           >
                             {flag.severity} ({flag.impactScore} Score)

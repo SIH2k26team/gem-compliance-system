@@ -96,14 +96,14 @@ export default function AuditLogsPage({ navigate, currentPath }) {
            
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1 flex items-center gap-3">
               System Audit Logs
-              <span className="px-2.5 py-0.5 bg-blue-50 text-blue-900 font-extrabold text-xs rounded border border-blue-200 inline-flex items-center gap-1">
+              {/* <span className="px-2.5 py-0.5 bg-blue-50 text-blue-900 font-extrabold text-xs rounded border border-blue-200 inline-flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 SHA-256 Tamper Proof
-              </span>
+              </span> */}
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5 font-medium">
+            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
               Complete append-only audit trail logging officer interactions, AI extraction triggers, DigiLocker API fetches & score overrides.
-            </p>
+            </p> */}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
@@ -229,15 +229,7 @@ export default function AuditLogsPage({ navigate, currentPath }) {
                       {/* Actor */}
                       <td className="py-3.5 px-4">
                         <span
-                          className={`px-2 py-0.5 rounded text-[10px] font-extrabold inline-flex items-center gap-1 ${
-                            isOfficer
-                              ? 'bg-blue-100 text-blue-900 border border-blue-200'
-                              : isAI
-                              ? 'bg-purple-100 text-purple-900 border border-purple-200'
-                              : isDigi
-                              ? 'bg-emerald-100 text-emerald-900 border border-emerald-200'
-                              : 'bg-amber-100 text-amber-900 border border-amber-200'
-                          }`}
+                          className="px-2 py-0.5 rounded text-[10px] font-extrabold inline-flex items-center gap-1 "
                         >
                           {log.actor}
                         </span>

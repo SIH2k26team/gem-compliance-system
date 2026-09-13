@@ -7,13 +7,13 @@ export default function RiskBadge({ level = 'Low', score, showScore = true }) {
   let label = 'Low Risk';
 
   if (normalized.includes('high') || (score && score >= 50)) {
-    badgeStyle = 'bg-rose-50 text-rose-700 border-rose-300 font-semibold';
+    badgeStyle = ' text-rose-700 ';
     label = 'High Risk';
   } else if (normalized.includes('medium') || (score && score >= 21 && score < 50)) {
-    badgeStyle = 'bg-amber-50 text-amber-800 border-amber-300';
+    badgeStyle = ' text-amber-800 ';
     label = 'Medium Risk';
   } else if (normalized.includes('low') || (score !== undefined && score < 21)) {
-    badgeStyle = 'bg-emerald-50 text-emerald-700 border-emerald-300';
+    badgeStyle = ' text-emerald-700 ';
     label = 'Low Risk';
   }
 
@@ -35,11 +35,11 @@ export default function RiskBadge({ level = 'Low', score, showScore = true }) {
         />
       </svg>
       <span>{label}</span>
-      {showScore && score !== undefined && (
+      {/* {showScore && score !== undefined && (
         <span className="ml-1 pl-1.5 border-l border-current font-mono opacity-80">
           {score}/100
         </span>
-      )}
+      )} */}
     </span>
   );
 }

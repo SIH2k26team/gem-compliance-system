@@ -495,9 +495,9 @@ export default function TendersPage({ navigate, currentPath }) {
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               Tenders &amp; Requirements Management
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5 font-medium">
+            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
               AI-extracted requirement clauses &nbsp;&bull;&nbsp; Officer confirmation workflow &nbsp;&bull;&nbsp; Multi-tender oversight
-            </p>
+            </p> */}
           </div>
           <button
             id="upload-new-tender-btn"
@@ -595,7 +595,7 @@ export default function TendersPage({ navigate, currentPath }) {
               </div>
 
               {/* Category pills */}
-              <div className="flex flex-wrap gap-1">
+              {/* <div className="flex flex-wrap gap-1">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -611,7 +611,7 @@ export default function TendersPage({ navigate, currentPath }) {
                     {cat}
                   </button>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {/* Count line */}

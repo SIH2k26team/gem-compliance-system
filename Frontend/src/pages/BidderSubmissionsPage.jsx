@@ -552,16 +552,16 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-              {isOfficer ? 'Procurement Officer Portal' : `Vendor Portal \u00a0\u2022\u00a0 ${CURRENT_USER_BIDDER.company}`}
+              {isOfficer ? 'Procurement Officer Portal' : ` ${CURRENT_USER_BIDDER.company}`}
             </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               {isOfficer ? 'Bidder Submissions' : 'My Submitted Bids'}
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5 font-medium">
+            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
               {isOfficer
                 ? 'Review compliance scores, document status & bidder submissions'
                 : 'Compliance scores \u00a0\u2022\u00a0 Document status \u00a0\u2022\u00a0 Officer evaluation tracking'}
-            </p>
+            </p> */}
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <button
@@ -744,7 +744,7 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
           </div>
 
           {/* RIGHT — Detail panel */}
-          {selectedSub && (
+          {/* {selectedSub && (
             <div
               className="lg:col-span-3 bg-white border border-slate-200 rounded-lg shadow-xs overflow-hidden flex flex-col"
               style={{ position: 'sticky', top: '1.5rem', maxHeight: 'calc(100vh - 8rem)' }}
@@ -757,7 +757,7 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
                 tendersLabel={tendersLabel}
               />
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </AppLayout>

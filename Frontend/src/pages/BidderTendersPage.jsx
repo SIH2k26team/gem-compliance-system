@@ -429,9 +429,9 @@ export default function BidderTendersPage({ navigate, currentPath }) {
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               Open Public Tenders
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5 font-medium">
+            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
               Browse, review requirements &amp; submit your bid &nbsp;&bull;&nbsp; DigiLocker-verified submissions
-            </p>
+            </p> */}
           </div>
           <button
             id="verify-digilocker-btn"
@@ -601,7 +601,7 @@ export default function BidderTendersPage({ navigate, currentPath }) {
                     {tender.description}
                   </p>
 
-                  {/* Requirement summary chips */}
+                  {/* Requirement summary chips
                   <div className="flex flex-wrap gap-1.5 mt-3">
                     <span className="flex items-center gap-1 px-2 py-0.5 bg-rose-50 text-rose-800 rounded border border-rose-200 font-bold" style={{ fontSize: '10px' }}>
                       <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
@@ -611,7 +611,7 @@ export default function BidderTendersPage({ navigate, currentPath }) {
                       <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                       {scoredCount} Scored ({totalPts} pts)
                     </span>
-                  </div>
+                  </div> */}
 
                   {/* Meta row */}
                   <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-100">
@@ -641,11 +641,11 @@ export default function BidderTendersPage({ navigate, currentPath }) {
                       </button>
                       <button
                         id={`apply-btn-${tender.id}`}
-                        onClick={() => {
-                          if (!isApplied) {
-                            setSelectedTender(tender);
-                          }
-                        }}
+                        // onClick={() => {
+                        //   if (!isApplied) {
+                        //     setSelectedTender(tender);
+                        //   }
+                        // }}
                         className={`px-3 py-1.5 rounded font-bold transition-colors cursor-pointer flex items-center gap-1 ${
                           isApplied
                             ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'

@@ -29,9 +29,9 @@ export default function OfficerDashboard({ navigate, currentPath }) {
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               Procurement Officer Executive Dashboard
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5 font-medium">
+            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
               Automated requirement extraction, multi-document evidence verification & transparent evaluation.
-            </p>
+            </p> */}
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
@@ -135,7 +135,7 @@ export default function OfficerDashboard({ navigate, currentPath }) {
           >
             Active Procurement Tenders
           </button>
-          <button
+          {/* <button
             onClick={() => setActiveTab('risks')}
             className={`px-4 py-2 rounded transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'risks'
@@ -147,23 +147,23 @@ export default function OfficerDashboard({ navigate, currentPath }) {
             <span className="px-1.5 py-0.2 bg-rose-100 text-rose-900 rounded text-[10px]">
               {MOCK_RISK_ALERTS.length}
             </span>
-          </button>
+          </button> */}
         </div>
 
         {/* Tab Content 1: Evaluated Bidders */}
         {activeTab === 'overview' && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200">
-              <div>
+            {/* <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200">
+              {/* <div>
                 <h2 className="text-sm font-extrabold text-slate-900">
                   Target Tender Evaluation: MOPNG-2026-001
                 </h2>
                 <p className="text-xs text-slate-500">
                   Pipeline Maintenance & Inspection Services • 4 Bids Evaluated
                 </p>
-              </div>
+              </div> */}
 
-              <button
+              {/* <button
                 onClick={() => navigate('/officer/tenders/bidders')}
                 className="text-xs text-blue-700 hover:underline font-bold flex items-center gap-1"
               >
@@ -172,7 +172,7 @@ export default function OfficerDashboard({ navigate, currentPath }) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
-            </div>
+            </div>  */}
 
             <ComplianceTable bidders={MOCK_BIDDERS_SUMMARY} />
 
@@ -191,10 +191,10 @@ export default function OfficerDashboard({ navigate, currentPath }) {
         {/* Tab Content 2: Active Tenders */}
         {activeTab === 'tenders' && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200">
+            {/* <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200">
               <h2 className="text-sm font-bold text-slate-900">Open Government Tenders</h2>
               <span className="text-xs text-slate-500">Showing 4 active tenders</span>
-            </div>
+            </div> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {MOCK_TENDERS.map((tender) => (
                 <TenderCard
@@ -208,7 +208,7 @@ export default function OfficerDashboard({ navigate, currentPath }) {
           </div>
         )}
 
-        {/* Tab Content 3: Risk Flags */}
+        {/* Tab Content 3: Risk Flags
         {activeTab === 'risks' && (
           <div className="space-y-4">
             <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 text-xs text-amber-900 font-medium">
@@ -263,10 +263,10 @@ export default function OfficerDashboard({ navigate, currentPath }) {
               ))}
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Audit Log Stream */}
-        <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs">
+        {/* <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs">
           <div className="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
             <div>
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">Recent e-Procurement Audit Log</h3>
@@ -295,7 +295,7 @@ export default function OfficerDashboard({ navigate, currentPath }) {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </AppLayout>
   );

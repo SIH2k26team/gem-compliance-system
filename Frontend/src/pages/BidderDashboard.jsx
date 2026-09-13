@@ -23,9 +23,9 @@ export default function BidderDashboard({ navigate, currentPath }) {
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               {CURRENT_USER_BIDDER.company}
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5 font-medium">
+            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
               Authorized Vendor ID: VEND-99420 • Contact: {CURRENT_USER_BIDDER.name} ({CURRENT_USER_BIDDER.email})
-            </p>
+            </p> */}
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
@@ -112,10 +112,10 @@ export default function BidderDashboard({ navigate, currentPath }) {
         {/* Tab 1: Open Tenders */}
         {activeTab === 'tenders' && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200">
+            {/* <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200">
               <h2 className="text-sm font-bold text-slate-900">Recommended Government Tenders</h2>
               <span className="text-xs text-slate-500">Ministry of Petroleum Sector</span>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {MOCK_TENDERS.map((tender) => (
