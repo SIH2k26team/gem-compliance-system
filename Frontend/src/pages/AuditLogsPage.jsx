@@ -91,14 +91,9 @@ export default function AuditLogsPage({ navigate, currentPath }) {
         )}
 
         {/* Page Header */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200 border-t-4 border-t-slate-800 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-lg border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase tracking-wider">
-              <svg className="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              NIC Immutable Audit Trail & Cryptographic Ledger
-            </div>
+           
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1 flex items-center gap-3">
               System Audit Logs
               <span className="px-2.5 py-0.5 bg-blue-50 text-blue-900 font-extrabold text-xs rounded border border-blue-200 inline-flex items-center gap-1">

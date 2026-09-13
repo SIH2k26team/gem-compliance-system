@@ -8,10 +8,6 @@ export default function BidderCard({ bidder, onInspect }) {
   return (
     <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
       <div>
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <StatusBadge status={bidder.officerDecision || bidder.status} size="sm" />
-          <RiskBadge level={bidder.riskLevel} score={bidder.riskScore} />
-        </div>
 
         <h4 className="text-sm font-extrabold text-slate-900 mt-1">{bidder.companyName}</h4>
         <p className="text-xs text-slate-500 font-mono mt-0.5">Bidder ID: {bidder.bidderId}</p>
@@ -45,7 +41,7 @@ export default function BidderCard({ bidder, onInspect }) {
           <div className="flex items-center justify-between">
             <span className="text-slate-500">DigiLocker Record:</span>
             <span className={`font-bold ${bidder.digiLockerVerified ? 'text-emerald-700' : 'text-amber-800'}`}>
-              {bidder.digiLockerVerified ? '✅ Verified' : '⚠️ Pending'}
+              {bidder.digiLockerVerified ? 'Verified' : 'Pending'}
             </span>
           </div>
         </div>

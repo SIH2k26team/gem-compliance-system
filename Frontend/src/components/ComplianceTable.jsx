@@ -55,7 +55,7 @@ export default function ComplianceTable({ bidders = [] }) {
                       : 'bg-rose-50 text-rose-800 border border-rose-200'
                   }`}
                 >
-                  {b.mandatoryPassed === b.mandatoryTotal ? '✅ All Passed' : `❌ ${b.mandatoryTotal - b.mandatoryPassed} Failed`}
+                  {b.mandatoryPassed === b.mandatoryTotal ? 'All Passed' : `${b.mandatoryTotal - b.mandatoryPassed} Failed`}
                 </span>
               </td>
               <td className="py-3 px-4 whitespace-nowrap">

@@ -84,12 +84,9 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
         )}
 
         {/* Page Banner Header */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200 border-t-4 border-t-rose-600 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-lg border border-slate-200  shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-rose-700 uppercase tracking-wider">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-600 animate-pulse" />
-              Automated Risk Detection & Anomaly Verification Center
-            </div>
+            
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1 flex items-center gap-3">
               Risk Flags & Evidence Verification
               <span className="px-2.5 py-0.5 bg-rose-100 text-rose-900 font-extrabold text-xs rounded-full border border-rose-300">
@@ -116,7 +113,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
 
         {/* Risk KPI Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <div className="bg-white border border-rose-200 rounded-lg p-4 shadow-xs border-l-4 border-l-rose-600">
+          <div className="bg-white border border-rose-200 rounded-lg p-4 shadow-xs ">
             <span className="text-xs font-bold text-slate-500 block uppercase">Critical Red Flags</span>
             <div className="flex items-center justify-between mt-1">
               <span className="text-2xl font-black text-rose-700 font-mono">1 Alert</span>
@@ -127,7 +124,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
             <p className="text-[11px] text-slate-500 mt-1 font-medium">Missing mandatory safety certificates</p>
           </div>
 
-          <div className="bg-white border border-amber-200 rounded-lg p-4 shadow-xs border-l-4 border-l-amber-500">
+          <div className="bg-white border border-amber-200 rounded-lg p-4 shadow-xs ">
             <span className="text-xs font-bold text-slate-500 block uppercase">Document Contradictions</span>
             <div className="flex items-center justify-between mt-1">
               <span className="text-2xl font-black text-amber-700 font-mono">2 Mismatches</span>
@@ -138,7 +135,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
             <p className="text-[11px] text-slate-500 mt-1 font-medium">GST vs Experience address differences</p>
           </div>
 
-          <div className="bg-white border border-blue-200 rounded-lg p-4 shadow-xs border-l-4 border-l-blue-600">
+          <div className="bg-white border border-blue-200 rounded-lg p-4 shadow-xs ">
             <span className="text-xs font-bold text-slate-500 block uppercase">Font / Tampering Anomalies</span>
             <div className="flex items-center justify-between mt-1">
               <span className="text-2xl font-black text-blue-900 font-mono">1 Detected</span>
@@ -149,7 +146,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
             <p className="text-[11px] text-slate-500 mt-1 font-medium">OCR raster layer text variance</p>
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs border-l-4 border-l-slate-600">
+          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs ">
             <span className="text-xs font-bold text-slate-500 block uppercase">Upcoming Expiries</span>
             <div className="flex items-center justify-between mt-1">
               <span className="text-2xl font-black text-slate-800 font-mono">1 Alert</span>

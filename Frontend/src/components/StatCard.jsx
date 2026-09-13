@@ -32,7 +32,7 @@ export default function StatCard({ title, value, unit, subtitle, icon, trend, co
   const style = colorStyles[color] || colorStyles.blue;
 
   return (
-    <div className={`p-4 bg-white rounded-lg border ${style.border} shadow-xs hover:shadow-md transition-all`}>
+    <div className={`p-4 bg-white rounded-lg shadow-xs hover:shadow-md transition-all`}>
       <div className="flex items-center justify-between">
         <p className="text-xs uppercase tracking-wider text-slate-500 font-bold">{title}</p>
         {icon && <div className={`p-2 rounded-lg ${style.badge}`}>{icon}</div>}

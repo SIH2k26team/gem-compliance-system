@@ -548,7 +548,7 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
     <AppLayout role={role} currentPath={currentPath} navigate={navigate}>
       <div className="space-y-5">
         {/* Page Header */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200 border-t-4 border-t-emerald-700 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-lg border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
@@ -580,17 +580,16 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
         {/* KPI stat cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { label: 'Total Submissions', value: MOCK_BIDDER_SUBMISSIONS_LIST.length, accent: 'border-t-blue-700', sub: 'All statuses' },
-            { label: 'Avg Compliance Score', value: `${avgScore}%`, accent: 'border-t-emerald-600', sub: 'Submitted bids' },
-            { label: 'Pending Action', value: pendingAction, accent: 'border-t-amber-500', sub: 'Needs your input' },
+            { label: 'Total Submissions', value: MOCK_BIDDER_SUBMISSIONS_LIST.length, sub: 'All statuses' },
+            { label: 'Avg Compliance Score', value: `${avgScore}%`, sub: 'Submitted bids' },
+            { label: 'Pending Action', value: pendingAction, sub: 'Needs your input' },
             {
               label: 'DigiLocker Verified',
               value: MOCK_BIDDER_SUBMISSIONS_LIST.filter((s) => s.digiLockerStatus === 'Verified').length,
-              accent: 'border-t-slate-700',
               sub: 'Govt verified docs',
             },
           ].map((k) => (
-            <div key={k.label} className={`bg-white border border-slate-200 border-t-4 ${k.accent} rounded-lg p-4 shadow-xs`}>
+            <div key={k.label} className={`bg-white border border-slate-200 rounded-lg p-4 shadow-xs`}>
               <p className="font-extrabold uppercase tracking-wider text-slate-500" style={{ fontSize: '10px' }}>{k.label}</p>
               <p className="text-2xl font-black text-slate-900 mt-1">{k.value}</p>
               <p className="text-slate-400 mt-0.5" style={{ fontSize: '11px' }}>{k.sub}</p>

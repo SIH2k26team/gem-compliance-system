@@ -90,14 +90,9 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
         )}
 
         {/* Page Header Banner */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200 border-t-4 border-t-blue-700 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-lg border border-slate-200  shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-blue-800 uppercase tracking-wider">
-              <svg className="w-4 h-4 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-              </svg>
-              Automated & Officer Evaluation Engine • GeM Compliance Portal
-            </div>
+        
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               Compliance Evaluation Matrix & Scoring
             </h1>
@@ -247,16 +242,12 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                           <div>
                             {bidder.mandatoryPassed === bidder.mandatoryTotal ? (
                               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 text-[11px]">
-                                <svg className="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                
                                 {bidder.mandatoryPassed}/{bidder.mandatoryTotal} Clauses Passed
                               </span>
                             ) : (
                               <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 font-bold border border-rose-200 text-[11px]">
-                                <svg className="w-3.5 h-3.5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
+                                
                                 {bidder.mandatoryPassed}/{bidder.mandatoryTotal} Passed (OISD Missing)
                               </span>
                             )}
@@ -268,19 +259,13 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                           <div className="w-40">
                             <div className="flex items-center justify-between font-extrabold text-xs mb-1">
                               <span className="text-slate-900">{bidder.complianceScore} / {bidder.maxScore}</span>
-                              <span className={bidder.complianceScore >= 90 ? 'text-emerald-700' : bidder.complianceScore >= 75 ? 'text-blue-700' : 'text-rose-700'}>
+                              <span className="text-emerald-700">
                                 {bidder.complianceScore}%
                               </span>
                             </div>
                             <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
                               <div
-                                className={`h-full rounded-full ${
-                                  bidder.complianceScore >= 90
-                                    ? 'bg-emerald-600'
-                                    : bidder.complianceScore >= 75
-                                    ? 'bg-blue-600'
-                                    : 'bg-rose-600'
-                                }`}
+                                className="h-full rounded-full bg-emerald-600"
                                 style={{ width: `${bidder.complianceScore}%` }}
                               />
                             </div>
