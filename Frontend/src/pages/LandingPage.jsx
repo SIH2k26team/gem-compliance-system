@@ -1,5 +1,5 @@
 import React from 'react';
-import gemLogo from '../assets/gem-new-logo.svg';
+import gemLogo from '../assets/nav-logo.png';
 
 export default function LandingPage({ navigate }) {
   const workflowSteps = [
@@ -114,7 +114,7 @@ export default function LandingPage({ navigate }) {
       <nav className="border-b border-slate-200 bg-blue-900 sticky top-0 z-50 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={gemLogo} alt="GEM Logo" className="h-17 w-80 px-4 py-2 color-white" />
+            <img src={gemLogo} alt="GEM Logo" className="h-22 w-60  py-2 color-white" />
           </div>
 
           <div className="flex items-center gap-3">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import gemLogo from "../assets/gem-logo.png";
+import gemLogo from "../assets/side-logo.png";
 
 export default function Sidebar({ role = 'officer', currentPath = '/', navigate, isOpen, onClose }) {
   const isOfficer = role === 'officer';
@@ -137,7 +137,7 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
               onClick={() => navigate('/')}
               className="flex items-center gap-2.5 cursor-pointer group"
             >
-                <img src={gemLogo} alt="GEM Logo" /> 
+                <img src={gemLogo} alt="GEM Logo" className="h-25 w-55"/> 
             </div>
 
             <button
