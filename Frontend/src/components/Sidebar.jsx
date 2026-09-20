@@ -151,23 +151,23 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
           </div>
 
           {/* Role Status Banner */}
-          <div className="px-4 py-2 bg-blue-50/80 border-b border-blue-100 flex items-center justify-between text-xs">
-            <span className="text-slate-600 font-bold text-[11px]">Active Mode:</span>
+          <div className="px-4 py-2 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs">
+            <span className="text-slate-600 font-bold text-[11px]">System Mode:</span>
             <span
               className={`px-2 py-0.5 rounded text-[10px] font-extrabold ${
                 isOfficer
-                  ? 'bg-blue-700 text-white'
-                  : 'bg-emerald-700 text-white'
+                  ? 'bg-slate-900 text-white'
+                  : 'bg-emerald-800 text-white'
               }`}
             >
-              {isOfficer ? 'Procurement Officer' : 'Bidder Portal'}
+              {isOfficer ? 'Procurement Officer' : 'Bidder Vendor'}
             </span>
           </div>
 
           {/* Navigation Links */}
           <nav className="p-3 space-y-1">
             <p className="px-2 pb-1 text-[10px] uppercase font-extrabold tracking-wider text-slate-400">
-              Main Navigation
+              Procurement Modules
             </p>
             {items.map((item) => {
               // Only routes that do not have their own sidebar item should inherit a
@@ -186,10 +186,10 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
                     navigate(item.path);
                     if (onClose) onClose();
                   }}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded text-xs font-bold transition-all cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded text-xs font-bold transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-blue-700 text-white shadow-xs'
-                      : 'text-slate-700 hover:bg-slate-100 hover:text-blue-900'
+                      ? 'bg-slate-900 text-white shadow-2xs'
+                      : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
@@ -200,7 +200,7 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
                     <span
                       className={`px-1.5 py-0.2 rounded text-[10px] font-bold ${
                         isActive
-                          ? 'bg-white text-blue-900'
+                          ? 'bg-white text-slate-900'
                           : 'bg-rose-100 text-rose-800 border border-rose-200'
                       }`}
                     >
@@ -218,22 +218,22 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
           {isOfficer && isAssistantOpen && (
             <section
               aria-label="AI evaluation assistant"
-              className="absolute bottom-full left-3 right-3 mb-3 overflow-hidden rounded-lg border border-blue-200 bg-white shadow-lg"
+              className="absolute bottom-full left-3 right-3 mb-3 overflow-hidden rounded-md border border-slate-300 bg-white shadow-lg"
             >
-              <div className="flex items-center justify-between bg-blue-900 px-3 py-2 text-white">
+              <div className="flex items-center justify-between bg-slate-900 px-3 py-2 text-white">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15">
-                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <div className="flex h-5 w-5 items-center justify-center rounded bg-white/20">
+                    <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z" />
                     </svg>
                   </div>
-                  <span className="text-xs font-bold">AI Evaluation Assistant</span>
+                  <span className="text-xs font-bold">Clause & Evidence Query</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIsAssistantOpen(false)}
-                  className="rounded p-0.5 text-blue-100 hover:bg-white/10 hover:text-white"
-                  aria-label="Close AI assistant"
+                  className="rounded p-0.5 text-slate-300 hover:bg-white/10 hover:text-white"
+                  aria-label="Close assistant"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -241,35 +241,34 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
                 </button>
               </div>
               <div className="p-3">
-                <p className="rounded bg-blue-50 px-2.5 py-2 text-[11px] leading-relaxed text-slate-700">
-                  I can help explain tender requirements, risk flags, and compliance evidence.
+                <p className="rounded bg-slate-100 px-2.5 py-2 text-[11px] leading-relaxed text-slate-800 font-medium">
+                  Query parsed tender clauses, cross-document discrepancies, or evidence page citations.
                 </p>
                 <button
                   type="button"
-                  className="mt-2 w-full rounded border border-slate-200 px-2.5 py-1.5 text-left text-[11px] font-semibold text-slate-600 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-900"
+                  className="mt-2 w-full rounded border border-slate-300 px-2.5 py-1.5 text-left text-[11px] font-semibold text-slate-700 hover:border-slate-400 hover:bg-slate-100"
                 >
-                  Summarise today’s risk flags
+                  Summarise active risk flags
                 </button>
               </div>
             </section>
           )}
 
-  
           {isOfficer && (
             <button
               type="button"
               onClick={() => setIsAssistantOpen((isOpen) => !isOpen)}
               aria-expanded={isAssistantOpen}
-              className="mb-2 w-full rounded bg-blue-700 px-2.5 py-2 text-xs font-bold text-white shadow-xs transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1 cursor-pointer flex items-center justify-center gap-1.5"
+              className="mb-2 w-full rounded bg-slate-900 px-2.5 py-2 text-xs font-bold text-white shadow-2xs transition-colors hover:bg-slate-800 focus:outline-none cursor-pointer flex items-center justify-center gap-1.5"
             >
               <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z" />
               </svg>
-              <span>Ask AI Assistant</span>
+              <span>Clause & Risk Query</span>
             </button>
           )}
-         
         </div>
+
       </aside>
     </>
   );

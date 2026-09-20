@@ -14,8 +14,8 @@ export function BidderComparisonBarChart() {
       riskScore: 12,
       mandatory: '5 / 5',
       decision: 'Recommended',
-      riskColor: 'bg-blue-900',
-      badge: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+      riskColor: 'bg-slate-600',
+      badge: 'bg-emerald-100 text-emerald-900 border-emerald-300',
     },
     {
       id: 'BID-D04',
@@ -25,8 +25,8 @@ export function BidderComparisonBarChart() {
       riskScore: 18,
       mandatory: '5 / 5',
       decision: 'Recommended',
-      riskColor: 'bg-blue-900',
-      badge: 'bg-blue-100 text-blue-800 border-blue-300',
+      riskColor: 'bg-slate-600',
+      badge: 'bg-slate-100 text-slate-900 border-slate-300',
     },
     {
       id: 'BID-B02',
@@ -36,7 +36,7 @@ export function BidderComparisonBarChart() {
       riskScore: 38,
       mandatory: '5 / 5',
       decision: 'Pending Review',
-      riskColor: 'bg-blue-900',
+      riskColor: 'bg-slate-600',
       badge: 'bg-amber-100 text-amber-900 border-amber-300',
     },
     {
@@ -47,34 +47,34 @@ export function BidderComparisonBarChart() {
       riskScore: 68,
       mandatory: '4 / 5',
       decision: 'High Risk Flagged',
-      riskColor: 'bg-blue-900',
+      riskColor: 'bg-slate-600',
       badge: 'bg-rose-100 text-rose-900 border-rose-300',
     },
   ];
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs flex flex-col justify-between space-y-4">
+    <div className="bg-white border border-slate-200 rounded-md p-5 shadow-2xs flex flex-col justify-between space-y-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
         <div>
           <div className="flex items-center gap-2">
             <h3 className="text-sm font-extrabold text-slate-900">Bidder Compliance Score Comparison</h3>
-            <span className="px-2 py-0.5 bg-blue-50 text-blue-900 border border-blue-200 rounded text-[10px] font-bold">
+            <span className="px-2 py-0.5 bg-slate-100 text-slate-800 border border-slate-200 rounded text-[10px] font-bold font-mono">
               Tender: MOPNG-2026-001
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-500 mt-0.5 font-medium">
             Comparative evaluation across 4 submitted bidder proposals
           </p>
         </div>
 
         {/* View Switcher */}
-        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-[11px] font-bold">
+        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded text-[11px] font-bold border border-slate-200">
           <button
             onClick={() => setMetricFilter('both')}
             className={`px-2.5 py-1 rounded transition-all cursor-pointer ${
               metricFilter === 'both'
-                ? 'bg-blue-900 text-white shadow-xs'
+                ? 'bg-slate-900 text-white shadow-2xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -84,7 +84,7 @@ export function BidderComparisonBarChart() {
             onClick={() => setMetricFilter('compliance')}
             className={`px-2.5 py-1 rounded transition-all cursor-pointer ${
               metricFilter === 'compliance'
-                ? 'bg-blue-900 text-white shadow-xs'
+                ? 'bg-slate-900 text-white shadow-2xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -118,10 +118,10 @@ export function BidderComparisonBarChart() {
             >
               {/* Tooltip Popup */}
               {hoveredBidder?.id === b.id && (
-                <div className="absolute -top-12 bg-slate-900 text-white text-[11px] px-3 py-1.5 rounded-lg shadow-xl border border-slate-700 z-30 font-sans pointer-events-none whitespace-nowrap animate-fadeIn">
+                <div className="absolute -top-12 bg-slate-900 text-white text-[11px] px-3 py-1.5 rounded shadow-xl border border-slate-700 z-30 font-sans pointer-events-none whitespace-nowrap">
                   <span className="font-extrabold">{b.fullName}</span>: Compliance{' '}
-                  <span className="text-blue-400 font-bold">{b.score}%</span> | Risk{' '}
-                  <span className="text-blue-400 font-bold">{b.riskScore}/100</span>
+                  <span className="text-emerald-400 font-bold font-mono">{b.score}%</span> | Risk{' '}
+                  <span className="text-amber-400 font-bold font-mono">{b.riskScore}/100</span>
                 </div>
               )}
 
@@ -129,10 +129,10 @@ export function BidderComparisonBarChart() {
               <div className="w-full max-w-[56px] flex items-end justify-center gap-1 h-full relative">
                 {/* Main Compliance Bar */}
                 <div
-                  className="w-full rounded-t-lg bg-blue-900 transition-all duration-500 shadow-sm group-hover:brightness-110 relative flex flex-col justify-between items-center py-1"
+                  className="w-full rounded-t bg-slate-900 transition-all duration-500 shadow-2xs group-hover:bg-slate-800 relative flex flex-col justify-between items-center py-1"
                   style={{ height: `${b.score}%` }}
                 >
-                  <span className="text-[11px] font-black text-white drop-shadow-xs font-mono">
+                  <span className="text-[11px] font-black text-white font-mono">
                     {b.score}%
                   </span>
                 </div>
@@ -140,11 +140,11 @@ export function BidderComparisonBarChart() {
                 {/* Risk Score Side Bar (When 'both' filter is selected) */}
                 {metricFilter === 'both' && (
                   <div
-                    className={`w-1/2 rounded-t-md ${b.riskColor} opacity-90 transition-all duration-500 relative flex justify-center py-0.5`}
+                    className={`w-1/2 rounded-t ${b.riskColor} opacity-90 transition-all duration-500 relative flex justify-center py-0.5`}
                     style={{ height: `${b.riskScore}%` }}
                     title={`Risk Score: ${b.riskScore}`}
                   >
-                    <span className="text-[9px] font-black text-slate-900 font-mono">
+                    <span className="text-[9px] font-black text-white font-mono">
                       {b.riskScore}
                     </span>
                   </div>
@@ -169,22 +169,23 @@ export function BidderComparisonBarChart() {
 
       {/* Chart Footer Highlights */}
       <div className="pt-3 border-t border-slate-100 grid grid-cols-3 gap-2 text-center text-xs">
-        <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
-          <span className="text-[10px] text-slate-500 font-medium block">Highest Score</span>
-          <span className="font-extrabold text-emerald-700 font-mono">92% (Alpha Energy)</span>
+        <div className="bg-slate-50 p-2 rounded border border-slate-200">
+          <span className="text-[10px] text-slate-500 font-extrabold block uppercase">Highest Score</span>
+          <span className="font-extrabold text-emerald-800 font-mono">92% (Alpha Energy)</span>
         </div>
-        <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
-          <span className="text-[10px] text-slate-500 font-medium block">Evaluation Average</span>
-          <span className="font-extrabold text-blue-900 font-mono">82.75% Avg</span>
+        <div className="bg-slate-50 p-2 rounded border border-slate-200">
+          <span className="text-[10px] text-slate-500 font-extrabold block uppercase">Evaluation Average</span>
+          <span className="font-extrabold text-slate-900 font-mono">82.75% Avg</span>
         </div>
-        <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
-          <span className="text-[10px] text-slate-500 font-medium block">Flagged Bids</span>
-          <span className="font-extrabold text-rose-700 font-mono">1 High Risk (25%)</span>
+        <div className="bg-slate-50 p-2 rounded border border-slate-200">
+          <span className="text-[10px] text-slate-500 font-extrabold block uppercase">Flagged Bids</span>
+          <span className="font-extrabold text-rose-800 font-mono">1 High Risk (25%)</span>
         </div>
       </div>
     </div>
   );
 }
+
 
 // 2. Interactive SVG Donut / Pie Chart for Bidder Status & Risk Distribution
 export function BidderStatusPieChart() {

@@ -423,51 +423,28 @@ export default function BidderTendersPage({ navigate, currentPath }) {
     <AppLayout role="bidder" currentPath={currentPath} navigate={navigate}>
       <div className="space-y-5">
         {/* Page Header */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-md border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            
+            <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-slate-700" />
+              Public Procurement Directory &nbsp;•&nbsp; Open Tenders
+            </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
-              Open Public Tenders
+              Open Public Tenders & Requirement Analysis
             </h1>
-            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
-              Browse, review requirements &amp; submit your bid &nbsp;&bull;&nbsp; DigiLocker-verified submissions
-            </p> */}
           </div>
           <button
             id="verify-digilocker-btn"
             onClick={() => navigate('/bidder/digilocker')}
-            className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer shrink-0"
+            className="px-4 py-2 bg-emerald-800 hover:bg-emerald-900 text-white font-bold rounded text-xs flex items-center gap-2 shadow-2xs transition-colors cursor-pointer shrink-0"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
             </svg>
-            Verify via DigiLocker
+            <span>Verify via DigiLocker</span>
           </button>
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[
-            { label: 'Open Tenders', value: MOCK_TENDERS.length },
-            {
-              label: 'Deadline This Month',
-              value: MOCK_TENDERS.filter((t) => t.deadline.startsWith('2026-03')).length,
-            },
-            { label: 'Tenders Applied', value: appliedTenders.size, accent: 'border-t-emerald-600' },
-            {
-              label: 'Total Budget Pool',
-              value: 'Rs. 170+ Cr',
-            },
-          ].map((kpi) => (
-            <div
-              key={kpi.label}
-              className={`bg-white border border-slate-200 rounded-lg p-4 shadow-xs`}
-            >
-              <p className="font-extrabold uppercase tracking-wider text-slate-500" style={{ fontSize: '10px' }}>{kpi.label}</p>
-              <p className="text-2xl font-black text-slate-900 mt-1">{kpi.value}</p>
-            </div>
-          ))}
-        </div>
 
         {/* Filters Bar */}
         <div className="bg-white border border-slate-200 rounded-lg p-3 space-y-3">
@@ -500,13 +477,14 @@ export default function BidderTendersPage({ navigate, currentPath }) {
                   onClick={() => setCategoryFilter(cat)}
                   className={`px-2.5 py-0.5 rounded-full font-bold transition-colors cursor-pointer ${
                     categoryFilter === cat
-                      ? 'bg-blue-700 text-white'
+                      ? 'bg-slate-900 text-white'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                   style={{ fontSize: '10px' }}
                 >
                   {cat}
                 </button>
+
               ))}
             </div>
 

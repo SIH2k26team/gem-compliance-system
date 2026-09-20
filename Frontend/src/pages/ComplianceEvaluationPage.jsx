@@ -90,22 +90,22 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
         )}
 
         {/* Page Header Banner */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200  shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-md border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-        
+            <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-slate-700" />
+              Ministry of Petroleum &amp; Natural Gas &nbsp;•&nbsp; Compliance Verification Engine
+            </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               Compliance Evaluation Matrix & Scoring
             </h1>
-            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
-              Compare bidder compliance against extracted tender clauses, inspect evidence fragments & apply officer score overrides.
-            </p> */}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
             <select
               value={selectedTenderId}
               onChange={(e) => setSelectedTenderId(e.target.value)}
-              className="bg-slate-50 border border-slate-300 text-slate-800 text-xs font-bold rounded px-3 py-2 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+              className="bg-slate-50 border border-slate-300 text-slate-800 text-xs font-bold rounded px-3 py-2 focus:ring-1 focus:ring-slate-700 focus:outline-none cursor-pointer"
             >
               {MOCK_TENDERS.map((t) => (
                 <option key={t.id} value={t.id}>
@@ -116,45 +116,47 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
 
             <button
               onClick={() => triggerToast('Generated PDF Evaluation Report for ' + selectedTenderId)}
-              className="px-3.5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-xs flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+              className="px-5 py-2 bg-[#c05621] hover:bg-[#a04303] text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
               <span>Export Matrix (PDF)</span>
+              <div className="w-4 h-4 rounded-full border border-white/60 flex items-center justify-center shrink-0">
+                <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </button>
           </div>
         </div>
 
         {/* Selected Tender Summary Bar */}
-        <div className="bg-blue-50/60 border border-blue-100 rounded-lg p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+        <div className="bg-slate-100 border border-slate-200 rounded-md p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
           <div>
-            <span className="text-slate-500 font-medium">Tender Title:</span>
-            <p className="font-extrabold text-slate-900 truncate">{selectedTender.title}</p>
+            <span className="text-slate-500 font-extrabold uppercase text-[10px]">Tender Title:</span>
+            <p className="font-extrabold text-slate-900 truncate mt-0.5">{selectedTender.title}</p>
           </div>
           <div>
-            <span className="text-slate-500 font-medium">Department / Budget:</span>
-            <p className="font-bold text-slate-800">{selectedTender.department} • <span className="text-blue-900 font-mono font-extrabold">{selectedTender.budget}</span></p>
+            <span className="text-slate-500 font-extrabold uppercase text-[10px]">Department / Budget:</span>
+            <p className="font-bold text-slate-800 mt-0.5">{selectedTender.department} • <span className="text-slate-900 font-mono font-extrabold">{selectedTender.budget}</span></p>
           </div>
           <div>
-            <span className="text-slate-500 font-medium">Extracted Clauses:</span>
-            <p className="font-bold text-slate-800">{selectedTender.requirementsCount} Clauses ({selectedTender.mandatoryCount} Mandatory Pass/Fail)</p>
+            <span className="text-slate-500 font-extrabold uppercase text-[10px]">Extracted Clauses:</span>
+            <p className="font-bold text-slate-800 mt-0.5">{selectedTender.requirementsCount} Clauses ({selectedTender.mandatoryCount} Mandatory Pass/Fail)</p>
           </div>
           <div>
-            <span className="text-slate-500 font-medium">Evaluated Submissions:</span>
-            <p className="font-bold text-emerald-800">{selectedTender.evaluatedBids} Evaluated / {selectedTender.totalBidsSubmitted} Submitted Bids</p>
+            <span className="text-slate-500 font-extrabold uppercase text-[10px]">Evaluated Submissions:</span>
+            <p className="font-bold text-emerald-800 mt-0.5">{selectedTender.evaluatedBids} Evaluated / {selectedTender.totalBidsSubmitted} Submitted Bids</p>
           </div>
         </div>
 
         {/* Filter Bar & View Toggle */}
-        <div className="bg-white border border-slate-200 rounded-lg p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xs">
+        <div className="bg-white border border-slate-200 rounded-md p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xs">
           <div className="flex items-center gap-2 w-full md:w-auto">
             {/* View Mode Buttons */}
-            <div className="bg-slate-100 p-1 rounded flex gap-1 text-xs font-bold">
+            <div className="bg-slate-100 p-1 rounded flex gap-1 text-xs font-bold border border-slate-200">
               <button
                 onClick={() => setActiveTab('matrix')}
                 className={`px-3 py-1.5 rounded transition-all cursor-pointer ${
-                  activeTab === 'matrix' ? 'bg-white text-blue-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                  activeTab === 'matrix' ? 'bg-slate-900 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Bidder Matrix
@@ -162,12 +164,13 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
               <button
                 onClick={() => setActiveTab('requirement_view')}
                 className={`px-3 py-1.5 rounded transition-all cursor-pointer ${
-                  activeTab === 'requirement_view' ? 'bg-white text-blue-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                  activeTab === 'requirement_view' ? 'bg-slate-900 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 Clause-by-Clause View
               </button>
             </div>
+
 
             {/* Search Input */}
             <div className="relative flex-1 md:w-64">
@@ -557,9 +560,14 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                 </button>
                 <button
                   onClick={handleApplyOverride}
-                  className="px-4 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold rounded cursor-pointer"
+                  className="px-5 py-1.5 bg-[#c05621] hover:bg-[#a04303] text-white text-xs font-bold rounded-full cursor-pointer inline-flex items-center gap-1.5 shadow-2xs"
                 >
-                  Commit Override & Save
+                  <span>Commit Override & Save</span>
+                  <div className="w-3.5 h-3.5 rounded-full border border-white/60 flex items-center justify-center shrink-0">
+                    <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </button>
               </div>
             </div>

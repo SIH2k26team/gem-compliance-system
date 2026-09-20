@@ -111,22 +111,22 @@ export default function LandingPage({ navigate }) {
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-900 selection:text-white">
 
       {/* Navigation Header */}
-      <nav className="border-b border-slate-200 bg-blue-900 sticky top-0 z-50 shadow-2xs">
+      <nav className="border-b border-slate-200 bg-slate-900 sticky top-0 z-50 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={gemLogo} alt="GEM Logo" className="h-22 w-60  py-2 color-white" />
+            <img src={gemLogo} alt="ProcuraAI Logo" className="h-12 w-auto py-1" />
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => navigate('/login')}
-              className="px-3.5 py-1.5 text-xs font-bold text-white hover:text-white-900 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-bold text-slate-200 hover:text-white transition-colors cursor-pointer"
             >
               Sign In
             </button>
             <button
               onClick={() => navigate('/register')}
-              className="px-3.5 py-1.5 text-xs font-bold text-white hover:text-white-900 hover:bg-blue-400 hover:border hover:border-blue-900 rounded-xl transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md transition-colors cursor-pointer"
             >
               Register
             </button>
@@ -136,7 +136,6 @@ export default function LandingPage({ navigate }) {
 
       {/* Hero Section */}
       <section className="relative py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight max-w-4xl mx-auto leading-tight">
           AI-Powered Tender Compliance & Bid Evaluation Platform
         </h1>
@@ -148,50 +147,46 @@ export default function LandingPage({ navigate }) {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
             onClick={() => navigate('/officer/dashboard')}
-            className="w-full sm:w-auto px-7 py-3 bg-blue-900 hover:bg-blue-800 text-white font-bold rounded text-xs shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
+            className="w-full sm:w-auto px-7 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-md text-xs shadow-2xs flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
-            <span>Procurement Officer Dashboard</span>
-
+            <span>Procurement Officer Portal</span>
           </button>
 
           <button
             onClick={() => navigate('/bidder/dashboard')}
-            className="w-full sm:w-auto px-7 py-3 bg-emerald-800 hover:bg-emerald-700 text-white font-bold rounded text-xs shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
+            className="w-full sm:w-auto px-7 py-3 bg-emerald-800 hover:bg-emerald-700 text-white font-bold rounded-md text-xs shadow-2xs flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
             <span>Bidder Vendor Portal</span>
           </button>
         </div>
 
         {/* Stats Ribbon */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 p-5 bg-white border border-slate-200 rounded-lg shadow-xs">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 p-5 bg-white border border-slate-200 rounded-md shadow-2xs">
           <div className="border-r border-slate-100 last:border-0 p-2">
-            <div className="text-2xl font-black text-blue-900 font-mono">100%</div>
+            <div className="text-2xl font-black text-slate-900 font-mono">100%</div>
             <div className="text-xs text-slate-600 font-semibold mt-0.5">Traceable Evidence</div>
           </div>
           <div className="border-r border-slate-100 last:border-0 p-2">
-            <div className="text-2xl font-black text-blue-900 font-mono">Multi-Doc</div>
+            <div className="text-2xl font-black text-slate-900 font-mono">Multi-Doc</div>
             <div className="text-xs text-slate-600 font-semibold mt-0.5">Contradiction Detection</div>
           </div>
           <div className="border-r border-slate-100 last:border-0 p-2">
-            <div className="text-2xl font-black text-emerald-700 font-mono">DigiLocker</div>
+            <div className="text-2xl font-black text-emerald-800 font-mono">DigiLocker</div>
             <div className="text-xs text-slate-600 font-semibold mt-0.5">Govt Record Verification</div>
           </div>
           <div className="p-2">
-            <div className="text-2xl font-black text-amber-700 font-mono">Human-in-Loop</div>
+            <div className="text-2xl font-black text-amber-800 font-mono">Human-in-Loop</div>
             <div className="text-xs text-slate-600 font-semibold mt-0.5">Officer Decision Control</div>
           </div>
         </div>
       </section>
-
-
-
 
       {/* Footer */}
       <footer className="mt-12 border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-10">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,1fr)]">
             <div className="max-w-xs">
-              <img src={gemLogo} alt="GeM" className="h-9 w-auto" />
+              <img src={gemLogo} alt="ProcuraAI" className="h-8 w-auto" />
               <p className="mt-4 text-sm leading-6 text-slate-600">
                 AI-powered tender compliance and bid evaluation for transparent, evidence-backed public procurement.
               </p>
@@ -209,7 +204,7 @@ export default function LandingPage({ navigate }) {
                       <a
                         href="#"
                         onClick={(event) => event.preventDefault()}
-                        className="text-sm text-slate-500 transition-colors hover:text-blue-900 hover:underline underline-offset-4"
+                        className="text-sm text-slate-500 transition-colors hover:text-slate-900 hover:underline underline-offset-4"
                       >
                         {link}
                       </a>
@@ -223,17 +218,14 @@ export default function LandingPage({ navigate }) {
           <div className="mt-10 flex flex-col gap-4 border-t border-slate-200 pt-5 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
             <p>AI-Powered Tender Compliance & Bid Evaluation Platform.</p>
             <div className="flex flex-wrap gap-x-5 gap-y-2">
-              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-blue-900">Terms of Use</a>
-              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-blue-900">Website Policies</a>
-              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-blue-900">Privacy Policy</a>
+              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-slate-900">Terms of Use</a>
+              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-slate-900">Website Policies</a>
+              <a href="#" onClick={(event) => event.preventDefault()} className="hover:text-slate-900">Privacy Policy</a>
             </div>
           </div>
         </div>
-        {/* Legacy footer copy removed from the prototype.
-        <p className="font-bold text-slate-800"> AI-Powered Integrated Bid Compliance Verification Platform</p>
-        <p className="mt-1 text-[11px] text-slate-500">Ministry of Petroleum & Natural Gas • Government of India</p>
-        */}
       </footer>
+
     </div>
   );
 }

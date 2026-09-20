@@ -91,25 +91,24 @@ export default function AuditLogsPage({ navigate, currentPath }) {
         )}
 
         {/* Page Header */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-md border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-           
+            <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-slate-700" />
+              Ministry of Petroleum &amp; Natural Gas &nbsp;•&nbsp; Cryptographic Compliance Ledger
+            </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1 flex items-center gap-3">
-              System Audit Logs
-              {/* <span className="px-2.5 py-0.5 bg-blue-50 text-blue-900 font-extrabold text-xs rounded border border-blue-200 inline-flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                SHA-256 Tamper Proof
-              </span> */}
+              System Audit Trail & Compliance Ledger
+              <span className="px-2.5 py-0.5 bg-slate-100 text-slate-800 font-extrabold text-xs rounded border border-slate-200 font-mono">
+                SHA-256 Verified
+              </span>
             </h1>
-            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
-              Complete append-only audit trail logging officer interactions, AI extraction triggers, DigiLocker API fetches & score overrides.
-            </p> */}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => triggerToast('Exported complete Audit Stream (CSV Format)')}
-              className="px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+              className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-2xs transition-colors cursor-pointer"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -119,32 +118,6 @@ export default function AuditLogsPage({ navigate, currentPath }) {
           </div>
         </div>
 
-        {/* Audit Stats Banner */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs">
-            <span className="text-xs font-bold text-slate-500 block uppercase">Total Logged Events</span>
-            <span className="text-2xl font-black text-slate-900 font-mono mt-1 block">1,482</span>
-            <span className="text-[11px] text-slate-500 font-medium">Append-only database</span>
-          </div>
-
-          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs">
-            <span className="text-xs font-bold text-slate-500 block uppercase">Officer Actions Today</span>
-            <span className="text-2xl font-black text-blue-900 font-mono mt-1 block">34</span>
-            <span className="text-[11px] text-slate-500 font-medium">Verified NIC credentials</span>
-          </div>
-
-          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs">
-            <span className="text-xs font-bold text-slate-500 block uppercase">AI Parser Runs</span>
-            <span className="text-2xl font-black text-emerald-800 font-mono mt-1 block">128</span>
-            <span className="text-[11px] text-slate-500 font-medium">PyMuPDF + OCR engine</span>
-          </div>
-
-          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs">
-            <span className="text-xs font-bold text-slate-500 block uppercase">Integrity Check</span>
-            <span className="text-2xl font-black text-emerald-700 font-mono mt-1 block">100%</span>
-            <span className="text-[11px] text-emerald-800 font-bold">✓ Hash chain verified</span>
-          </div>
-        </div>
 
         {/* Filter Toolbar */}
         <div className="bg-white border border-slate-200 rounded-lg p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xs">

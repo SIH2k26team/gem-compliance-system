@@ -76,24 +76,23 @@ export default function RegisterPage({ navigate }) {
   return (
     <div className="min-h-screen bg-slate-100 text-slate-800 flex flex-col justify-center items-center px-4 py-8 md:py-12">
       {/* Top Tri-color Ribbon */}
-      <div className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-white to-emerald-600 z-50" />
+      <div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-slate-200 to-emerald-600 z-50" />
 
-      <div className="w-full max-w-xl bg-white border border-slate-300 rounded-xl p-6 sm:p-8 shadow-xl my-4 relative">
+      <div className="w-full max-w-xl bg-white border border-slate-300 rounded-lg p-6 sm:p-8 shadow-sm my-4 relative">
         {/* Header Bar */}
-        <div className="flex items-center gap-3 text-center sm:text-left border-b border-slate-200 pb-5 mb-6">
+        <div className="flex items-center gap-3 border-b border-slate-200 pb-5 mb-6">
           <div
             onClick={() => navigate('/')}
-            className="inline-flex flex-col items-center justify-center w-12 h-12 rounded-lg bg-blue-900 text-white font-extrabold shadow-md cursor-pointer shrink-0 border border-blue-950 hover:bg-blue-800 transition-colors"
+            className="w-10 h-10 rounded bg-slate-900 text-slate-50 font-black text-xs flex items-center justify-center shadow-xs cursor-pointer hover:bg-slate-800 transition-colors shrink-0"
           >
-            <span className="text-[10px] tracking-widest uppercase leading-none">GOI</span>
-            <span className="text-[8px] font-semibold opacity-90 leading-none mt-0.5">SIH26</span>
+            PA
           </div>
           <div>
-            <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+            <h2 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
               e-Procurement Portal Registration
             </h2>
             <p className="text-xs text-slate-500 font-medium mt-0.5">
-              Ministry of Petroleum & Natural Gas • Central Public Procurement Platform
+              Ministry of Petroleum & Natural Gas • Central Procurement System
             </p>
           </div>
         </div>
@@ -101,40 +100,40 @@ export default function RegisterPage({ navigate }) {
         {submitted ? (
           /* Registration Success Screen */
           <div className="space-y-6">
-            <div className="bg-emerald-50 border-2 border-emerald-400 rounded-xl p-6 text-center space-y-4">
-              <div className="w-14 h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto shadow-md border-2 border-emerald-200">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-emerald-50/50 border border-emerald-300 rounded-lg p-6 text-center space-y-4">
+              <div className="w-12 h-12 bg-emerald-700 text-white rounded-full flex items-center justify-center mx-auto shadow-xs border border-emerald-600">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
 
               <div>
-                <span className="px-3 py-1 bg-emerald-200 text-emerald-950 rounded-full font-mono text-[11px] font-black tracking-wider uppercase">
+                <span className="px-2.5 py-1 bg-emerald-100 text-emerald-900 rounded font-mono text-[11px] font-bold tracking-wider uppercase border border-emerald-200">
                   Reference: {registrationRef}
                 </span>
-                <h3 className="text-xl font-black text-slate-900 mt-2">Registration Successful!</h3>
+                <h3 className="text-base font-bold text-slate-900 mt-3">Registration Submitted Successfully</h3>
                 <p className="text-xs text-slate-600 max-w-md mx-auto mt-1">
                   Account created for <span className="font-bold text-slate-900">{fullName}</span> as{' '}
-                  <span className="font-bold underline text-blue-900">
+                  <span className="font-bold underline text-slate-900">
                     {role === 'officer' ? 'Procurement Officer' : 'Bidder / Vendor'}
                   </span>.
                 </p>
               </div>
 
               {/* Summary */}
-              <div className="p-4 bg-white border border-slate-300 rounded-lg text-left text-xs space-y-1.5 text-slate-700 shadow-xs font-mono">
-                <p><span className="font-bold text-slate-900">Full Name:</span> {fullName}</p>
-                <p><span className="font-bold text-slate-900">Email:</span> {email}</p>
-                <p><span className="font-bold text-slate-900">Mobile:</span> +91 {mobile}</p>
+              <div className="p-4 bg-white border border-slate-200 rounded text-left text-xs space-y-1.5 text-slate-700 shadow-2xs font-mono">
+                <p><span className="font-bold text-slate-900 font-sans">Full Name:</span> {fullName}</p>
+                <p><span className="font-bold text-slate-900 font-sans">Email:</span> {email}</p>
+                <p><span className="font-bold text-slate-900 font-sans">Mobile:</span> +91 {mobile}</p>
                 {role === 'officer' ? (
                   <>
-                    <p><span className="font-bold text-slate-900">Department:</span> {department}</p>
-                    <p><span className="font-bold text-slate-900">Employee ID:</span> {employeeId}</p>
+                    <p><span className="font-bold text-slate-900 font-sans">Department:</span> {department}</p>
+                    <p><span className="font-bold text-slate-900 font-sans">Employee ID:</span> {employeeId}</p>
                   </>
                 ) : (
                   <>
-                    <p><span className="font-bold text-slate-900">Company Name:</span> {companyName}</p>
-                    <p><span className="font-bold text-slate-900">GSTIN:</span> {gstin}</p>
+                    <p><span className="font-bold text-slate-900 font-sans">Company Name:</span> {companyName}</p>
+                    <p><span className="font-bold text-slate-900 font-sans">GSTIN:</span> {gstin}</p>
                   </>
                 )}
               </div>
@@ -144,7 +143,7 @@ export default function RegisterPage({ navigate }) {
                 <button
                   type="button"
                   onClick={() => navigate(role === 'officer' ? '/officer/dashboard' : '/bidder/dashboard')}
-                  className="px-6 py-2.5 bg-blue-900 hover:bg-blue-800 text-white font-extrabold rounded-lg text-xs transition-colors cursor-pointer shadow-md flex items-center justify-center gap-2"
+                  className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded text-xs transition-colors cursor-pointer shadow-xs flex items-center justify-center gap-2"
                 >
                   Proceed to {role === 'officer' ? 'Officer Portal' : 'Bidder Dashboard'}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,7 +153,7 @@ export default function RegisterPage({ navigate }) {
                 <button
                   type="button"
                   onClick={() => navigate('/login')}
-                  className="px-6 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold rounded-lg text-xs transition-colors cursor-pointer"
+                  className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded text-xs transition-colors cursor-pointer border border-slate-300"
                 >
                   Sign In Page
                 </button>
@@ -166,12 +165,12 @@ export default function RegisterPage({ navigate }) {
           <form onSubmit={handleSubmit} className="space-y-5 text-xs">
             {/* Error Message Banner */}
             {errorMsg && (
-              <div className="p-3 bg-rose-50 border border-rose-300 rounded-lg text-rose-900 text-xs font-semibold flex items-center justify-between">
+              <div className="p-3 bg-rose-50 border border-rose-300 rounded text-rose-900 text-xs font-semibold flex items-center justify-between">
                 <span>{errorMsg}</span>
                 <button
                   type="button"
                   onClick={() => setErrorMsg('')}
-                  className="text-rose-500 hover:text-rose-800 font-bold ml-2 cursor-pointer"
+                  className="text-rose-600 hover:text-rose-900 font-bold ml-2 cursor-pointer"
                 >
                   ✕
                 </button>
@@ -180,19 +179,19 @@ export default function RegisterPage({ navigate }) {
 
             {/* Role Selection Tabs */}
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+              <label className="block text-[11px] font-bold text-slate-600 uppercase tracking-wider mb-2">
                 Select Account Role
               </label>
-              <div className="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-lg border border-slate-200 font-bold">
+              <div className="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded border border-slate-200 font-bold">
                 <button
                   type="button"
                   onClick={() => {
                     setRole('bidder');
                     setErrorMsg('');
                   }}
-                  className={`py-2.5 rounded-md transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                  className={`py-2 rounded transition-all cursor-pointer flex items-center justify-center gap-2 ${
                     role === 'bidder'
-                      ? 'bg-blue-900 text-white shadow-xs'
+                      ? 'bg-slate-900 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
@@ -208,9 +207,9 @@ export default function RegisterPage({ navigate }) {
                     setRole('officer');
                     setErrorMsg('');
                   }}
-                  className={`py-2.5 rounded-md transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                  className={`py-2 rounded transition-all cursor-pointer flex items-center justify-center gap-2 ${
                     role === 'officer'
-                      ? 'bg-blue-900 text-white shadow-xs'
+                      ? 'bg-slate-900 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
@@ -224,7 +223,7 @@ export default function RegisterPage({ navigate }) {
 
             {/* Basic Information Section */}
             <div className="space-y-4 pt-2">
-              <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2">
+              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2">
                 Basic Information
               </h3>
 
@@ -239,7 +238,7 @@ export default function RegisterPage({ navigate }) {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     required
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                     placeholder="Enter full name"
                   />
                 </div>
@@ -253,7 +252,7 @@ export default function RegisterPage({ navigate }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                     placeholder={role === 'officer' ? 'officer@mopng.gov.in' : 'contact@company.com'}
                   />
                 </div>
@@ -270,7 +269,7 @@ export default function RegisterPage({ navigate }) {
                   onChange={(e) => setMobile(e.target.value)}
                   required
                   maxLength={10}
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                   placeholder="10-digit mobile number"
                 />
               </div>
@@ -287,7 +286,7 @@ export default function RegisterPage({ navigate }) {
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
                       required
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                       placeholder="Company Legal Name"
                     />
                   </div>
@@ -302,7 +301,7 @@ export default function RegisterPage({ navigate }) {
                       onChange={(e) => setGstin(e.target.value.toUpperCase())}
                       required
                       maxLength={15}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg font-mono uppercase text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded font-mono uppercase text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                       placeholder="e.g. 27AAACA12341Z5"
                     />
                   </div>
@@ -316,7 +315,7 @@ export default function RegisterPage({ navigate }) {
                     <select
                       value={department}
                       onChange={(e) => setDepartment(e.target.value)}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                     >
                       <option value="Ministry of Petroleum & Natural Gas">Ministry of Petroleum & Natural Gas</option>
                       <option value="ONGC - Oil and Natural Gas Corporation">ONGC - Oil and Natural Gas Corporation</option>
@@ -336,7 +335,7 @@ export default function RegisterPage({ navigate }) {
                       value={employeeId}
                       onChange={(e) => setEmployeeId(e.target.value)}
                       required
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                       placeholder="e.g. GOI-OFF-9942"
                     />
                   </div>
@@ -355,7 +354,7 @@ export default function RegisterPage({ navigate }) {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     minLength={6}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                     placeholder="Minimum 6 characters"
                   />
                 </div>
@@ -370,7 +369,7 @@ export default function RegisterPage({ navigate }) {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                     minLength={6}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-900 focus:bg-white"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-slate-900 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white"
                     placeholder="Re-enter password"
                   />
                 </div>
@@ -381,7 +380,7 @@ export default function RegisterPage({ navigate }) {
             <div className="pt-4 border-t border-slate-200">
               <button
                 type="submit"
-                className="w-full py-3 bg-blue-900 hover:bg-blue-800 text-white font-extrabold rounded-lg text-xs transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded text-xs transition-all shadow-xs cursor-pointer flex items-center justify-center gap-2"
               >
                 Register Account as {role === 'officer' ? 'Procurement Officer' : 'Bidder'}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -398,7 +397,7 @@ export default function RegisterPage({ navigate }) {
           <button
             type="button"
             onClick={() => navigate('/login')}
-            className="text-blue-900 font-bold hover:underline cursor-pointer"
+            className="text-slate-900 font-bold hover:underline cursor-pointer"
           >
             Sign In here
           </button>

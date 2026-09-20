@@ -84,24 +84,24 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
         )}
 
         {/* Page Banner Header */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200  shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-md border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            
+            <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-rose-700" />
+              Ministry of Petroleum &amp; Natural Gas &nbsp;•&nbsp; Risk Assessment Division
+            </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1 flex items-center gap-3">
               Risk Flags & Evidence Verification
-              <span className="px-2.5 py-0.5 bg-rose-100 text-rose-900 font-extrabold text-xs rounded-full border border-rose-300">
+              <span className="px-2.5 py-0.5 bg-rose-50 text-rose-900 font-extrabold text-xs rounded border border-rose-300">
                 5 Active Alerts
               </span>
             </h1>
-            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
-              Deterministic rule engine flagging address contradictions, font/OCR metadata anomalies & omitted mandatory certificates.
-            </p> */}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => triggerToast('Exported Risk & Contradiction Audit Report (PDF)')}
-              className="px-3.5 py-2 bg-rose-700 hover:bg-rose-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+              className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-2xs transition-colors cursor-pointer"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -111,60 +111,14 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
           </div>
         </div>
 
-        {/* Risk KPI Metric Cards */}
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <div className="bg-white border border-rose-200 rounded-lg p-4 shadow-xs ">
-            <span className="text-xs font-bold text-slate-500 block uppercase">Critical Red Flags</span>
-            <div className="flex items-center justify-between mt-1">
-              <span className="text-2xl font-black text-rose-700 font-mono">1 Alert</span>
-              <span className="px-2 py-0.5 bg-rose-100 text-rose-800 font-extrabold text-[10px] rounded">
-                +30 Weight
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-500 mt-1 font-medium">Missing mandatory safety certificates</p>
-          </div>
-
-          <div className="bg-white border border-amber-200 rounded-lg p-4 shadow-xs ">
-            <span className="text-xs font-bold text-slate-500 block uppercase">Document Contradictions</span>
-            <div className="flex items-center justify-between mt-1">
-              <span className="text-2xl font-black text-amber-700 font-mono">2 Mismatches</span>
-              <span className="px-2 py-0.5 bg-amber-100 text-amber-800 font-extrabold text-[10px] rounded">
-                +25 Weight
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-500 mt-1 font-medium">GST vs Experience address differences</p>
-          </div>
-
-          <div className="bg-white border border-blue-200 rounded-lg p-4 shadow-xs ">
-            <span className="text-xs font-bold text-slate-500 block uppercase">Font / Tampering Anomalies</span>
-            <div className="flex items-center justify-between mt-1">
-              <span className="text-2xl font-black text-blue-900 font-mono">1 Detected</span>
-              <span className="px-2 py-0.5 bg-blue-100 text-blue-800 font-extrabold text-[10px] rounded">
-                +13 Weight
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-500 mt-1 font-medium">OCR raster layer text variance</p>
-          </div>
-
-          <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-xs ">
-            <span className="text-xs font-bold text-slate-500 block uppercase">Upcoming Expiries</span>
-            <div className="flex items-center justify-between mt-1">
-              <span className="text-2xl font-black text-slate-800 font-mono">1 Alert</span>
-              <span className="px-2 py-0.5 bg-slate-100 text-slate-700 font-extrabold text-[10px] rounded">
-                18 Days
-              </span>
-            </div>
-            <p className="text-[11px] text-slate-500 mt-1 font-medium">ISO certification renewal required</p>
-          </div>
-        </div> */}
-
         {/* Formula Explainer Bar */}
-        <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 text-xs text-amber-900 flex items-start gap-2.5 font-medium shadow-2xs">
+        <div className="bg-amber-50/80 border border-amber-300 rounded-md p-3 text-xs text-amber-900 flex items-start gap-2.5 font-medium shadow-2xs">
           <span className="text-base shrink-0">⚖️</span>
           <div>
-            <span className="font-extrabold">Deterministic Scoring Rules Active:</span> Risk Score = Missing Document (+30) + Address Mismatch (+25) + Name Mismatch (+20) + Font Anomaly (+13). Scores ≥ 50 are automatically marked <span className="font-black text-rose-900 uppercase">High Risk</span> and require mandatory officer review.
+            <span className="font-extrabold">Deterministic Rule Engine Rules Active:</span> Risk Score = Missing Document (+30) + Address Mismatch (+25) + Name Mismatch (+20) + Font Anomaly (+13). Scores ≥ 50 are automatically flagged for officer review.
           </div>
         </div>
+
 
         {/* Filter Bar */}
         <div className="bg-white border border-slate-200 rounded-lg p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xs">

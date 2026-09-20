@@ -17,26 +17,28 @@ export default function BidderDashboard({ navigate, currentPath }) {
     <AppLayout role="bidder" currentPath={currentPath} navigate={navigate}>
       <div className="space-y-5">
         {/* Government Vendor Header */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200  shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-md border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-           
+            <div className="flex items-center gap-2 text-xs font-extrabold text-emerald-800 uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-emerald-600" />
+              Verified Bidder Portal &nbsp;•&nbsp; Ministry of Petroleum & Natural Gas
+            </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               {CURRENT_USER_BIDDER.company}
             </h1>
-            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
-              Authorized Vendor ID: VEND-99420 • Contact: {CURRENT_USER_BIDDER.name} ({CURRENT_USER_BIDDER.email})
-            </p> */}
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => navigate('/bidder/digilocker')}
-              className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+              className="px-5 py-2 bg-[#c05621] hover:bg-[#a04303] text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-              </svg>
               <span>Verify with DigiLocker</span>
+              <div className="w-4 h-4 rounded-full border border-white/60 flex items-center justify-center shrink-0">
+                <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </button>
           </div>
         </div>
@@ -47,6 +49,7 @@ export default function BidderDashboard({ navigate, currentPath }) {
             title="Open Tenders"
             value={SYSTEM_STATS_BIDDER.openTenders}
             subtitle="Matching company scope"
+            color="blue"
             icon={
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -57,6 +60,7 @@ export default function BidderDashboard({ navigate, currentPath }) {
             title="Submitted Bids"
             value={SYSTEM_STATS_BIDDER.submittedBids}
             subtitle="Under officer evaluation"
+            color="white"
             icon={
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -67,6 +71,7 @@ export default function BidderDashboard({ navigate, currentPath }) {
             title="Pending Documents"
             value={SYSTEM_STATS_BIDDER.pendingDocuments}
             subtitle="Action required"
+            color="amber"
             icon={
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -77,37 +82,39 @@ export default function BidderDashboard({ navigate, currentPath }) {
             title="Verified Documents"
             value={SYSTEM_STATS_BIDDER.verifiedDocuments}
             subtitle="DigiLocker + OCR verified"
+            color="emerald"
             icon={
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
               </svg>
             }
           />
         </div>
 
         {/* Tab Controls */}
-        <div className="bg-white border border-slate-200 rounded-lg p-1.5 flex gap-2 text-xs font-bold shadow-2xs">
+        <div className="bg-white border border-slate-200 rounded-md p-1.5 flex gap-2 text-xs font-bold shadow-2xs">
           <button
             onClick={() => setActiveTab('tenders')}
             className={`px-4 py-2 rounded transition-all cursor-pointer ${
               activeTab === 'tenders'
-                ? 'bg-blue-700 text-white shadow-xs'
+                ? 'bg-slate-900 text-white shadow-2xs'
                 : 'text-slate-700 hover:bg-slate-100'
             }`}
           >
-            Open Tenders ({MOCK_TENDERS.length})
+            Open Public Tenders ({MOCK_TENDERS.length})
           </button>
           <button
             onClick={() => setActiveTab('submissions')}
             className={`px-4 py-2 rounded transition-all cursor-pointer ${
               activeTab === 'submissions'
-                ? 'bg-blue-700 text-white shadow-xs'
+                ? 'bg-slate-900 text-white shadow-2xs'
                 : 'text-slate-700 hover:bg-slate-100'
             }`}
           >
             My Submitted Bids ({MOCK_BIDDER_SUBMISSIONS_LIST.length})
           </button>
         </div>
+
 
         {/* Tab 1: Open Tenders */}
         {activeTab === 'tenders' && (

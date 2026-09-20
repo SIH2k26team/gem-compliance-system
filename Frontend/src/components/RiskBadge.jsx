@@ -3,26 +3,26 @@ import React from 'react';
 export default function RiskBadge({ level = 'Low', score, showScore = true }) {
   const normalized = (level || '').toLowerCase();
 
-  let badgeStyle = 'bg-emerald-50 text-emerald-700 border-emerald-300';
+  let badgeStyle = 'bg-emerald-50 text-emerald-900 border-emerald-300 font-semibold';
   let label = 'Low Risk';
 
-  if (normalized.includes('high') || (score && score >= 50)) {
-    badgeStyle = ' text-rose-700 ';
+  if (normalized.includes('high') || (score !== undefined && score >= 50)) {
+    badgeStyle = 'bg-rose-50 text-rose-900 border-rose-300 font-semibold';
     label = 'High Risk';
-  } else if (normalized.includes('medium') || (score && score >= 21 && score < 50)) {
-    badgeStyle = ' text-amber-800 ';
+  } else if (normalized.includes('medium') || (score !== undefined && score >= 21 && score < 50)) {
+    badgeStyle = 'bg-amber-50 text-amber-900 border-amber-300 font-semibold';
     label = 'Medium Risk';
   } else if (normalized.includes('low') || (score !== undefined && score < 21)) {
-    badgeStyle = ' text-emerald-700 ';
+    badgeStyle = 'bg-emerald-50 text-emerald-900 border-emerald-300 font-semibold';
     label = 'Low Risk';
   }
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs border ${badgeStyle}`}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] border ${badgeStyle}`}
     >
       <svg
-        className="w-3.5 h-3.5"
+        className="w-3.5 h-3.5 shrink-0"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -35,11 +35,12 @@ export default function RiskBadge({ level = 'Low', score, showScore = true }) {
         />
       </svg>
       <span>{label}</span>
-      {/* {showScore && score !== undefined && (
-        <span className="ml-1 pl-1.5 border-l border-current font-mono opacity-80">
+      {showScore && score !== undefined && (
+        <span className="font-mono text-[10px] font-bold opacity-80 border-l border-current pl-1 ml-0.5">
           {score}/100
         </span>
-      )} */}
+      )}
     </span>
   );
 }
+

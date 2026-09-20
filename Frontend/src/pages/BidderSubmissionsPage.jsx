@@ -504,12 +504,14 @@ function SubmissionDetailPanel({ sub, onClose, navigate, tendersPath = '/bidder/
         <button
           id="view-open-tenders-btn"
           onClick={() => navigate(tendersPath)}
-          className="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded text-xs font-bold cursor-pointer transition-colors flex items-center gap-1.5"
+          className="px-5 py-2 bg-[#c05621] hover:bg-[#a04303] text-white rounded-full text-xs font-bold cursor-pointer transition-all flex items-center gap-2 shadow-2xs"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          {tendersLabel}
+          <span>{tendersLabel}</span>
+          <div className="w-4 h-4 rounded-full border border-white/60 flex items-center justify-center shrink-0">
+            <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
         </button>
       </div>
     </div>
@@ -548,54 +550,30 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
     <AppLayout role={role} currentPath={currentPath} navigate={navigate}>
       <div className="space-y-5">
         {/* Page Header */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="bg-white p-5 rounded-md border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-              {isOfficer ? 'Procurement Officer Portal' : ` ${CURRENT_USER_BIDDER.company}`}
+            <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-slate-700" />
+              {isOfficer ? 'Procurement Officer Portal' : `${CURRENT_USER_BIDDER.company} Vendor Portal`}
             </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
-              {isOfficer ? 'Bidder Submissions' : 'My Submitted Bids'}
+              {isOfficer ? 'Bidder Submissions & Proposals' : 'My Submitted Tender Bids'}
             </h1>
-            {/* <p className="text-xs text-slate-600 mt-0.5 font-medium">
-              {isOfficer
-                ? 'Review compliance scores, document status & bidder submissions'
-                : 'Compliance scores \u00a0\u2022\u00a0 Document status \u00a0\u2022\u00a0 Officer evaluation tracking'}
-            </p> */}
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <button
               id="browse-tenders-header-btn"
               onClick={() => navigate(tendersPath)}
-              className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-xs transition-colors cursor-pointer"
+              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-2xs transition-colors cursor-pointer"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              {tendersLabel}
+              <span>{tendersLabel}</span>
             </button>
           </div>
         </div>
 
-        {/* KPI stat cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[
-            { label: 'Total Submissions', value: MOCK_BIDDER_SUBMISSIONS_LIST.length, sub: 'All statuses' },
-            { label: 'Avg Compliance Score', value: `${avgScore}%`, sub: 'Submitted bids' },
-            { label: 'Pending Action', value: pendingAction, sub: 'Needs your input' },
-            {
-              label: 'DigiLocker Verified',
-              value: MOCK_BIDDER_SUBMISSIONS_LIST.filter((s) => s.digiLockerStatus === 'Verified').length,
-              sub: 'Govt verified docs',
-            },
-          ].map((k) => (
-            <div key={k.label} className={`bg-white border border-slate-200 rounded-lg p-4 shadow-xs`}>
-              <p className="font-extrabold uppercase tracking-wider text-slate-500" style={{ fontSize: '10px' }}>{k.label}</p>
-              <p className="text-2xl font-black text-slate-900 mt-1">{k.value}</p>
-              <p className="text-slate-400 mt-0.5" style={{ fontSize: '11px' }}>{k.sub}</p>
-            </div>
-          ))}
-        </div>
 
         {/* Main area */}
         <div className={`grid gap-5 ${selectedSub ? 'lg:grid-cols-5' : 'grid-cols-1'}`}>
