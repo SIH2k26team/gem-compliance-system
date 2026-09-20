@@ -76,7 +76,7 @@ export default function RegisterPage({ navigate }) {
   return (
     <div className="min-h-screen bg-slate-100 text-slate-800 flex flex-col justify-center items-center px-4 py-8 md:py-12">
       {/* Top Tri-color Ribbon */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-slate-200 to-emerald-600 z-50" />
+      <div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-slate-200 to-emerald-600 z-50" />
 
       <div className="w-full max-w-xl bg-white border border-slate-300 rounded-lg p-6 sm:p-8 shadow-sm my-4 relative">
         {/* Header Bar */}

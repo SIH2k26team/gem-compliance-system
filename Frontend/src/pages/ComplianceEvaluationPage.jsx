@@ -116,7 +116,7 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
 
             <button
               onClick={() => triggerToast('Generated PDF Evaluation Report for ' + selectedTenderId)}
-              className="px-5 py-2 bg-[#c05621] hover:bg-[#a04303] text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+              className="px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
               <span>Export Matrix (PDF)</span>
               <div className="w-4 h-4 rounded-full border border-white/60 flex items-center justify-center shrink-0">
@@ -560,7 +560,7 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                 </button>
                 <button
                   onClick={handleApplyOverride}
-                  className="px-5 py-1.5 bg-[#c05621] hover:bg-[#a04303] text-white text-xs font-bold rounded-full cursor-pointer inline-flex items-center gap-1.5 shadow-2xs"
+                  className="px-5 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold rounded-full cursor-pointer inline-flex items-center gap-1.5 shadow-2xs"
                 >
                   <span>Commit Override & Save</span>
                   <div className="w-3.5 h-3.5 rounded-full border border-white/60 flex items-center justify-center shrink-0">

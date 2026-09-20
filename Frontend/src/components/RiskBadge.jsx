@@ -3,17 +3,17 @@ import React from 'react';
 export default function RiskBadge({ level = 'Low', score, showScore = true }) {
   const normalized = (level || '').toLowerCase();
 
-  let badgeStyle = 'bg-emerald-50 text-emerald-900 border-emerald-300 font-semibold';
+  let badgeStyle = ' text-emerald-900 border-emerald-300 font-semibold';
   let label = 'Low Risk';
 
   if (normalized.includes('high') || (score !== undefined && score >= 50)) {
-    badgeStyle = 'bg-rose-50 text-rose-900 border-rose-300 font-semibold';
+    badgeStyle = ' text-rose-900 border-rose-300 font-semibold';
     label = 'High Risk';
   } else if (normalized.includes('medium') || (score !== undefined && score >= 21 && score < 50)) {
-    badgeStyle = 'bg-amber-50 text-amber-900 border-amber-300 font-semibold';
+    badgeStyle = ' text-indigo-900 border-indigo-300 font-semibold';
     label = 'Medium Risk';
   } else if (normalized.includes('low') || (score !== undefined && score < 21)) {
-    badgeStyle = 'bg-emerald-50 text-emerald-900 border-emerald-300 font-semibold';
+    badgeStyle = ' text-emerald-900 border-emerald-300 font-semibold';
     label = 'Low Risk';
   }
 

@@ -29,7 +29,7 @@ export default function LoginPage({ navigate }) {
   return (
     <div className="min-h-screen bg-slate-100 text-slate-800 flex flex-col justify-center items-center px-4 py-12">
       {/* Institutional Top Tri-color Bar */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-slate-200 to-emerald-600 z-50" />
+      <div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-slate-200 to-emerald-600 z-50" />
 
       <div className="w-full max-w-md bg-white border border-slate-300 rounded-lg p-8 shadow-sm">
         <div className="text-center mb-6">

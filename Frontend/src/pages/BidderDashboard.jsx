@@ -21,7 +21,7 @@ export default function BidderDashboard({ navigate, currentPath }) {
           <div>
             <div className="flex items-center gap-2 text-xs font-extrabold text-emerald-800 uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-emerald-600" />
-              Verified Bidder Portal &nbsp;•&nbsp; Ministry of Petroleum & Natural Gas
+              Verified Bidder Portal &nbsp;
             </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               {CURRENT_USER_BIDDER.company}
@@ -31,7 +31,7 @@ export default function BidderDashboard({ navigate, currentPath }) {
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => navigate('/bidder/digilocker')}
-              className="px-5 py-2 bg-[#c05621] hover:bg-[#a04303] text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+              className="px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
               <span>Verify with DigiLocker</span>
               <div className="w-4 h-4 rounded-full border border-white/60 flex items-center justify-center shrink-0">

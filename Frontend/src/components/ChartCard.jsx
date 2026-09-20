@@ -14,8 +14,8 @@ export function BidderComparisonBarChart() {
       riskScore: 12,
       mandatory: '5 / 5',
       decision: 'Recommended',
-      riskColor: 'bg-slate-600',
-      badge: 'bg-emerald-100 text-emerald-900 border-emerald-300',
+      riskColor: 'bg-blue-800',
+      badge: ' text-emerald-900 border-emerald-300',
     },
     {
       id: 'BID-D04',
@@ -25,8 +25,8 @@ export function BidderComparisonBarChart() {
       riskScore: 18,
       mandatory: '5 / 5',
       decision: 'Recommended',
-      riskColor: 'bg-slate-600',
-      badge: 'bg-slate-100 text-slate-900 border-slate-300',
+      riskColor: 'bg-blue-800',
+      badge: ' text-slate-900 border-slate-300',
     },
     {
       id: 'BID-B02',
@@ -36,8 +36,8 @@ export function BidderComparisonBarChart() {
       riskScore: 38,
       mandatory: '5 / 5',
       decision: 'Pending Review',
-      riskColor: 'bg-slate-600',
-      badge: 'bg-amber-100 text-amber-900 border-amber-300',
+      riskColor: 'bg-blue-800',
+      badge: ' text-indigo-900 border-indigo-300',
     },
     {
       id: 'BID-C03',
@@ -47,8 +47,8 @@ export function BidderComparisonBarChart() {
       riskScore: 68,
       mandatory: '4 / 5',
       decision: 'High Risk Flagged',
-      riskColor: 'bg-slate-600',
-      badge: 'bg-rose-100 text-rose-900 border-rose-300',
+      riskColor: 'bg-blue-800',
+      badge: ' text-rose-900 border-rose-300',
     },
   ];
 
@@ -121,7 +121,7 @@ export function BidderComparisonBarChart() {
                 <div className="absolute -top-12 bg-slate-900 text-white text-[11px] px-3 py-1.5 rounded shadow-xl border border-slate-700 z-30 font-sans pointer-events-none whitespace-nowrap">
                   <span className="font-extrabold">{b.fullName}</span>: Compliance{' '}
                   <span className="text-emerald-400 font-bold font-mono">{b.score}%</span> | Risk{' '}
-                  <span className="text-amber-400 font-bold font-mono">{b.riskScore}/100</span>
+                  <span className="text-indigo-400 font-bold font-mono">{b.riskScore}/100</span>
                 </div>
               )}
 
@@ -129,7 +129,7 @@ export function BidderComparisonBarChart() {
               <div className="w-full max-w-[56px] flex items-end justify-center gap-1 h-full relative">
                 {/* Main Compliance Bar */}
                 <div
-                  className="w-full rounded-t bg-slate-900 transition-all duration-500 shadow-2xs group-hover:bg-slate-800 relative flex flex-col justify-between items-center py-1"
+                  className="w-full rounded-t bg-blue-800 transition-all duration-500 shadow-2xs group-hover:bg-blue-700 relative flex flex-col justify-between items-center py-1"
                   style={{ height: `${b.score}%` }}
                 >
                   <span className="text-[11px] font-black text-white font-mono">
@@ -140,7 +140,7 @@ export function BidderComparisonBarChart() {
                 {/* Risk Score Side Bar (When 'both' filter is selected) */}
                 {metricFilter === 'both' && (
                   <div
-                    className={`w-1/2 rounded-t ${b.riskColor} opacity-90 transition-all duration-500 relative flex justify-center py-0.5`}
+                    className={`w-1/2 rounded-t ${b.riskColor}  opacity-90 transition-all duration-500 relative flex justify-center py-0.5`}
                     style={{ height: `${b.riskScore}%` }}
                     title={`Risk Score: ${b.riskScore}`}
                   >
@@ -209,9 +209,9 @@ export function BidderStatusPieChart() {
       label: 'Needs Officer Review',
       count: 1,
       percent: 25,
-      color: '#F59E0B', // amber-500
-      bgClass: 'bg-amber-500',
-      textClass: 'text-amber-700',
+      color: '#6366F1', // indigo-500
+      bgClass: 'bg-indigo-500',
+      textClass: 'text-indigo-700',
       dashArray: '56.55 226.19',
       dashOffset: '-113.1',
       detail: 'Minor document abbreviation mismatch flagged',
@@ -310,10 +310,7 @@ export function BidderStatusPieChart() {
         </div>
       </div>
 
-      <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex items-center justify-between">
-        <span>Deterministic Rule Engine:</span>
-        <span className="font-bold text-emerald-700">100% Automated Audit</span>
-      </div>
+     
     </div>
   );
 }

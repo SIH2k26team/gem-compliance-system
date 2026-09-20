@@ -48,7 +48,7 @@ export default function BidderCard({ bidder, onInspect }) {
 
       <button
         onClick={() => onInspect && onInspect(bidder)}
-        className="mt-4 w-full py-2 px-4 bg-[#c05621] hover:bg-[#a04303] text-white rounded-full text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs"
+        className="mt-4 w-full py-2 px-4 bg-blue-700 hover:bg-blue-800 text-white rounded-full text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-2xs"
       >
         <span>Inspect Evidence & Scores</span>
         <div className="w-4 h-4 rounded-full border border-white/60 flex items-center justify-center shrink-0">

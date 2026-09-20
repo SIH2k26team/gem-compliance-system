@@ -30,7 +30,7 @@ export default function AppLayout({ children, role = 'officer', currentPath = '/
           <div>
             <span className="font-bold text-slate-800"> AI-Powered Tender Compliance & Bid Evaluation Platform</span>
           </div>
-          <div className="font-semibold text-slate-700">Ministry of Petroleum & Natural Gas (Govt. of India)</div>
+          <div className="font-semibold text-slate-700">Ministry of Petroleum & Natural Gas</div>
         </footer>
       </div>
     </div>

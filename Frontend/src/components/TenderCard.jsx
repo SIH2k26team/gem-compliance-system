@@ -54,7 +54,7 @@ export default function TenderCard({ tender, onSelect, actionLabel = 'View Tende
 
         <button
           onClick={() => onSelect && onSelect(tender)}
-          className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-white bg-[#c05621] hover:bg-[#a04303] transition-all cursor-pointer shadow-2xs"
+          className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 transition-all cursor-pointer shadow-2xs"
         >
           <span>{actionLabel}</span>
           <div className="w-4 h-4 rounded-full border border-white/60 flex items-center justify-center shrink-0">

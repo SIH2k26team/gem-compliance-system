@@ -18,8 +18,8 @@ export default function StatCard({ title, value, unit, subtitle, icon, trend, co
       value: 'text-slate-900',
     },
     amber: {
-      border: 'border-t-2 border-t-amber-600 border-x border-b border-slate-200',
-      badge: 'bg-amber-50 text-amber-900 border border-amber-200',
+      border: 'border-t-2 border-t-indigo-600 border-x border-b border-slate-200',
+      badge: 'bg-indigo-50 text-indigo-900 border border-indigo-200',
       value: 'text-slate-900',
     },
     white: {
@@ -32,7 +32,7 @@ export default function StatCard({ title, value, unit, subtitle, icon, trend, co
   const style = colorStyles[color] || colorStyles.blue;
 
   return (
-    <div className={`p-4 bg-white rounded-md ${style.border} shadow-2xs`}>
+    <div className={`p-4 bg-white rounded-md  shadow-2xs`}>
       <div className="flex items-center justify-between">
         <p className="text-[10px] uppercase tracking-wider text-slate-500 font-extrabold">{title}</p>
         {icon && <div className={`p-1.5 rounded ${style.badge}`}>{icon}</div>}

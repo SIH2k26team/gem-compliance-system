@@ -34,7 +34,7 @@ export default function OfficerDashboard({ navigate, currentPath }) {
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => navigate('/officer/tenders')}
-              className="px-5 py-2 bg-[#c05621] hover:bg-[#a04303] text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+              className="px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
               <span>Upload Tender PDF</span>
               <div className="w-4 h-4 rounded-full border border-white/60 flex items-center justify-center">
@@ -52,7 +52,6 @@ export default function OfficerDashboard({ navigate, currentPath }) {
             title="Active Tenders"
             value={SYSTEM_STATS_OFFICER.activeTenders}
             subtitle="Under evaluation"
-            color="indigo"
             icon={
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 01-2-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -73,7 +72,6 @@ export default function OfficerDashboard({ navigate, currentPath }) {
             title="Under Review"
             value={SYSTEM_STATS_OFFICER.underReview}
             subtitle="Needs officer action"
-            color="amber"
             icon={
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -84,7 +82,6 @@ export default function OfficerDashboard({ navigate, currentPath }) {
             title="High Risk Bids"
             value={SYSTEM_STATS_OFFICER.highRiskBids}
             subtitle="Contradictions flagged"
-            color="rose"
             icon={
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -96,7 +93,6 @@ export default function OfficerDashboard({ navigate, currentPath }) {
             value={SYSTEM_STATS_OFFICER.avgComplianceScore}
             unit="%"
             subtitle="System evaluation avg"
-            color="emerald"
             icon={
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -113,31 +109,7 @@ export default function OfficerDashboard({ navigate, currentPath }) {
           <div>
             <BidderStatusPieChart />
           </div>
-        </div>
-
-        {/* Simplified Navigation Tabs */}
-        <div className="bg-white border border-slate-200 rounded-md p-1.5 flex gap-2 text-xs font-bold shadow-2xs">
-          <button
-            onClick={() => setActiveTab('overview')}
-            className={`px-4 py-2 rounded transition-all cursor-pointer ${
-              activeTab === 'overview'
-                ? 'bg-indigo-600 text-white shadow-2xs'
-                : 'text-slate-700 hover:bg-slate-100'
-            }`}
-          >
-            Evaluated Bidders Matrix
-          </button>
-          <button
-            onClick={() => setActiveTab('tenders')}
-            className={`px-4 py-2 rounded transition-all cursor-pointer ${
-              activeTab === 'tenders'
-                ? 'bg-indigo-600 text-white shadow-2xs'
-                : 'text-slate-700 hover:bg-slate-100'
-            }`}
-          >
-            Active Procurement Tenders
-          </button>
-        </div>
+        </div>        
 
           {/* <button
             onClick={() => setActiveTab('risks')}
@@ -214,7 +186,7 @@ export default function OfficerDashboard({ navigate, currentPath }) {
         {/* Tab Content 3: Risk Flags
         {activeTab === 'risks' && (
           <div className="space-y-4">
-            <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 text-xs text-amber-900 font-medium">
+            <div className="bg-indigo-50 border border-indigo-300 rounded-lg p-3 text-xs text-indigo-900 font-medium">
               <span className="font-bold">⚠️ Risk Signals Notice:</span> Risk scores are calculated using deterministic weight rules (Missing Document +30, Address Contradiction +25, Metadata Mismatch +13).
             </div>
 

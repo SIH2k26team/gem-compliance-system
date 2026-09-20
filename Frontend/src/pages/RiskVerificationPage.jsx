@@ -111,14 +111,6 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
           </div>
         </div>
 
-        {/* Formula Explainer Bar */}
-        <div className="bg-amber-50/80 border border-amber-300 rounded-md p-3 text-xs text-amber-900 flex items-start gap-2.5 font-medium shadow-2xs">
-          <span className="text-base shrink-0">⚖️</span>
-          <div>
-            <span className="font-extrabold">Deterministic Rule Engine Rules Active:</span> Risk Score = Missing Document (+30) + Address Mismatch (+25) + Name Mismatch (+20) + Font Anomaly (+13). Scores ≥ 50 are automatically flagged for officer review.
-          </div>
-        </div>
-
 
         {/* Filter Bar */}
         <div className="bg-white border border-slate-200 rounded-lg p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xs">
@@ -205,7 +197,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                         setNoticeTargetAlert(alert);
                         setShowNoticeModal(true);
                       }}
-                      className="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold text-xs rounded transition-colors cursor-pointer"
+                      className="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-300 font-bold text-xs rounded transition-colors cursor-pointer"
                     >
                       📩 Issue Clarification Notice
                     </button>
@@ -231,7 +223,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                                 ? 'text-rose-600  border border-rose-300'
                                 : flag.severity === 'High'
                                 ? ' text-rose-900 border border-rose-300'
-                                : ' text-amber-900 border border-amber-300'
+                                : ' text-indigo-900 border border-indigo-300'
                             }`}
                           >
                             {flag.severity} ({flag.impactScore} Score)
@@ -311,16 +303,16 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
               {/* Side by side comparison panels */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 {/* Document A Panel */}
-                <div className="bg-slate-50 border-2 border-amber-300 rounded-lg p-4 space-y-3">
-                  <div className="flex items-center justify-between border-b border-amber-200 pb-2">
-                    <span className="font-extrabold text-amber-900 uppercase text-[11px]">Document Source A</span>
-                    <span className="font-mono text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">
+                <div className="bg-slate-50 border-2 border-indigo-300 rounded-lg p-4 space-y-3">
+                  <div className="flex items-center justify-between border-b border-indigo-200 pb-2">
+                    <span className="font-extrabold text-indigo-900 uppercase text-[11px]">Document Source A</span>
+                    <span className="font-mono text-[10px] bg-indigo-100 text-indigo-900 font-bold px-2 py-0.5 rounded">
                       GST Certificate (Page 1)
                     </span>
                   </div>
                   <div className="bg-white p-3 border border-slate-200 rounded font-mono text-[11px] space-y-1">
                     <div className="text-slate-400 font-sans text-[10px]">Extracted Registered Address:</div>
-                    <div className="font-bold text-slate-900 bg-amber-50 p-2 rounded border border-amber-200 text-rose-900">
+                    <div className="font-bold text-slate-900 bg-indigo-50 p-2 rounded border border-indigo-200 text-rose-900">
                       Plot 42, Bandra-Kurla Complex, Mumbai, Maharashtra - 400051
                     </div>
                     <div className="text-slate-500 font-sans text-[10px] pt-1">GSTIN: 27AAACP1234A1Z5</div>
@@ -412,7 +404,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                   value={noticeText}
                   onChange={(e) => setNoticeText(e.target.value)}
                   placeholder="Please clarify the discrepancy between your GST registered address in Mumbai and Experience Certificate address in Delhi within 48 hours..."
-                  className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                  className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                 />
               </div>
 
@@ -425,7 +417,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                 </button>
                 <button
                   onClick={handleSendNotice}
-                  className="px-4 py-1.5 bg-amber-700 hover:bg-amber-800 text-white font-bold rounded cursor-pointer"
+                  className="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-800 text-white font-bold rounded cursor-pointer"
                 >
                   Dispatch Notice (48h Timer)
                 </button>

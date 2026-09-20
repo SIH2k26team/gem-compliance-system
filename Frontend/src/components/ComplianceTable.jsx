@@ -42,18 +42,17 @@ export default function ComplianceTable({ bidders = [] }) {
                 </div>
                 <div className="w-20 bg-slate-200 rounded-full h-1.5 mx-auto mt-1 overflow-hidden">
                   <div
-                    className="h-1.5 rounded-full bg-slate-900"
+                    className="h-1.5 rounded-full bg-blue-600"
                     style={{ width: `${b.complianceScore}%` }}
                   />
                 </div>
               </td>
               <td className="py-3 px-4 text-center whitespace-nowrap">
                 <span
-                  className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold ${
-                    b.mandatoryPassed === b.mandatoryTotal
-                      ? 'bg-emerald-50 text-emerald-800 border border-emerald-300'
-                      : 'bg-rose-50 text-rose-800 border border-rose-300'
-                  }`}
+                  className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold ${b.mandatoryPassed === b.mandatoryTotal
+                    ? ' text-emerald-800 border border-emerald-300'
+                    : ' text-rose-800 border border-rose-300'
+                    }`}
                 >
                   {b.mandatoryPassed === b.mandatoryTotal ? 'All Passed' : `${b.mandatoryTotal - b.mandatoryPassed} Failed`}
                 </span>

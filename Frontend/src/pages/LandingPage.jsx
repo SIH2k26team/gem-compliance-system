@@ -45,7 +45,7 @@ export default function LandingPage({ navigate }) {
       title: 'Multi-Document Cross Verification',
       desc: 'Detects inconsistencies across GST, PAN, experience certificates, and corporate registration addresses.',
       icon: (
-        <svg className="w-6 h-6 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6 text-indigo-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
         </svg>
       ),
@@ -111,7 +111,7 @@ export default function LandingPage({ navigate }) {
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-900 selection:text-white">
 
       {/* Navigation Header */}
-      <nav className="border-b border-slate-200 bg-slate-900 sticky top-0 z-50 shadow-2xs">
+      <nav className="border-b border-slate-200 bg-blue-900 sticky top-0 z-50 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src={gemLogo} alt="ProcuraAI Logo" className="h-12 w-auto py-1" />
@@ -162,10 +162,7 @@ export default function LandingPage({ navigate }) {
 
         {/* Stats Ribbon */}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 p-5 bg-white border border-slate-200 rounded-md shadow-2xs">
-          <div className="border-r border-slate-100 last:border-0 p-2">
-            <div className="text-2xl font-black text-slate-900 font-mono">100%</div>
-            <div className="text-xs text-slate-600 font-semibold mt-0.5">Traceable Evidence</div>
-          </div>
+          
           <div className="border-r border-slate-100 last:border-0 p-2">
             <div className="text-2xl font-black text-slate-900 font-mono">Multi-Doc</div>
             <div className="text-xs text-slate-600 font-semibold mt-0.5">Contradiction Detection</div>
@@ -174,15 +171,19 @@ export default function LandingPage({ navigate }) {
             <div className="text-2xl font-black text-emerald-800 font-mono">DigiLocker</div>
             <div className="text-xs text-slate-600 font-semibold mt-0.5">Govt Record Verification</div>
           </div>
+          <div className="border-r border-slate-100 last:border-0 p-2">
+            <div className="text-2xl font-black text-slate-900 font-mono">Audit Report</div>
+            <div className="text-xs text-slate-600 font-semibold mt-0.5">Compliance score</div>
+          </div>
           <div className="p-2">
-            <div className="text-2xl font-black text-amber-800 font-mono">Human-in-Loop</div>
+            <div className="text-2xl font-black text-indigo-800 font-mono">Human-in-Loop</div>
             <div className="text-xs text-slate-600 font-semibold mt-0.5">Officer Decision Control</div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="mt-12 border-t border-slate-200 bg-white">
+      <footer className="mt-12 border-t border-slate-200 bg-blue-50">
         <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-10">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,1fr)]">
             <div className="max-w-xs">
