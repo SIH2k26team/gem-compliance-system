@@ -54,10 +54,10 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
       prev.map((b) =>
         b.bidderId === overrideTarget.bidderId
           ? {
-              ...b,
-              complianceScore: newScore,
-              officerDecision: `Overridden (${newScore}/100)`,
-            }
+            ...b,
+            complianceScore: newScore,
+            officerDecision: `Overridden (${newScore}/100)`,
+          }
           : b
       )
     );
@@ -155,17 +155,15 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
             <div className="bg-slate-100 p-1 rounded flex gap-1 text-xs font-bold border border-slate-200">
               <button
                 onClick={() => setActiveTab('matrix')}
-                className={`px-3 py-1.5 rounded transition-all cursor-pointer ${
-                  activeTab === 'matrix' ? 'bg-slate-900 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
-                }`}
+                className={`px-3 py-1.5 rounded transition-all cursor-pointer ${activeTab === 'matrix' ? 'bg-slate-900 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
               >
                 Bidder Matrix
               </button>
               <button
                 onClick={() => setActiveTab('requirement_view')}
-                className={`px-3 py-1.5 rounded transition-all cursor-pointer ${
-                  activeTab === 'requirement_view' ? 'bg-slate-900 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
-                }`}
+                className={`px-3 py-1.5 rounded transition-all cursor-pointer ${activeTab === 'requirement_view' ? 'bg-slate-900 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
               >
                 Clause-by-Clause View
               </button>
@@ -244,13 +242,13 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                         <td className="py-3.5 px-4">
                           <div>
                             {bidder.mandatoryPassed === bidder.mandatoryTotal ? (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold border border-emerald-200 text-[11px]">
-                                
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-emerald-800 font-bold border border-emerald-200 text-[11px]">
+
                                 {bidder.mandatoryPassed}/{bidder.mandatoryTotal} Clauses Passed
                               </span>
                             ) : (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 font-bold border border-rose-200 text-[11px]">
-                                
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-rose-800 font-bold border border-rose-200 text-[11px]">
+
                                 {bidder.mandatoryPassed}/{bidder.mandatoryTotal} Passed (OISD Missing)
                               </span>
                             )}
@@ -262,13 +260,11 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                           <div className="w-40">
                             <div className="flex items-center justify-between font-extrabold text-xs mb-1">
                               <span className="text-slate-900">{bidder.complianceScore} / {bidder.maxScore}</span>
-                              <span className="text-emerald-700">
-                                {bidder.complianceScore}%
-                              </span>
+
                             </div>
                             <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
                               <div
-                                className="h-full rounded-full bg-emerald-600"
+                                className="h-full rounded-full bg-blue-600"
                                 style={{ width: `${bidder.complianceScore}%` }}
                               />
                             </div>
@@ -283,14 +279,14 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                         {/* DigiLocker */}
                         <td className="py-3.5 px-4">
                           {bidder.digiLockerVerified ? (
-                            <span className="px-2 py-0.5 bg-blue-50 text-blue-800 border border-blue-200 font-bold text-[10px] rounded inline-flex items-center gap-1">
+                            <span className="px-2 py-0.5  text-blue-800 border border-blue-200 font-bold text-[10px] rounded inline-flex items-center gap-1">
                               <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                               </svg>
                               Govt Verified
                             </span>
                           ) : (
-                            <span className="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 font-bold text-[10px] rounded inline-flex items-center gap-1">
+                            <span className="px-2 py-0.5  text-amber-800 border border-amber-200 font-bold text-[10px] rounded inline-flex items-center gap-1">
                               ⚠️ Manual Check
                             </span>
                           )}
@@ -340,11 +336,10 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                         {req.id}
                       </span>
                       <span
-                        className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${
-                          req.type === 'Mandatory'
-                            ? 'bg-rose-100 text-rose-800 border border-rose-200'
-                            : 'bg-blue-100 text-blue-800 border border-blue-200'
-                        }`}
+                        className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${req.type === 'Mandatory'
+                          ? 'bg-rose-100 text-rose-800 border border-rose-200'
+                          : 'bg-blue-100 text-blue-800 border border-blue-200'
+                          }`}
                       >
                         {req.type} Requirement
                       </span>
@@ -392,11 +387,10 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                           <div className="flex items-center justify-between pt-1">
                             <span className="text-slate-500 font-medium">Result:</span>
                             <span
-                              className={`px-2 py-0.5 rounded font-extrabold text-[10px] ${
-                                bidder.bidderId === 'BID-C03'
-                                  ? 'bg-rose-100 text-rose-800'
-                                  : 'bg-emerald-100 text-emerald-800'
-                              }`}
+                              className={`px-2 py-0.5 rounded font-extrabold text-[10px] ${bidder.bidderId === 'BID-C03'
+                                ? 'bg-rose-100 text-rose-800'
+                                : 'bg-emerald-100 text-emerald-800'
+                                }`}
                             >
                               {bidder.bidderId === 'BID-C03' ? 'FAILED (Doc Missing)' : 'PASSED'}
                             </span>
@@ -408,10 +402,10 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                               {bidder.bidderId === 'BID-A01'
                                 ? '18 / 20'
                                 : bidder.bidderId === 'BID-B02'
-                                ? '16 / 20'
-                                : bidder.bidderId === 'BID-D04'
-                                ? '19 / 20'
-                                : '10 / 20'}
+                                  ? '16 / 20'
+                                  : bidder.bidderId === 'BID-D04'
+                                    ? '19 / 20'
+                                    : '10 / 20'}
                             </span>
                           </div>
                         )}
@@ -450,7 +444,7 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
               </div>
 
               {/* Score summary cards */}
-              <div className="grid grid-cols-3 gap-3 text-xs">
+              <div className="grid grid-cols-2 gap-3 text-xs">
                 <div className="bg-blue-50 border border-blue-200 rounded p-3 text-center">
                   <span className="text-slate-500 font-bold block">Compliance Score</span>
                   <span className="text-2xl font-black text-blue-900">{selectedBidder.complianceScore}%</span>
@@ -458,12 +452,6 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                 <div className="bg-rose-50 border border-rose-200 rounded p-3 text-center">
                   <span className="text-slate-500 font-bold block">Risk Score</span>
                   <span className="text-2xl font-black text-rose-800">{selectedBidder.riskScore}/100</span>
-                </div>
-                <div className="bg-emerald-50 border border-emerald-200 rounded p-3 text-center">
-                  <span className="text-slate-500 font-bold block">Officer Decision</span>
-                  <span className="text-sm font-black text-emerald-900 mt-1 block">
-                    {selectedBidder.officerDecision}
-                  </span>
                 </div>
               </div>
 
