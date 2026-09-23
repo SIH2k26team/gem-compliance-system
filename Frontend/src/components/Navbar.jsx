@@ -23,10 +23,7 @@ export default function Navbar({ role = 'officer', onToggleSidebar, navigate }) 
 
           {/* Department badge / Title */}
           <div className="hidden sm:flex items-center gap-2">
-            <span className="px-2 py-0.5 bg-blue-800 text-white text-[10px] font-extrabold uppercase tracking-wider rounded border border-blue-700">
-              ProcuraAI Engine
-            </span>
-            <span className="text-blue-300">|</span>
+            
             <span className="text-xs font-bold text-white">
               {isOfficer ? ' Procurement Officer Interface' : 'Authorized Vendor Portal'}
             </span>
@@ -37,7 +34,7 @@ export default function Navbar({ role = 'officer', onToggleSidebar, navigate }) 
             <input
               type="text"
               placeholder="Search tender ID, vendor, clause..."
-              className="w-full pl-8 pr-3 py-1 bg-blue-950/60 border border-blue-700 rounded text-xs text-white placeholder-blue-300 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:bg-blue-950"
+              className="w-full pl-8 pr-3 py-1 bg-blue-950/60 border border-blue-700 rounded text-xs text-white placeholder-white focus:outline-none focus:ring-1 focus:ring-blue-400 focus:bg-blue-950"
             />
             <svg
               className="w-3.5 h-3.5 text-blue-200 absolute left-2.5 top-2"
@@ -61,7 +58,7 @@ export default function Navbar({ role = 'officer', onToggleSidebar, navigate }) 
           <div className="relative">
             <button
               onClick={() => setShowNotifications(!showNotifications)}
-              className="p-1.5 rounded text-blue-100 hover:bg-blue-800 relative cursor-pointer flex items-center gap-1 text-xs font-semibold"
+              className="p-1.5 rounded text-white hover:bg-blue-800 relative cursor-pointer flex items-center gap-1 text-xs font-semibold"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path

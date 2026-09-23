@@ -3,7 +3,7 @@ import React from 'react';
 export default function RiskBadge({ level = 'Low', score, showScore = true }) {
   const normalized = (level || '').toLowerCase();
 
-  let badgeStyle = ' text-emerald-900 border-emerald-300 font-semibold';
+  let badgeStyle = ' text-emerald-900 font-semibold';
   let label = 'Low Risk';
 
   if (normalized.includes('high') || (score !== undefined && score >= 50)) {
@@ -19,7 +19,7 @@ export default function RiskBadge({ level = 'Low', score, showScore = true }) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] border ${badgeStyle}`}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px]  ${badgeStyle}`}
     >
       <svg
         className="w-3.5 h-3.5 shrink-0"
@@ -35,11 +35,7 @@ export default function RiskBadge({ level = 'Low', score, showScore = true }) {
         />
       </svg>
       <span>{label}</span>
-      {showScore && score !== undefined && (
-        <span className="font-mono text-[10px] font-bold opacity-80 border-l border-current pl-1 ml-0.5">
-          {score}/100
-        </span>
-      )}
+      showScore 
     </span>
   );
 }

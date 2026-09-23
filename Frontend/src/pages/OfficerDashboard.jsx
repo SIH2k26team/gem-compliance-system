@@ -24,7 +24,7 @@ export default function OfficerDashboard({ navigate, currentPath }) {
           <div>
             <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-slate-700" />
-              Ministry of Petroleum & Natural Gas &nbsp;•&nbsp; Public Procurement Division
+              Ministry of Petroleum & Natural Gas
             </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               Procurement Officer Executive Dashboard

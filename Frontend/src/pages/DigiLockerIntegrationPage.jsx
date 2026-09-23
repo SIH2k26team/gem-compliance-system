@@ -313,28 +313,19 @@ export default function DigiLockerIntegrationPage({ navigate, currentPath }) {
               <div className="flex flex-wrap items-center gap-2">
                 <span className="px-2.5 py-0.5 bg-slate-800 text-slate-200 border border-slate-700 rounded text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  DigiLocker Integration Vault • MeitY Gateway
+                  DigiLocker Integration Vault 
                 </span>
-                <span className="px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded text-[10px] font-bold flex items-center gap-1">
-                  <svg className="w-3 h-3 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  OAuth 2.0 Auth Level 3 (API v2.4 Active)
-                </span>
+               
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-white shrink-0">
-                  <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                  </svg>
-                </div>
+               
                 <div>
                   <h1 className="text-xl font-black tracking-tight text-white">
                     DigiLocker Verified Statutory Vault
                   </h1>
                   <p className="text-xs text-slate-300 font-medium mt-0.5">
-                    Account Entity: <span className="font-bold text-white">{CURRENT_USER_BIDDER.company}</span> • Aadhaar & PAN Linked
+                    Account Entity: <span className="font-bold text-white">{CURRENT_USER_BIDDER.company}</span> 
                   </p>
                 </div>
               </div>
@@ -437,9 +428,7 @@ export default function DigiLockerIntegrationPage({ navigate, currentPath }) {
               <span>Verified Government Issued Documents</span>
               <span className="text-xs font-bold text-slate-500 normal-case">({filteredDocs.length} shown)</span>
             </h2>
-            <span className="text-xs font-medium text-slate-500">
-              Direct API Sync from Govt Data Repositories
-            </span>
+           
           </div>
 
           {filteredDocs.length === 0 ? (
@@ -462,10 +451,8 @@ export default function DigiLockerIntegrationPage({ navigate, currentPath }) {
                   {/* Left: Document Info & Badges */}
                   <div className="space-y-1.5 max-w-2xl">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-200 rounded text-[10px] font-extrabold flex items-center gap-1">
-                        <svg className="w-3 h-3 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                      <span className="px-2 py-0.5  text-emerald-800  rounded text-[10px] font-extrabold flex items-center gap-1">
+                       
                         DigiLocker Verified
                       </span>
 
@@ -541,65 +528,7 @@ export default function DigiLockerIntegrationPage({ navigate, currentPath }) {
           )}
         </div>
 
-        {/* Architectural Workflow Card */}
-        <div className="bg-white p-5 rounded-lg border border-slate-200 shadow-xs space-y-4">
-          <div className="border-b border-slate-100 pb-3 flex items-center justify-between">
-            <div>
-              <h2 className="text-sm font-black text-slate-900 tracking-tight uppercase">
-                DigiLocker e-Procurement Compliance Architecture
-              </h2>
-              <p className="text-xs text-slate-500 mt-0.5">
-                How cryptographic verification guarantees zero document fraud & instant tender scoring
-              </p>
-            </div>
-            <span className="px-2 py-0.5 bg-blue-50 text-blue-800 rounded text-[10px] font-bold border border-blue-200">
-              MeitY Circular 2025 Compliant
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
-            <div className="p-3 bg-slate-50 rounded border border-slate-200 relative">
-              <div className="w-6 h-6 rounded-full bg-blue-700 text-white font-black flex items-center justify-center mb-2 text-[10px]">
-                1
-              </div>
-              <h3 className="font-bold text-slate-900">OAuth 2.0 Auth</h3>
-              <p className="text-slate-600 mt-1 leading-relaxed text-[11px]">
-                Bidder authorizes portal access via DigiLocker Aadhaar/OTP OAuth level 3.
-              </p>
-            </div>
-
-            <div className="p-3 bg-slate-50 rounded border border-slate-200 relative">
-              <div className="w-6 h-6 rounded-full bg-blue-700 text-white font-black flex items-center justify-center mb-2 text-[10px]">
-                2
-              </div>
-              <h3 className="font-bold text-slate-900">Direct Govt API Fetch</h3>
-              <p className="text-slate-600 mt-1 leading-relaxed text-[11px]">
-                XML metadata & signed PDF streams fetched straight from GSTN, MCA & IT Dept.
-              </p>
-            </div>
-
-            <div className="p-3 bg-slate-50 rounded border border-slate-200 relative">
-              <div className="w-6 h-6 rounded-full bg-blue-700 text-white font-black flex items-center justify-center mb-2 text-[10px]">
-                3
-              </div>
-              <h3 className="font-bold text-slate-900">SHA-256 Hash Verification</h3>
-              <p className="text-slate-600 mt-1 leading-relaxed text-[11px]">
-                AI Engine compares extracted values against cryptographic public key signatures.
-              </p>
-            </div>
-
-            <div className="p-3 bg-emerald-50 rounded border border-emerald-200 relative">
-              <div className="w-6 h-6 rounded-full bg-emerald-700 text-white font-black flex items-center justify-center mb-2 text-[10px]">
-                4
-              </div>
-              <h3 className="font-bold text-emerald-900">100% Mandatory Pass</h3>
-              <p className="text-emerald-800 mt-1 leading-relaxed text-[11px]">
-                Officer dashboard flags document as "DigiLocker Verified", bypassing manual checks.
-              </p>
-            </div>
-          </div>
-        </div>
-
+    
         {/* MODAL 1: Document Details & Security Preview */}
         {previewDoc && (
           <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">

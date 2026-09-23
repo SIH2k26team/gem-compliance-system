@@ -50,8 +50,8 @@ export default function ComplianceTable({ bidders = [] }) {
               <td className="py-3 px-4 text-center whitespace-nowrap">
                 <span
                   className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold ${b.mandatoryPassed === b.mandatoryTotal
-                    ? ' text-emerald-800 border border-emerald-300'
-                    : ' text-rose-800 border border-rose-300'
+                    ? ' text-emerald-800 '
+                    : ' text-rose-800 '
                     }`}
                 >
                   {b.mandatoryPassed === b.mandatoryTotal ? 'All Passed' : `${b.mandatoryTotal - b.mandatoryPassed} Failed`}

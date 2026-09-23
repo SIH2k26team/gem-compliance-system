@@ -564,7 +564,7 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
             <button
               id="browse-tenders-header-btn"
               onClick={() => navigate(tendersPath)}
-              className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-2xs transition-colors cursor-pointer"
+              className="px-4 py-2 bg-blue-700 hover:bg-slate-800 text-white font-bold rounded text-xs flex items-center gap-2 shadow-2xs transition-colors cursor-pointer"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -642,14 +642,14 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
                     <div className="flex flex-wrap items-center gap-2 mb-3">
                       <StatusBadge status={sub.status} size="sm" />
                       <span
-                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded border font-bold ${
+                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded  font-bold ${
                           sub.digiLockerStatus === 'Verified'
-                            ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                            : 'bg-amber-50 text-amber-800 border-amber-200'
+                            ? ' text-emerald-800'
+                            : ' text-amber-800 '
                         }`}
                         style={{ fontSize: '10px' }}
                       >
-                        {sub.digiLockerStatus === 'Verified' ? '🏛️ DigiLocker Verified' : '⚠️ ' + sub.digiLockerStatus}
+                        {sub.digiLockerStatus === 'Verified' ? ' DigiLocker Verified' : '⚠️ ' + sub.digiLockerStatus}
                       </span>
                     </div>
 
@@ -686,10 +686,7 @@ export default function BidderSubmissionsPage({ navigate, currentPath, role = 'b
                       )}
                       <button
                         id={`view-detail-btn-${sub.submissionId}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedSub(isSelected ? null : sub);
-                        }}
+                       
                         className={`ml-auto inline-flex items-center gap-1 px-3 py-1.5 rounded font-bold transition-colors cursor-pointer ${
                           isSelected
                             ? 'bg-slate-200 text-slate-700 hover:bg-slate-300'
