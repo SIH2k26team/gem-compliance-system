@@ -28,8 +28,6 @@ export default function LoginPage({ navigate }) {
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-800 flex flex-col justify-center items-center px-4 py-12">
-      {/* Institutional Top Tri-color Bar */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-slate-200 to-emerald-600 z-50" />
 
       <div className="w-full max-w-md bg-white border border-slate-300 rounded-lg p-8 shadow-sm">
         <div className="text-center mb-6">
@@ -37,7 +35,7 @@ export default function LoginPage({ navigate }) {
             onClick={() => navigate('/')}
             className="inline-flex items-center gap-2 text-slate-900 cursor-pointer mb-3 group"
           >
-            <div className="w-9 h-9 rounded bg-slate-900 text-slate-50 font-black text-xs flex items-center justify-center shadow-xs">
+            <div className="w-9 h-9 rounded bg-blue-700 text-slate-50 font-black text-xs flex items-center justify-center shadow-xs">
               PA
             </div>
             <div className="text-left">
@@ -59,7 +57,7 @@ export default function LoginPage({ navigate }) {
             }}
             className={`py-2 rounded transition-all cursor-pointer ${
               role === 'officer'
-                ? 'bg-slate-900 text-white shadow-xs'
+                ? 'bg-blue-700 text-white shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -73,7 +71,7 @@ export default function LoginPage({ navigate }) {
             }}
             className={`py-2 rounded transition-all cursor-pointer ${
               role === 'bidder'
-                ? 'bg-slate-900 text-white shadow-xs'
+                ? 'bg-blue-700 text-white shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -81,26 +79,7 @@ export default function LoginPage({ navigate }) {
           </button>
         </div>
 
-        {/* Quick Demo Access Bar */}
-        <div className="mb-5 p-3 bg-slate-50 border border-slate-200 rounded text-xs">
-          <p className="text-[11px] font-bold text-slate-600 mb-1.5 uppercase tracking-wider">Quick Demo Access:</p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={handleDemoOfficer}
-              className="flex-1 py-1 px-2 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[11px] font-semibold text-slate-800 transition-colors cursor-pointer"
-            >
-              Demo Officer
-            </button>
-            <button
-              type="button"
-              onClick={handleDemoBidder}
-              className="flex-1 py-1 px-2 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[11px] font-semibold text-slate-800 transition-colors cursor-pointer"
-            >
-              Demo Bidder
-            </button>
-          </div>
-        </div>
+       
 
         <form onSubmit={handleLogin} className="space-y-4 text-xs">
           <div>
@@ -130,7 +109,7 @@ export default function LoginPage({ navigate }) {
 
           <button
             type="submit"
-            className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded transition-all shadow-xs cursor-pointer text-xs mt-1"
+            className="w-full py-2.5 bg-blue-700 hover:bg-slate-800 text-white font-bold rounded transition-all shadow-xs cursor-pointer text-xs mt-1"
           >
             Sign In to {role === 'officer' ? 'Officer Portal' : 'Bidder Portal'}
           </button>

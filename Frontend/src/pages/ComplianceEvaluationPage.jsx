@@ -94,7 +94,7 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
           <div>
             <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-slate-700" />
-              Ministry of Petroleum &amp; Natural Gas &nbsp;•&nbsp; Compliance Verification Engine
+              Ministry of Petroleum &amp; Natural Gas 
             </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
               Compliance Evaluation Matrix & Scoring
@@ -242,12 +242,12 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                         <td className="py-3.5 px-4">
                           <div>
                             {bidder.mandatoryPassed === bidder.mandatoryTotal ? (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-emerald-800 font-bold border border-emerald-200 text-[11px]">
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-emerald-800 font-bold text-[11px]">
 
                                 {bidder.mandatoryPassed}/{bidder.mandatoryTotal} Clauses Passed
                               </span>
                             ) : (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-rose-800 font-bold border border-rose-200 text-[11px]">
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-rose-800 font-bold  text-[11px]">
 
                                 {bidder.mandatoryPassed}/{bidder.mandatoryTotal} Passed (OISD Missing)
                               </span>
@@ -332,13 +332,13 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                 <div className="flex items-start justify-between border-b border-slate-100 pb-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                      <span className="font-mono text-xs font-bold text-blue-700  px-2 py-0.5 rounded border border-blue-100">
                         {req.id}
                       </span>
                       <span
                         className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${req.type === 'Mandatory'
-                          ? 'bg-rose-100 text-rose-800 border border-rose-200'
-                          : 'bg-blue-100 text-blue-800 border border-blue-200'
+                          ? ' text-rose-800 border border-rose-200'
+                          : ' text-blue-800 border border-blue-200'
                           }`}
                       >
                         {req.type} Requirement

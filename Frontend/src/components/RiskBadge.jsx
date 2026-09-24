@@ -35,7 +35,7 @@ export default function RiskBadge({ level = 'Low', score, showScore = true }) {
         />
       </svg>
       <span>{label}</span>
-      showScore 
+      
     </span>
   );
 }

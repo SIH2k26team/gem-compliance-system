@@ -445,11 +445,7 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
       aria-modal="true"
       aria-label="Clause & Risk Query Chatbot"
     >
-      {/* 
-        Window Dimensions: 
-        Occupies half dimension of screen on desktop (w-[50vw] h-[65vh])
-        Responsive with comfortable minimums and max width
-      */}
+     
       <div className="relative w-full max-w-[94vw] sm:max-w-[85vw] md:max-w-[65vw] lg:w-[50vw] h-[85vh] md:h-[65vh] min-h-[500px] max-h-[820px] bg-white rounded-2xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200 ring-1 ring-slate-900/10">
 
         {/* Top Header */}
@@ -467,15 +463,10 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-sm font-extrabold tracking-tight">Clause & Risk Query Copilot</h3>
-                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  AI Live
-                </span>
+                <h3 className="text-sm font-extrabold tracking-tight">Clause & Risk Query Chatbot</h3>
+               
               </div>
-              <p className="text-[10px] text-blue-200/80 leading-none mt-0.5">
-                Officer Doubt Resolution • Grounded in Tender Specs & Evidence Docs
-              </p>
+             
             </div>
           </div>
 
@@ -547,8 +538,6 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
             </div>
           ) : (
             <div className="text-[11px] text-slate-500 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-              <span className="font-semibold text-slate-700">Tender: MOPNG-2026-001 (Pipeline Maintenance)</span>
             </div>
           )}
         </div>

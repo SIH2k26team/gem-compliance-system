@@ -75,15 +75,13 @@ export default function RegisterPage({ navigate }) {
 
   return (
     <div className="min-h-screen bg-slate-100 text-slate-800 flex flex-col justify-center items-center px-4 py-8 md:py-12">
-      {/* Top Tri-color Ribbon */}
-      <div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-slate-200 to-emerald-600 z-50" />
 
       <div className="w-full max-w-xl bg-white border border-slate-300 rounded-lg p-6 sm:p-8 shadow-sm my-4 relative">
         {/* Header Bar */}
         <div className="flex items-center gap-3 border-b border-slate-200 pb-5 mb-6">
           <div
             onClick={() => navigate('/')}
-            className="w-10 h-10 rounded bg-slate-900 text-slate-50 font-black text-xs flex items-center justify-center shadow-xs cursor-pointer hover:bg-slate-800 transition-colors shrink-0"
+            className="w-10 h-10 rounded bg-blue-700 text-slate-50 font-black text-xs flex items-center justify-center shadow-xs cursor-pointer hover:bg-blue-800 transition-colors shrink-0"
           >
             PA
           </div>
@@ -92,7 +90,7 @@ export default function RegisterPage({ navigate }) {
               e-Procurement Portal Registration
             </h2>
             <p className="text-xs text-slate-500 font-medium mt-0.5">
-              Ministry of Petroleum & Natural Gas • Central Procurement System
+              Ministry of Petroleum & Natural Gas 
             </p>
           </div>
         </div>
@@ -191,7 +189,7 @@ export default function RegisterPage({ navigate }) {
                   }}
                   className={`py-2 rounded transition-all cursor-pointer flex items-center justify-center gap-2 ${
                     role === 'bidder'
-                      ? 'bg-slate-900 text-white shadow-xs'
+                      ? 'bg-blue-700 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
@@ -209,7 +207,7 @@ export default function RegisterPage({ navigate }) {
                   }}
                   className={`py-2 rounded transition-all cursor-pointer flex items-center justify-center gap-2 ${
                     role === 'officer'
-                      ? 'bg-slate-900 text-white shadow-xs'
+                      ? 'bg-blue-700 text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
@@ -380,7 +378,7 @@ export default function RegisterPage({ navigate }) {
             <div className="pt-4 border-t border-slate-200">
               <button
                 type="submit"
-                className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded text-xs transition-all shadow-xs cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-xs transition-all shadow-xs cursor-pointer flex items-center justify-center gap-2"
               >
                 Register Account as {role === 'officer' ? 'Procurement Officer' : 'Bidder'}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
