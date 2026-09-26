@@ -7,6 +7,7 @@ import BidderDashboard from '../pages/BidderDashboard';
 import TendersPage from '../pages/TendersPage';
 import BidderTendersPage from '../pages/BidderTendersPage';
 import BidderSubmissionsPage from '../pages/BidderSubmissionsPage';
+import BidderProfilePage from '../pages/BidderProfilePage';
 import DigiLockerIntegrationPage from '../pages/DigiLockerIntegrationPage';
 import ComplianceEvaluationPage from '../pages/ComplianceEvaluationPage';
 import RiskVerificationPage from '../pages/RiskVerificationPage';
@@ -86,6 +87,10 @@ export default function SimpleRouter() {
 
   if (currentPath === '/bidder/digilocker') {
     return <DigiLockerIntegrationPage navigate={navigate} currentPath={currentPath} />;
+  }
+
+  if (currentPath === '/bidder/profile') {
+    return <BidderProfilePage navigate={navigate} currentPath={currentPath} />;
   }
 
   // Placeholder route handler for Phase 2+ routes

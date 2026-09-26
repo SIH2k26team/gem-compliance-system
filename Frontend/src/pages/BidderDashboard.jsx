@@ -91,6 +91,65 @@ export default function BidderDashboard({ navigate, currentPath }) {
           />
         </div>
 
+        {/* Contextual Action Required & Verification Status Banner */}
+        <div className="bg-amber-50/80 border border-amber-300 rounded-md p-4 shadow-2xs space-y-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 bg-amber-500 text-slate-900 font-black text-[10px] uppercase rounded">
+                ACTION REQUIRED
+              </span>
+              <span className="text-xs font-black text-slate-900">
+                Tender Verification &amp; Compliance Actions
+              </span>
+            </div>
+            <span className="text-[10px] text-slate-500 font-mono font-bold">Ref: MOPNG-2026-001</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1 text-xs">
+            <div className="bg-white p-3 rounded border border-amber-200 flex flex-col justify-between space-y-2">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-extrabold text-slate-900 text-xs">OEM Authorization Document</span>
+                  <span className="px-1.5 py-0.5 bg-rose-100 text-rose-800 text-[10px] font-extrabold rounded">Action Needed</span>
+                </div>
+                <p className="text-[11px] text-slate-600 mt-1">Required for Tender MOPNG-2026-001 inline inspection hardware.</p>
+              </div>
+              <button
+                onClick={() => navigate('/bidder/submissions')}
+                className="w-full py-1.5 bg-blue-700 hover:bg-blue-800 text-white rounded font-bold text-xs transition-colors cursor-pointer text-center"
+              >
+                Upload OEM Document
+              </button>
+            </div>
+
+            <div className="bg-white p-3 rounded border border-emerald-200 flex flex-col justify-between space-y-2">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-extrabold text-slate-900 text-xs">GST Return Filing Status</span>
+                  <span className="px-1.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-extrabold rounded">✓ Up to Date</span>
+                </div>
+                <p className="text-[11px] text-slate-600 mt-1">GSTIN 27AAACA1234L1Z5 verified via GSTN API (GSTR-3B filed Q4).</p>
+              </div>
+              <div className="text-[10px] font-mono text-emerald-700 font-bold pt-1">
+                Verified via GSTN Endpoint
+              </div>
+            </div>
+
+            <div className="bg-white p-3 rounded border border-blue-200 flex flex-col justify-between space-y-2">
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="font-extrabold text-slate-900 text-xs">Local Content Declaration</span>
+                  <span className="px-1.5 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-extrabold rounded">62% Compliant</span>
+                </div>
+                <p className="text-[11px] text-slate-600 mt-1">Self-declaration satisfies Make In India ≥ 50% threshold requirement.</p>
+              </div>
+              <div className="text-[10px] font-mono text-blue-700 font-bold pt-1">
+                Verified against Tender Rule Clause 5.1
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Tab Controls */}
         <div className="bg-white border border-slate-200 rounded-md p-1.5 flex gap-2 text-xs font-bold shadow-2xs">
           <button

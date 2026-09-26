@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AppLayout from '../layouts/AppLayout';
 import RiskBadge from '../components/RiskBadge';
-import { MOCK_RISK_ALERTS, MOCK_TENDERS } from '../data/mockData';
+import { MOCK_RISK_ALERTS } from '../data/mockData';
 
 export default function RiskVerificationPage({ navigate, currentPath }) {
   const [alertsState, setAlertsState] = useState(MOCK_RISK_ALERTS);
@@ -33,7 +33,10 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
 
     const matchesCategory =
       selectedCategory === 'ALL' ||
-      alert.flags.some((f) => f.type.toLowerCase().includes(selectedCategory.toLowerCase()));
+      alert.flags.some((f) =>
+        f.type.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+        f.title.toLowerCase().includes(selectedCategory.toLowerCase())
+      );
 
     return matchesSearch && matchesSeverity && matchesCategory;
   });
@@ -91,8 +94,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
               Ministry of Petroleum &amp; Natural Gas
             </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1 flex items-center gap-3">
-              Risk Flags & Evidence Verification
-             
+              Risk Flags &amp; Multi-Source Verification Exceptions
             </h1>
           </div>
 
@@ -109,6 +111,13 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
           </div>
         </div>
 
+        {/* Human-in-the-Loop Governance Notice */}
+        <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 text-xs text-amber-900 font-medium flex items-center gap-3 shadow-2xs">
+          <span className="text-base shrink-0">🛡️</span>
+          <div>
+            <span className="font-extrabold">Human-in-the-Loop Governance Principle:</span> AI engines and multi-source government verification checks extract evidence and flag potential risks (e.g. GST return defaults, local content deficiencies, OEM authorization gaps, and debarment watchlist matches). <span className="font-bold underline">The Procurement Officer always makes the final qualification or disqualification decision.</span>
+          </div>
+        </div>
 
         {/* Filter Bar */}
         <div className="bg-white border border-slate-200 rounded-lg p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xs">
@@ -150,11 +159,13 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="bg-slate-50 border border-slate-300 text-slate-800 text-xs font-bold rounded px-2.5 py-1.5"
               >
-                <option value="ALL">All Categories</option>
+                <option value="ALL">All Risk Categories</option>
+                <option value="Blacklisting">Blacklisting / Debarment Watchlist</option>
+                <option value="GST">GST Return Filing Pending</option>
+                <option value="OEM">OEM Authorization Issues</option>
+                <option value="Local Content">Make In India / Local Content Below Threshold</option>
                 <option value="Contradiction">Address / Name Contradictions</option>
                 <option value="Missing">Missing Mandatory Documents</option>
-                <option value="Tampering">Metadata / Font Anomalies</option>
-                <option value="Expiry">Expiry Warnings</option>
               </select>
             </div>
           </div>
@@ -205,7 +216,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                 {/* Flags Breakdown */}
                 <div className="space-y-3">
                   <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 block">
-                    Detected Anomaly & Contradiction Flags ({alert.flags.length})
+                    Detected Anomaly, Compliance &amp; Verification Flags ({alert.flags.length})
                   </span>
 
                   {alert.flags.map((flag, flagIdx) => (
@@ -213,15 +224,15 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                       key={flagIdx}
                       className="p-4 bg-slate-50 rounded-lg border border-slate-200 text-xs flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-100/80 transition-colors"
                     >
-                      <div className="space-y-1">
+                      <div className="space-y-1 flex-1">
                         <div className="flex items-center gap-2">
                           <span
                             className={`px-2 py-0.5 text-[10px] font-black rounded uppercase ${
                               flag.severity === 'Critical'
-                                ? 'text-rose-600  border border-rose-300'
+                                ? 'bg-rose-100 text-rose-800 border border-rose-300'
                                 : flag.severity === 'High'
-                                ? ' text-rose-900 border border-rose-300'
-                                : ' text-indigo-900 border border-indigo-300'
+                                ? 'bg-rose-50 text-rose-900 border border-rose-200'
+                                : 'bg-indigo-50 text-indigo-900 border border-indigo-200'
                             }`}
                           >
                             {flag.severity} ({flag.impactScore} Score)
@@ -229,12 +240,21 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                           <span className="font-extrabold text-slate-900 text-xs">{flag.title}</span>
                         </div>
                         <p className="text-slate-600 text-xs leading-relaxed">{flag.detail}</p>
-                        <div className="flex items-center gap-2 pt-0.5 text-[11px] font-mono text-slate-500">
-                          <span>📄 Document Source:</span>
-                          <span className="bg-white px-2 py-0.5 rounded border border-slate-300 font-bold text-slate-800">
-                            {flag.documentRef}
-                          </span>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px]">
+                          <div className="font-mono text-slate-500">
+                            <span className="font-sans font-bold text-slate-700">Source:</span> {flag.source || 'Govt Registry / Document'}
+                          </div>
+                          <div className="font-mono text-slate-500">
+                            <span className="font-sans font-bold text-slate-700">Evidence:</span> {flag.documentRef}
+                          </div>
                         </div>
+
+                        {flag.action && (
+                          <div className="mt-1.5 p-2 bg-blue-50/70 border border-blue-200 rounded text-[11px] text-blue-900 font-medium">
+                            💡 <span className="font-bold">Recommended Action:</span> {flag.action}
+                          </div>
+                        )}
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0">
@@ -257,7 +277,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                           className="px-2.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded text-xs font-bold cursor-pointer"
                           title="Mark flag verified"
                         >
-                          ✓ Mark Resolved
+                          ✓ Mark Verified
                         </button>
                       </div>
                     </div>
@@ -275,7 +295,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
               <div className="flex items-start justify-between border-b border-slate-200 pb-3">
                 <div>
                   <span className="px-2.5 py-0.5 bg-rose-100 text-rose-900 text-[10px] font-extrabold rounded uppercase">
-                    Cross-Document Anomaly Inspector
+                    Cross-Document &amp; Government API Inspector
                   </span>
                   <h2 className="text-lg font-black text-slate-900 mt-1">
                     {activeComparatorFlag.title}
@@ -303,49 +323,47 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                 {/* Document A Panel */}
                 <div className="bg-slate-50 border-2 border-indigo-300 rounded-lg p-4 space-y-3">
                   <div className="flex items-center justify-between border-b border-indigo-200 pb-2">
-                    <span className="font-extrabold text-indigo-900 uppercase text-[11px]">Document Source A</span>
+                    <span className="font-extrabold text-indigo-900 uppercase text-[11px]">Submitted Bidder Evidence</span>
                     <span className="font-mono text-[10px] bg-indigo-100 text-indigo-900 font-bold px-2 py-0.5 rounded">
-                      GST Certificate (Page 1)
+                      {activeComparatorFlag.documentRef || 'Submitted Doc'}
                     </span>
                   </div>
                   <div className="bg-white p-3 border border-slate-200 rounded font-mono text-[11px] space-y-1">
-                    <div className="text-slate-400 font-sans text-[10px]">Extracted Registered Address:</div>
-                    <div className="font-bold text-slate-900 bg-indigo-50 p-2 rounded border border-indigo-200 text-rose-900">
-                      Plot 42, Bandra-Kurla Complex, Mumbai, Maharashtra - 400051
+                    <div className="text-slate-400 font-sans text-[10px]">Extracted Evidence Details:</div>
+                    <div className="font-bold text-slate-900 bg-indigo-50 p-2 rounded border border-indigo-200 text-indigo-950">
+                      {activeComparatorFlag.detail}
                     </div>
-                    <div className="text-slate-500 font-sans text-[10px] pt-1">GSTIN: 27AAACP1234A1Z5</div>
                   </div>
                   <p className="text-slate-500 text-[11px]">
-                    Extracted via PyMuPDF text layer on 2026-03-02 10:12 AM.
+                    Parsed via OCR &amp; PyMuPDF text extractor.
                   </p>
                 </div>
 
-                {/* Document B Panel */}
+                {/* Document B / Government Source Panel */}
                 <div className="bg-slate-50 border-2 border-rose-300 rounded-lg p-4 space-y-3">
                   <div className="flex items-center justify-between border-b border-rose-200 pb-2">
-                    <span className="font-extrabold text-rose-900 uppercase text-[11px]">Document Source B</span>
+                    <span className="font-extrabold text-rose-900 uppercase text-[11px]">Government / Official Record</span>
                     <span className="font-mono text-[10px] bg-rose-100 text-rose-900 font-bold px-2 py-0.5 rounded">
-                      Experience Certificate (Page 3)
+                      {activeComparatorFlag.source || 'Govt Registry API'}
                     </span>
                   </div>
                   <div className="bg-white p-3 border border-slate-200 rounded font-mono text-[11px] space-y-1">
-                    <div className="text-slate-400 font-sans text-[10px]">Extracted Registered Address:</div>
+                    <div className="text-slate-400 font-sans text-[10px]">Official Registry Response:</div>
                     <div className="font-bold text-slate-900 bg-rose-50 p-2 rounded border border-rose-200 text-rose-900">
-                      12/A Barakhamba Road, Connaught Place, New Delhi - 110001
+                      {activeComparatorFlag.action || 'Manual verification flag logged for officer review.'}
                     </div>
-                    <div className="text-slate-500 font-sans text-[10px] pt-1">Client: ONGC Offshore Div</div>
                   </div>
                   <p className="text-slate-500 text-[11px]">
-                    Extracted via OCR engine on 2026-03-02 10:12 AM.
+                    Verified against government registry API sandbox.
                   </p>
                 </div>
               </div>
 
               {/* Contradiction Analysis Summary */}
               <div className="bg-rose-50 border border-rose-200 rounded-lg p-4 text-xs space-y-2 text-rose-900">
-                <span className="font-black text-sm block">⚠️ Contradiction Analysis:</span>
+                <span className="font-black text-sm block">⚠️ Risk Recommendation:</span>
                 <p>
-                  State of registration mismatch (Maharashtra vs Delhi). Tax jurisdiction and GST compliance rules require matching principal place of business across experience credentials.
+                  {activeComparatorFlag.action || 'Officer review required before final qualification.'}
                 </p>
               </div>
 
@@ -357,7 +375,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                   }}
                   className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded text-xs cursor-pointer"
                 >
-                  ✓ Accept Explanation & Clear Risk Flag
+                  ✓ Accept Explanation &amp; Clear Risk Flag
                 </button>
 
                 <button
@@ -401,7 +419,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                   rows={4}
                   value={noticeText}
                   onChange={(e) => setNoticeText(e.target.value)}
-                  placeholder="Please clarify the discrepancy between your GST registered address in Mumbai and Experience Certificate address in Delhi within 48 hours..."
+                  placeholder="Please clarify the discrepancy or missing OEM authorization / local content certificate within 48 hours..."
                   className="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                 />
               </div>

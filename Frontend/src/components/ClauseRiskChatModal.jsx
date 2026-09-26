@@ -9,6 +9,7 @@ import {
   CURRENT_USER_OFFICER,
 } from '../data/mockData';
 
+
 // Helper for formatting inline markdown: **bold**, `code`, etc.
 function renderInlineFormatting(text, isUser = false) {
   if (!text) return '';
@@ -164,7 +165,7 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
       id: 'init-1',
       sender: 'assistant',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      text: `Greetings Officer ${CURRENT_USER_OFFICER.name}. I am your **GeM Clause & Risk Intelligence Copilot**.\n\nI have parsed the tender specifications for **MOPNG-2026-001** and cross-verified all bidder submissions. You can ask me any doubt regarding **clause interpretations**, **scoring formulas**, **mandatory requirements**, or **risk flags & discrepancies** for any bid.`,
+      text: `Greetings Officer ${CURRENT_USER_OFFICER.name}. I am your **GeM Clause & Risk Intelligence Copilot**.`,
       bidContext: 'ALL',
       tags: ['Tender: MOPNG-2026-001', 'Clause Verification', 'GFR Rule 173'],
       recommendations: null,

@@ -11,7 +11,7 @@ import {
 
 export default function ComplianceEvaluationPage({ navigate, currentPath }) {
   const [selectedTenderId, setSelectedTenderId] = useState('MOPNG-2026-001');
-  const [activeTab, setActiveTab] = useState('matrix'); // 'matrix' | 'requirement_view' | 'detailed_bidder'
+  const [activeTab, setActiveTab] = useState('matrix'); // 'matrix' | 'govt_view' | 'requirement_view'
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [selectedBidder, setSelectedBidder] = useState(null);
@@ -78,6 +78,19 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
     triggerToast(`Decision updated to "${newDecision}" for ${bidderId}.`);
   };
 
+  const getSourceBadge = (status) => {
+    if (status === 'Verified' || status === 'Active' || status === 'Compliant') {
+      return ' text-emerald-800 ';
+    }
+    if (status === 'Needs Review' || status === 'Pending' || status === 'Pending / Needs Review') {
+      return ' text-amber-800 ';
+    }
+    if (status === 'Discrepancy Flagged' || status === 'Non-Compliant' || status === 'Missing' || status.includes('Potential Match')) {
+      return ' text-rose-800 ';
+    }
+    return ' text-slate-700 ';
+  };
+
   return (
     <AppLayout role="officer" currentPath={currentPath} navigate={navigate}>
       <div className="space-y-5">
@@ -94,10 +107,10 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
           <div>
             <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
               <span className="w-2 h-2 rounded-full bg-slate-700" />
-              Ministry of Petroleum &amp; Natural Gas 
+              Ministry of Petroleum &amp; Natural Gas
             </div>
             <h1 className="text-xl font-black text-slate-900 tracking-tight mt-1">
-              Compliance Evaluation Matrix & Scoring
+              Compliance Evaluation & Verification Matrix
             </h1>
           </div>
 
@@ -115,7 +128,7 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
             </select>
 
             <button
-              onClick={() => triggerToast('Generated PDF Evaluation Report for ' + selectedTenderId)}
+              onClick={() => triggerToast('Exported Full SIH26100 Compliance & Verification Matrix (PDF)')}
               className="px-5 py-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-full text-xs flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
               <span>Export Matrix (PDF)</span>
@@ -127,6 +140,8 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
             </button>
           </div>
         </div>
+
+
 
         {/* Selected Tender Summary Bar */}
         <div className="bg-slate-100 border border-slate-200 rounded-md p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
@@ -140,7 +155,7 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
           </div>
           <div>
             <span className="text-slate-500 font-extrabold uppercase text-[10px]">Extracted Clauses:</span>
-            <p className="font-bold text-slate-800 mt-0.5">{selectedTender.requirementsCount} Clauses ({selectedTender.mandatoryCount} Mandatory Pass/Fail)</p>
+            <p className="font-bold text-slate-800 mt-0.5">{selectedTender.requirementsCount} Clauses ({selectedTender.mandatoryCount} Mandatory Criteria)</p>
           </div>
           <div>
             <span className="text-slate-500 font-extrabold uppercase text-[10px]">Evaluated Submissions:</span>
@@ -161,17 +176,23 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                 Bidder Matrix
               </button>
               <button
+                onClick={() => setActiveTab('govt_view')}
+                className={`px-3 py-1.5 rounded transition-all cursor-pointer ${activeTab === 'govt_view' ? 'bg-slate-900 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                  }`}
+              >
+                Government Verification
+              </button>
+              <button
                 onClick={() => setActiveTab('requirement_view')}
                 className={`px-3 py-1.5 rounded transition-all cursor-pointer ${activeTab === 'requirement_view' ? 'bg-slate-900 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
               >
-                Clause-by-Clause View
+                Tender Requirements
               </button>
             </div>
 
-
             {/* Search Input */}
-            <div className="relative flex-1 md:w-64">
+            <div className="relative flex-1 md:w-56">
               <input
                 type="text"
                 placeholder="Search vendor name or ID..."
@@ -200,131 +221,182 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
           </div>
         </div>
 
-        {/* TAB 1: BIDDER MATRIX */}
+        {/* TAB 1: BIDDER COMPLIANCE MATRIX */}
         {activeTab === 'matrix' && (
           <div className="bg-white border border-slate-200 rounded-lg shadow-xs overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-100/80 border-b border-slate-200 text-[11px] font-extrabold uppercase tracking-wider text-slate-600">
+                  <tr className="bg-slate-100/80 border-b border-slate-200 text-[10px] font-extrabold uppercase tracking-wider text-slate-600">
                     <th className="py-3 px-4">Bidder Details</th>
-                    <th className="py-3 px-4">Mandatory Qualification</th>
-                    <th className="py-3 px-4">System Compliance Score</th>
-                    <th className="py-3 px-4">Risk Profile</th>
-                    <th className="py-3 px-4">DigiLocker Status</th>
-                    <th className="py-3 px-4">Officer Action</th>
+                    <th className="py-3 px-3">GST &amp; Returns</th>
+                    <th className="py-3 px-3">Local Content</th>
+                    <th className="py-3 px-3">OEM Authorization</th>
+                    <th className="py-3 px-3">Blacklisting Check</th>
+                    <th className="py-3 px-3 text-center">Score &amp; Risk</th>
+                    <th className="py-3 px-4 text-right">Officer Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 text-xs">
-                  {filteredBidders.map((bidder) => {
-                    const fullSub = MOCK_BIDDER_SUBMISSIONS_LIST.find((s) => s.bidderId === bidder.bidderId || s.submissionId.includes(bidder.bidderId));
-                    return (
-                      <tr key={bidder.bidderId} className="hover:bg-blue-50/40 transition-colors">
-                        {/* Bidder Info */}
-                        <td className="py-3.5 px-4">
-                          <div>
-                            <span className="font-extrabold text-slate-900 text-sm block">
-                              {bidder.companyName}
+                  {filteredBidders.map((bidder) => (
+                    <tr key={bidder.bidderId} className="hover:bg-blue-50/40 transition-colors">
+                      {/* Bidder Info */}
+                      <td className="py-3.5 px-4">
+                        <div>
+                          <span className="font-extrabold text-slate-900 text-sm block">
+                            {bidder.companyName}
+                          </span>
+                          <div className="flex items-center gap-2 mt-0.5">
+                            <span className="font-mono text-[10px] bg-slate-100 px-1.5 py-0.5 rounded text-slate-600 font-bold">
+                              {bidder.bidderId}
                             </span>
-                            <div className="flex items-center gap-2 mt-0.5">
-                              <span className="font-mono text-[10px] bg-slate-100 px-1.5 py-0.5 rounded text-slate-600 font-bold">
-                                {bidder.bidderId}
-                              </span>
-                              <span className="text-slate-400">•</span>
-                              <span className="text-[11px] text-slate-500 font-medium">
-                                Submitted: {bidder.submissionDate}
-                              </span>
-                            </div>
+                            <span className="text-slate-400">•</span>
+                            <span className="text-[11px] text-slate-500 font-medium">
+                              Submitted: {bidder.submissionDate}
+                            </span>
                           </div>
-                        </td>
+                        </div>
+                      </td>
 
-                        {/* Mandatory Qualification */}
-                        <td className="py-3.5 px-4">
-                          <div>
-                            {bidder.mandatoryPassed === bidder.mandatoryTotal ? (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-emerald-800 font-bold text-[11px]">
+                      {/* GST & Returns */}
+                      <td className="py-3.5 px-3">
+                        <div className="space-y-1">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold  block w-max  text-emerald-800 ">
+                            GSTIN: Active
+                          </span>
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold  block w-max ${getSourceBadge(bidder.gstReturnFilingStatus)}`}>
+                            Returns: {bidder.gstReturnFilingStatus}
+                          </span>
+                        </div>
+                      </td>
 
-                                {bidder.mandatoryPassed}/{bidder.mandatoryTotal} Clauses Passed
-                              </span>
-                            ) : (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-rose-800 font-bold  text-[11px]">
+                      {/* Local Content */}
+                      <td className="py-3.5 px-3">
+                        <div>
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold  inline-block ${getSourceBadge(bidder.localContentStatus)}`}>
+                            {bidder.localContentDeclared}% Declared ({bidder.localContentStatus})
+                          </span>
+                        </div>
+                      </td>
 
-                                {bidder.mandatoryPassed}/{bidder.mandatoryTotal} Passed (OISD Missing)
-                              </span>
-                            )}
-                          </div>
-                        </td>
+                      {/* OEM Authorization */}
+                      <td className="py-3.5 px-3">
+                        <div>
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold inline-block ${getSourceBadge(bidder.oemAuthorizationStatus)}`}>
+                            {bidder.oemAuthorizationStatus}
+                          </span>
 
-                        {/* System Compliance Score */}
-                        <td className="py-3.5 px-4">
-                          <div className="w-40">
-                            <div className="flex items-center justify-between font-extrabold text-xs mb-1">
-                              <span className="text-slate-900">{bidder.complianceScore} / {bidder.maxScore}</span>
+                        </div>
+                      </td>
 
-                            </div>
-                            <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
-                              <div
-                                className="h-full rounded-full bg-blue-600"
-                                style={{ width: `${bidder.complianceScore}%` }}
-                              />
-                            </div>
-                          </div>
-                        </td>
+                      {/* Blacklisting Check */}
+                      <td className="py-3.5 px-3">
+                        <div>
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold inline-block ${getSourceBadge(bidder.blacklistingStatus)}`}>
+                            {bidder.blacklistingStatus}
+                          </span>
+                        </div>
+                      </td>
 
-                        {/* Risk Profile */}
-                        <td className="py-3.5 px-4">
+                      {/* Score & Risk */}
+                      <td className="py-3.5 px-3 text-center">
+                        <div className="flex flex-col items-center">
+                          <span className="text-sm font-black text-slate-900 font-mono">{bidder.complianceScore}%</span>
                           <RiskBadge level={bidder.riskLevel} score={bidder.riskScore} />
-                        </td>
+                        </div>
+                      </td>
 
-                        {/* DigiLocker */}
-                        <td className="py-3.5 px-4">
-                          {bidder.digiLockerVerified ? (
-                            <span className="px-2 py-0.5  text-blue-800 border border-blue-200 font-bold text-[10px] rounded inline-flex items-center gap-1">
-                              <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                              </svg>
-                              Govt Verified
-                            </span>
-                          ) : (
-                            <span className="px-2 py-0.5  text-amber-800 border border-amber-200 font-bold text-[10px] rounded inline-flex items-center gap-1">
-                              ⚠️ Manual Check
-                            </span>
-                          )}
-                        </td>
-
-                        {/* Officer Actions */}
-                        <td className="py-3.5 px-4">
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => setSelectedBidder(bidder)}
-                              className="px-2.5 py-1 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-[11px] cursor-pointer shadow-2xs"
-                            >
-                              Inspect Breakdowns
-                            </button>
-
-                            <button
-                              onClick={() => {
-                                setOverrideTarget(bidder);
-                                setOverrideScore(String(bidder.complianceScore));
-                                setShowOverrideModal(true);
-                              }}
-                              className="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded text-[11px] border border-slate-300 cursor-pointer"
-                              title="Override Score"
-                            >
-                              ✏️ Override
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                      {/* Officer Actions */}
+                      <td className="py-3.5 px-4 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            onClick={() => setSelectedBidder(bidder)}
+                            className="px-2.5 py-1 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-[11px] cursor-pointer shadow-2xs"
+                          >
+                            Inspect Details
+                          </button>
+                          <button
+                            onClick={() => {
+                              setOverrideTarget(bidder);
+                              setOverrideScore(String(bidder.complianceScore));
+                              setShowOverrideModal(true);
+                            }}
+                            className="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded text-[11px] border border-slate-300 cursor-pointer"
+                            title="Override Score"
+                          >
+                            ✏️ Override
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
           </div>
         )}
 
-        {/* TAB 2: CLAUSE-BY-CLAUSE VIEW */}
+        {/* TAB 2: GOVERNMENT MULTI-SOURCE VERIFICATION TABLE */}
+        {activeTab === 'govt_view' && (
+          <div className="space-y-4">
+
+
+            <div className="bg-white border border-slate-200 rounded-lg shadow-xs overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="bg-slate-100 border-b border-slate-200 text-[10px] font-extrabold uppercase tracking-wider text-slate-600">
+                      <th className="py-3 px-4">Government Source</th>
+                      {filteredBidders.map((b) => (
+                        <th key={b.bidderId} className="py-3 px-4 min-w-[200px]">
+                          <span className="font-black text-slate-900 block truncate">{b.companyName}</span>
+                          <span className="font-mono text-[9px] text-slate-500 font-bold">{b.bidderId}</span>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    {[
+                      { key: 'GSTN', label: 'GSTN (GST Registration)' },
+                      { key: 'GST Return Filing', label: 'GST Return Filing Status (GSTR-3B)' },
+                      { key: 'Udyam', label: 'Udyam MSME Registration' },
+                      { key: 'PAN / Income Tax', label: 'PAN & Income Tax (CBDT)' },
+                      { key: 'MCA21', label: 'MCA21 (Corporate Affairs)' },
+                      { key: 'EPFO', label: 'EPFO (Provident Fund)' },
+                      { key: 'ESIC', label: 'ESIC (State Insurance)' },
+                      { key: 'DigiLocker', label: 'DigiLocker Verified Vault' },
+                      { key: 'Startup India', label: 'Startup India (DPIIT)' },
+                      { key: 'NSIC', label: 'NSIC Registration' },
+                    ].map((sourceItem) => (
+                      <tr key={sourceItem.key} className="hover:bg-slate-50 transition-colors">
+                        <td className="py-3 px-4 font-bold text-slate-900 bg-slate-50/50">
+                          {sourceItem.label}
+                        </td>
+                        {filteredBidders.map((bidder) => {
+                          const v = (bidder.governmentVerifications || []).find((g) => g.source === sourceItem.key);
+                          const status = v ? v.status : 'N/A';
+                          const details = v ? v.details : 'No record requested';
+                          return (
+                            <td key={bidder.bidderId} className="py-3 px-4">
+                              <div className="space-y-1">
+                                <span className={`px-2 py-0.5 rounded text-[10px] font-bold border inline-block ${getSourceBadge(status)}`}>
+                                  {status === 'Verified' ? '✓ Verified' : status === 'Needs Review' ? '⚠ Needs Review' : status === 'Discrepancy Flagged' ? '✕ Flagged' : status}
+                                </span>
+                                <p className="text-[10px] text-slate-600 leading-tight">{details}</p>
+                              </div>
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 3: TENDER-SPECIFIC CLAUSE VIEW */}
         {activeTab === 'requirement_view' && (
           <div className="space-y-4">
             {MOCK_REQUIREMENTS_SAMPLE.map((req) => (
@@ -332,13 +404,13 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                 <div className="flex items-start justify-between border-b border-slate-100 pb-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-blue-700  px-2 py-0.5 rounded border border-blue-100">
+                      <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
                         {req.id}
                       </span>
                       <span
                         className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${req.type === 'Mandatory'
-                          ? ' text-rose-800 border border-rose-200'
-                          : ' text-blue-800 border border-blue-200'
+                          ? 'bg-rose-50 text-rose-800 border border-rose-200'
+                          : 'bg-blue-50 text-blue-800 border border-blue-200'
                           }`}
                       >
                         {req.type} Requirement
@@ -370,9 +442,11 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                 </div>
 
                 {/* Bidders Evaluation Grid for this requirement */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
                   {biddersState.map((bidder) => {
-                    const isPassed = req.type === 'Mandatory' ? bidder.mandatoryPassed === bidder.mandatoryTotal : true;
+                    const sub = MOCK_BIDDER_SUBMISSIONS_LIST.find((s) => s.bidderId === bidder.bidderId);
+                    const reqRes = (sub?.requirementResults || []).find((r) => r.id === req.id);
+                    const status = reqRes ? reqRes.result : (req.type === 'Mandatory' ? (bidder.mandatoryPassed === bidder.mandatoryTotal ? 'Passed' : 'Failed') : 'Scored');
                     return (
                       <div
                         key={bidder.bidderId}
@@ -383,31 +457,16 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                           <span className="font-mono text-[10px] text-slate-500">{bidder.bidderId}</span>
                         </div>
 
-                        {req.type === 'Mandatory' ? (
-                          <div className="flex items-center justify-between pt-1">
-                            <span className="text-slate-500 font-medium">Result:</span>
-                            <span
-                              className={`px-2 py-0.5 rounded font-extrabold text-[10px] ${bidder.bidderId === 'BID-C03'
-                                ? 'bg-rose-100 text-rose-800'
-                                : 'bg-emerald-100 text-emerald-800'
-                                }`}
-                            >
-                              {bidder.bidderId === 'BID-C03' ? 'FAILED (Doc Missing)' : 'PASSED'}
-                            </span>
-                          </div>
-                        ) : (
-                          <div className="flex items-center justify-between pt-1">
-                            <span className="text-slate-500 font-medium">Assessed Score:</span>
-                            <span className="font-black text-blue-900 font-mono">
-                              {bidder.bidderId === 'BID-A01'
-                                ? '18 / 20'
-                                : bidder.bidderId === 'BID-B02'
-                                  ? '16 / 20'
-                                  : bidder.bidderId === 'BID-D04'
-                                    ? '19 / 20'
-                                    : '10 / 20'}
-                            </span>
-                          </div>
+                        <div className="flex items-center justify-between pt-1">
+                          <span className="text-slate-500 font-medium">Evaluation Result:</span>
+                          <span
+                            className={`px-2 py-0.5 rounded font-extrabold text-[10px] ${getSourceBadge(status)}`}
+                          >
+                            {status === 'Passed' ? '✓ PASSED' : status === 'Scored' ? `SCORED (${reqRes?.score || 18} pts)` : status}
+                          </span>
+                        </div>
+                        {reqRes?.note && (
+                          <p className="text-[10px] text-slate-500 italic mt-0.5">{reqRes.note}</p>
                         )}
                       </div>
                     );
@@ -420,12 +479,13 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
 
         {/* DETAILED BIDDER INSPECTION MODAL */}
         {selectedBidder && (
-          <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
-            <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 shadow-2xl p-6 space-y-5">
-              <div className="flex items-start justify-between border-b border-slate-200 pb-3">
+          <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+            <div className="bg-white rounded-xl max-w-4xl w-full max-h-[92vh] overflow-y-auto border border-slate-200 shadow-2xl p-6 space-y-5 text-xs">
+              {/* Modal Header */}
+              <div className="flex items-start justify-between border-b border-slate-200 pb-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 bg-blue-100 text-blue-900 text-[10px] font-extrabold rounded">
+                    <span className="px-2 py-0.5 bg-blue-100 text-blue-900 text-[10px] font-extrabold rounded font-mono">
                       {selectedBidder.bidderId}
                     </span>
                     <span className="text-xs text-slate-500 font-mono">Tender: {selectedTenderId}</span>
@@ -444,7 +504,7 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
               </div>
 
               {/* Score summary cards */}
-              <div className="grid grid-cols-2 gap-3 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
                 <div className="bg-blue-50 border border-blue-200 rounded p-3 text-center">
                   <span className="text-slate-500 font-bold block">Compliance Score</span>
                   <span className="text-2xl font-black text-blue-900">{selectedBidder.complianceScore}%</span>
@@ -453,27 +513,144 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                   <span className="text-slate-500 font-bold block">Risk Score</span>
                   <span className="text-2xl font-black text-rose-800">{selectedBidder.riskScore}/100</span>
                 </div>
+                <div className="bg-slate-50 border border-slate-200 rounded p-3 text-center">
+                  <span className="text-slate-500 font-bold block">GST Return Status</span>
+                  <span className={`text-xs font-black mt-2 inline-block px-2 py-0.5 rounded border ${getSourceBadge(selectedBidder.gstReturnFilingStatus)}`}>
+                    {selectedBidder.gstReturnFilingStatus}
+                  </span>
+                </div>
+                <div className="bg-slate-50 border border-slate-200 rounded p-3 text-center">
+                  <span className="text-slate-500 font-bold block">Local Content</span>
+                  <span className={`text-xs font-black mt-2 inline-block px-2 py-0.5 rounded border ${getSourceBadge(selectedBidder.localContentStatus)}`}>
+                    {selectedBidder.localContentDeclared}% ({selectedBidder.localContentStatus})
+                  </span>
+                </div>
               </div>
 
-              {/* Requirements & Evidence details */}
+              {/* 1. Multi-Source Government Verification Section */}
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 space-y-3">
+                <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-600" />
+                  Multi-Source Government Verification Responses
+                </h3>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 font-mono">
+                  {(selectedBidder.governmentVerifications || []).map((gov, idx) => (
+                    <div key={idx} className="bg-white p-2 border border-slate-200 rounded text-[11px]">
+                      <div className="text-[10px] text-slate-400 font-sans font-bold">{gov.source}</div>
+                      <div className={`mt-1 font-bold text-[10px] ${getSourceBadge(gov.status)} px-1.5 py-0.5 rounded border inline-block`}>
+                        {gov.status}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 2. OEM Authorization Verification */}
+              <div className="bg-white border border-slate-200 rounded-lg p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider">
+                    OEM Authorization Verification
+                  </h3>
+                  <span className={`px-2.5 py-0.5 rounded font-bold text-[10px] border ${getSourceBadge(selectedBidder.oemAuthorizationStatus)}`}>
+                    {selectedBidder.oemAuthorizationStatus}
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-slate-50 p-2.5 rounded border border-slate-200 text-xs">
+                  <div>
+                    <span className="text-slate-500 font-bold block">Manufacturer:</span>
+                    <span className="font-extrabold text-slate-800">{selectedBidder.oemManufacturer}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 font-bold block">Document Reference:</span>
+                    <span className="font-mono text-slate-700">{selectedBidder.oemDocRef}</span>
+                  </div>
+                  <div className="flex items-center justify-end">
+                    <button
+                      onClick={() => triggerToast(`Opening PDF Document: ${selectedBidder.oemDocRef}`)}
+                      className="px-3 py-1 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-xs cursor-pointer shadow-2xs"
+                    >
+                      📄 Open Supporting Document
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Blacklisting / Debarment Status (Human-in-the-loop principle) */}
+              <div className="bg-amber-50/70 border border-amber-200 rounded-lg p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-base">🛡️</span>
+                    <h3 className="text-xs font-black text-amber-900 uppercase tracking-wider">
+                      Blacklisting &amp; Debarment Check Status
+                    </h3>
+                  </div>
+                  <span className={`px-2.5 py-0.5 rounded font-extrabold text-[10px] border ${getSourceBadge(selectedBidder.blacklistingStatus)}`}>
+                    {selectedBidder.blacklistingStatus}
+                  </span>
+                </div>
+                <p className="text-xs text-amber-900 leading-relaxed font-medium">
+                  {selectedBidder.blacklistingDetails}
+                </p>
+                <div className="bg-amber-100/60 p-2 rounded text-[11px] text-amber-900 font-semibold border border-amber-300/60">
+                  ⚠️ <span className="font-extrabold">Human-in-the-Loop Principle:</span> AI assists verification by checking CPPP &amp; GeM Watchlists; the Procurement Officer makes the final qualification or disqualification decision.
+                </div>
+              </div>
+
+              {/* 4. Tender-Specific Requirements Evidence Table */}
               <div className="space-y-3">
                 <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider">
-                  Evaluated Clause Evidence & Submissions
+                  Tender-Specific Compliance Table
                 </h3>
-                {MOCK_REQUIREMENTS_SAMPLE.map((req) => (
-                  <div key={req.id} className="p-3 bg-slate-50 border border-slate-200 rounded text-xs space-y-1">
-                    <div className="flex items-center justify-between font-bold">
-                      <span className="text-slate-900">{req.id}: {req.title}</span>
-                      <span className="font-mono text-blue-800">
-                        {req.type === 'Mandatory' ? 'Pass' : '18/20 pts'}
-                      </span>
-                    </div>
-                    <p className="text-slate-600 text-[11px]">{req.scoringRule}</p>
-                    <div className="pt-1 text-[10px] text-slate-500 font-mono">
-                      📄 Evidence Source: {req.evidenceRequired[0]} (Verified via AI PyMuPDF Extractor)
-                    </div>
-                  </div>
-                ))}
+                <div className="overflow-x-auto border border-slate-200 rounded-lg">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-100 text-slate-700 font-extrabold border-b border-slate-200 uppercase text-[10px]">
+                      <tr>
+                        <th className="py-2.5 px-3">Requirement</th>
+                        <th className="py-2.5 px-3">Verification Source</th>
+                        <th className="py-2.5 px-3">Submitted Evidence</th>
+                        <th className="py-2.5 px-3 text-right">Compliance Status</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      <tr className="hover:bg-slate-50">
+                        <td className="py-2.5 px-3 font-bold text-slate-900">GST Registration</td>
+                        <td className="py-2.5 px-3 font-mono text-slate-600">GSTN</td>
+                        <td className="py-2.5 px-3">GST Certificate ({selectedBidder.gstin})</td>
+                        <td className="py-2.5 px-3 text-right"><span className="text-emerald-700 font-bold">✓ Active</span></td>
+                      </tr>
+                      <tr className="hover:bg-slate-50">
+                        <td className="py-2.5 px-3 font-bold text-slate-900">GST Returns</td>
+                        <td className="py-2.5 px-3 font-mono text-slate-600">GSTN API</td>
+                        <td className="py-2.5 px-3">GSTR-3B Return Record</td>
+                        <td className="py-2.5 px-3 text-right"><span className={`font-bold ${getSourceBadge(selectedBidder.gstReturnFilingStatus)} px-2 py-0.5 rounded border text-[10px]`}>{selectedBidder.gstReturnFilingStatus}</span></td>
+                      </tr>
+                      <tr className="hover:bg-slate-50">
+                        <td className="py-2.5 px-3 font-bold text-slate-900">Udyam MSME</td>
+                        <td className="py-2.5 px-3 font-mono text-slate-600">Udyam Portal</td>
+                        <td className="py-2.5 px-3">MSME Udyam Certificate</td>
+                        <td className="py-2.5 px-3 text-right"><span className="text-emerald-700 font-bold">✓ Verified</span></td>
+                      </tr>
+                      <tr className="hover:bg-slate-50">
+                        <td className="py-2.5 px-3 font-bold text-slate-900">Local Content (≥50%)</td>
+                        <td className="py-2.5 px-3 font-mono text-slate-600">Bidder Declaration</td>
+                        <td className="py-2.5 px-3">{selectedBidder.localContentDoc}</td>
+                        <td className="py-2.5 px-3 text-right"><span className={`font-bold ${getSourceBadge(selectedBidder.localContentStatus)} px-2 py-0.5 rounded border text-[10px]`}>{selectedBidder.localContentDeclared}% ({selectedBidder.localContentStatus})</span></td>
+                      </tr>
+                      <tr className="hover:bg-slate-50">
+                        <td className="py-2.5 px-3 font-bold text-slate-900">OEM Authorization</td>
+                        <td className="py-2.5 px-3 font-mono text-slate-600">Bidder Document</td>
+                        <td className="py-2.5 px-3">{selectedBidder.oemDocRef}</td>
+                        <td className="py-2.5 px-3 text-right"><span className={`font-bold ${getSourceBadge(selectedBidder.oemAuthorizationStatus)} px-2 py-0.5 rounded border text-[10px]`}>{selectedBidder.oemAuthorizationStatus}</span></td>
+                      </tr>
+                      <tr className="hover:bg-slate-50">
+                        <td className="py-2.5 px-3 font-bold text-slate-900">Blacklisting Check</td>
+                        <td className="py-2.5 px-3 font-mono text-slate-600">CPPP / GeM Registry</td>
+                        <td className="py-2.5 px-3">Non-Blacklisting Affidavit</td>
+                        <td className="py-2.5 px-3 text-right"><span className={`font-bold ${getSourceBadge(selectedBidder.blacklistingStatus)} px-2 py-0.5 rounded border text-[10px]`}>{selectedBidder.blacklistingStatus}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               {/* Action buttons */}
@@ -485,11 +662,11 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                   }}
                   className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded cursor-pointer"
                 >
-                  Approve & Recommend Bid
+                  Approve &amp; Recommend Bid
                 </button>
                 <button
                   onClick={() => {
-                    handleDecisionChange(selectedBidder.bidderId, 'High Risk Disqualified');
+                    handleDecisionChange(selectedBidder.bidderId, 'Disqualified');
                     setSelectedBidder(null);
                   }}
                   className="px-4 py-2 bg-rose-700 hover:bg-rose-800 text-white text-xs font-bold rounded cursor-pointer"
@@ -550,7 +727,7 @@ export default function ComplianceEvaluationPage({ navigate, currentPath }) {
                   onClick={handleApplyOverride}
                   className="px-5 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold rounded-full cursor-pointer inline-flex items-center gap-1.5 shadow-2xs"
                 >
-                  <span>Commit Override & Save</span>
+                  <span>Commit Override &amp; Save</span>
                   <div className="w-3.5 h-3.5 rounded-full border border-white/60 flex items-center justify-center shrink-0">
                     <svg className="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
