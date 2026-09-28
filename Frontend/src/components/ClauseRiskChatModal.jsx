@@ -50,110 +50,82 @@ function renderInlineFormatting(text, isUser = false) {
   return parts.length > 0 ? parts : text;
 }
 
-// Helper to render complex blocks: tables, bullet lists, headers
-function renderMessageBlock(paragraph, pIdx, isUser = false) {
-  const trimmed = paragraph.trim();
-  if (!trimmed) return null;
+// Helper to render structured responses in points with headings and bullet lists
+function renderStructuredMessage(text, isUser = false) {
+  if (!text) return null;
 
-  // Header 3
-  if (trimmed.startsWith('### ')) {
-    return (
-      <h4 key={pIdx} className="font-extrabold text-slate-900 text-xs mt-2 mb-1 flex items-center gap-1.5">
-        <span className="w-1.5 h-3 bg-blue-800 rounded-xs inline-block"></span>
-        {trimmed.replace('### ', '')}
-      </h4>
-    );
-  }
+  // Remove any raw ** asterisks from text completely
+  const cleanText = text.replace(/\*\*/g, '');
 
-  // Header 1 / 2
-  if (trimmed.startsWith('## ') || trimmed.startsWith('# ')) {
-    return (
-      <h3 key={pIdx} className="font-extrabold text-slate-900 text-sm mt-2 mb-1">
-        {trimmed.replace(/^#+\s*/, '')}
-      </h3>
-    );
-  }
+  const lines = cleanText.split('\n');
+  const elements = [];
+  let currentList = [];
 
-  // Markdown Table
-  if (trimmed.includes('|') && trimmed.includes('\n')) {
-    const rows = trimmed.split('\n').map((r) => r.trim()).filter(Boolean);
-    const tableRows = rows.filter((r) => !r.includes(':---') && !r.includes('---'));
-    if (tableRows.length > 0) {
-      const headerCols = tableRows[0].split('|').map((c) => c.trim()).filter(Boolean);
-      const dataRows = tableRows.slice(1);
+  const flushList = (keyPrefix) => {
+    if (currentList.length > 0) {
+      elements.push(
+        <ul key={`ul-${keyPrefix}-${elements.length}`} className="space-y-2 my-2.5 pl-1">
+          {currentList.map((item, idx) => (
+            <li key={idx} className="flex items-start gap-2 text-slate-800 text-xs">
+              <span className="text-blue-700 font-black leading-tight mt-0.5 text-sm shrink-0">•</span>
+              <span className="flex-1 font-medium leading-relaxed text-slate-800">{item}</span>
+            </li>
+          ))}
+        </ul>
+      );
+      currentList = [];
+    }
+  };
 
-      return (
-        <div key={pIdx} className="my-2 overflow-x-auto rounded border border-slate-200 shadow-2xs">
-          <table className="w-full text-left text-[11px] border-collapse bg-white">
-            <thead>
-              <tr className="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold">
-                {headerCols.map((col, cIdx) => (
-                  <th key={cIdx} className="px-2.5 py-1.5 whitespace-nowrap">
-                    {renderInlineFormatting(col, isUser)}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {dataRows.map((row, rIdx) => {
-                const cols = row.split('|').map((c) => c.trim()).filter(Boolean);
-                return (
-                  <tr key={rIdx} className="hover:bg-slate-50">
-                    {cols.map((col, cIdx) => (
-                      <td key={cIdx} className="px-2.5 py-1.5 text-slate-800">
-                        {renderInlineFormatting(col, isUser)}
-                      </td>
-                    ))}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+  lines.forEach((line, idx) => {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      flushList(idx);
+      return;
+    }
+
+    if (trimmed.startsWith('### ')) {
+      flushList(idx);
+      const headingText = trimmed.replace('### ', '');
+      elements.push(
+        <h4 key={`h4-${idx}`} className="font-extrabold text-blue-950 text-xs mt-3.5 mb-1.5 flex items-center gap-1.5 border-b border-blue-100 pb-1">
+          <span className="w-1.5 h-3.5 bg-blue-800 rounded-xs inline-block"></span>
+          <span>{headingText}</span>
+        </h4>
+      );
+    } else if (trimmed.startsWith('## ') || trimmed.startsWith('# ')) {
+      flushList(idx);
+      const headingText = trimmed.replace(/^#+\s*/, '');
+      elements.push(
+        <h3 key={`h3-${idx}`} className="font-extrabold text-slate-900 text-sm mt-3.5 mb-1">
+          {headingText}
+        </h3>
+      );
+    } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ') || trimmed.startsWith('• ')) {
+      const itemText = trimmed.replace(/^[-*•]\s*/, '');
+      currentList.push(itemText);
+    } else if (/^\d+\.\s/.test(trimmed)) {
+      flushList(idx);
+      const num = trimmed.match(/^\d+\./)[0];
+      const itemText = trimmed.replace(/^\d+\.\s*/, '');
+      elements.push(
+        <div key={`num-${idx}`} className="flex items-start gap-2 my-1.5 pl-1 text-slate-800 text-xs">
+          <span className="text-blue-900 font-bold text-xs min-w-4 mt-0.5">{num}</span>
+          <span className="flex-1 font-medium leading-relaxed">{itemText}</span>
         </div>
       );
+    } else {
+      flushList(idx);
+      elements.push(
+        <p key={`p-${idx}`} className="text-slate-800 text-xs my-1 font-medium leading-relaxed">
+          {trimmed}
+        </p>
+      );
     }
-  }
+  });
 
-  // Bullet or Numbered List
-  if (trimmed.split('\n').some((line) => line.trim().startsWith('- ') || /^\d+\.\s/.test(line.trim()))) {
-    const lines = trimmed.split('\n');
-    return (
-      <ul key={pIdx} className="space-y-1 my-1 pl-1">
-        {lines.map((line, lIdx) => {
-          const lTrim = line.trim();
-          if (lTrim.startsWith('- ') || lTrim.startsWith('* ')) {
-            return (
-              <li key={lIdx} className="flex items-start gap-1.5 text-slate-700">
-                <span className="text-blue-600 font-bold leading-tight mt-0.5">•</span>
-                <span className="flex-1">{renderInlineFormatting(lTrim.substring(2), isUser)}</span>
-              </li>
-            );
-          }
-          if (/^\d+\.\s/.test(lTrim)) {
-            const num = lTrim.match(/^\d+\./)[0];
-            return (
-              <li key={lIdx} className="flex items-start gap-1.5 text-slate-700">
-                <span className="text-blue-900 font-bold text-[10px] min-w-3 mt-0.5">{num}</span>
-                <span className="flex-1">{renderInlineFormatting(lTrim.replace(/^\d+\.\s*/, ''), isUser)}</span>
-              </li>
-            );
-          }
-          return (
-            <p key={lIdx} className="pl-4 text-slate-600">
-              {renderInlineFormatting(lTrim, isUser)}
-            </p>
-          );
-        })}
-      </ul>
-    );
-  }
-
-  // Default Paragraph
-  return (
-    <p key={pIdx} className="leading-relaxed">
-      {renderInlineFormatting(trimmed, isUser)}
-    </p>
-  );
+  flushList('end');
+  return elements;
 }
 
 export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
@@ -165,7 +137,7 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
       id: 'init-1',
       sender: 'assistant',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      text: `Greetings Officer ${CURRENT_USER_OFFICER.name}. I am your **GeM Clause & Risk Intelligence Copilot**.`,
+      text: `Greetings Officer ${CURRENT_USER_OFFICER.name}. I am your GeM Clause & Risk Intelligence Copilot.\n\nAsk "give details of selected bid" to get a clean structured summary of Tender Details, Vendor Details with Compliance Score, and Officer Recommendations in points.`,
       bidContext: 'ALL',
       tags: ['Tender: MOPNG-2026-001', 'Clause Verification', 'GFR Rule 173'],
       recommendations: null,
@@ -205,6 +177,7 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
   const getSuggestions = () => {
     if (selectedBidId === 'BID-C03') {
       return [
+        'Give details of selected bid',
         'Why is Apex Marine flagged High Risk (68/100)?',
         'Detail the GST address contradiction vs Experience Certificate',
         'What happened to mandatory OISD Safety Certificate (REQ-003)?',
@@ -213,6 +186,7 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
     }
     if (selectedBidId === 'BID-B02') {
       return [
+        'Give details of selected bid',
         'What contradiction was flagged for Petroleum Logistics?',
         'Verify financial turnover compliance for BID-B02',
         'Can this bid proceed to commercial evaluation?',
@@ -220,12 +194,14 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
     }
     if (selectedBidId === 'BID-A01') {
       return [
+        'Give details of selected bid',
         'Why was Alpha Energy scored 92/100?',
         'Breakdown of marks for REQ-001 and REQ-002',
         'Confirm DigiLocker verification status for Alpha Energy',
       ];
     }
     return [
+      'Give details of selected bid',
       'Compare compliance scores & risk ranks for all bidders',
       'Explain REQ-001 financial turnover threshold & scoring formula',
       'What are the mandatory Pass/Fail requirements for MOPNG-2026-001?',
@@ -236,6 +212,152 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
   // Natural AI response generator grounded in tender & bid data
   const generateBotResponse = (query, bidId) => {
     const q = query.toLowerCase();
+
+    // 0. Primary structured response for "give details of selected bid" / "selected bid details"
+    const isSelectedBidQuery =
+      q.includes('selected bid') ||
+      q.includes('selected bidder') ||
+      q.includes('details of selected') ||
+      q.includes('give details') ||
+      q.includes('give detail') ||
+      q.includes('bid detail') ||
+      q.includes('bidders detail') ||
+      q.includes('bid info') ||
+      q.includes('selected bid ki detail') ||
+      q.includes('selected bid ka detail') ||
+      (q.includes('detail') && (q.includes('bid') || q.includes('selected')));
+
+    if (isSelectedBidQuery) {
+      const activeBidId = bidId !== 'ALL' ? bidId : selectedBidId;
+
+      if (activeBidId === 'BID-A01') {
+        return {
+          text: `### 📋 Selected Bid Details: Alpha Energy Infrastructure Pvt Ltd (BID-A01)
+
+### 📌 Tender Details:
+- Tender ID: MOPNG-2026-001
+- Tender Title: Pipeline Maintenance & Inspection Services
+- Department: Oil & Gas Distribution Div
+- Category: Technical Services
+- Estimated Budget: ₹ 45.0 Cr
+- Submission Deadline: 2026-03-25
+
+### 🏢 Vendor Details & Compliance Score:
+- Vendor Name: Alpha Energy Infrastructure Pvt Ltd (BID-A01)
+- Compliance Score: 92 / 100 (Technical Rank: 🥇 H1)
+- Risk Score & Level: 12 / 100 (🟢 Low Risk)
+- Mandatory Clauses Status: 5 of 5 Passed (100% Compliant)
+- DigiLocker Verification: VERIFIED (PAN, GSTIN, MCA21 & EPFO authenticated)
+- Local Content (MII): 62% (Required ≥ 50%) — Compliant
+- Discrepancy / Contradiction Flags: 0 Contradictions (Clean audit trail)
+
+### 💡 Officer Recommendation:
+- Compliance Assessment: Bidder BID-A01 satisfies all technical, financial, safety (ISO 45001 & OISD-STD-137), and statutory criteria.
+- Recommended Action: Approve technical evaluation and proceed to Commercial Envelope Opening.`,
+          tags: ['BID-A01 (Alpha Energy)', 'Score: 92/100', 'Low Risk (12)', 'H1 Rank', 'Recommended'],
+          actionLink: {
+            label: 'Open Alpha Energy Compliance Dossier',
+            path: '/officer/bids/compliance',
+          },
+          recommendation: 'BID-A01 is fully compliant with GeM STC & GFR Rule 173. Recommended for Commercial Envelope opening.',
+        };
+      }
+
+      if (activeBidId === 'BID-B02') {
+        return {
+          text: `### 📋 Selected Bid Details: Petroleum Logistics Corp (BID-B02)
+
+### 📌 Tender Details:
+- Tender ID: MOPNG-2026-001
+- Tender Title: Pipeline Maintenance & Inspection Services
+- Department: Oil & Gas Distribution Div
+- Category: Technical Services
+- Estimated Budget: ₹ 45.0 Cr
+- Submission Deadline: 2026-03-25
+
+### 🏢 Vendor Details & Compliance Score:
+- Vendor Name: Petroleum Logistics Corp (BID-B02)
+- Compliance Score: 81 / 100 (Technical Rank: 🥈 H2)
+- Risk Score & Level: 38 / 100 (🟡 Medium Risk)
+- Mandatory Clauses Status: 4 of 5 Passed (GSTR-3B filing pending verification)
+- DigiLocker Verification: VERIFIED (PAN & Udyam matched)
+- Local Content (MII): 55% (Required ≥ 50%) — Compliant
+- Discrepancy / Contradiction Flags: 1 Contradiction (₹1.4 Cr variance in declared FY24 turnover between self-declaration & CA Annexure 3)
+
+### 💡 Officer Recommendation:
+- Compliance Assessment: Bidder BID-B02 is technically viable but requires formal clarification on turnover discrepancy and GST returns.
+- Recommended Action: Dispatch a 24-hour clarification query via platform audit workflow under GFR Rule 173(iv) before technical freeze.`,
+          tags: ['BID-B02 (Petroleum Logistics)', 'Score: 81/100', 'Medium Risk (38)', 'H2 Rank', 'Clarification Pending'],
+          actionLink: {
+            label: 'Review Petroleum Logistics Audit Flags',
+            path: '/officer/audit',
+          },
+          recommendation: 'Request formal clarification under GFR Rule 173(iv) regarding turnover variance before commercial opening.',
+        };
+      }
+
+      if (activeBidId === 'BID-C03') {
+        return {
+          text: `### 📋 Selected Bid Details: Apex Marine & Pipeline Services (BID-C03)
+
+### 📌 Tender Details:
+- Tender ID: MOPNG-2026-001
+- Tender Title: Pipeline Maintenance & Inspection Services
+- Department: Oil & Gas Distribution Div
+- Category: Technical Services
+- Estimated Budget: ₹ 45.0 Cr
+- Submission Deadline: 2026-03-25
+
+### 🏢 Vendor Details & Compliance Score:
+- Vendor Name: Apex Marine & Pipeline Services (BID-C03)
+- Compliance Score: 64 / 100 (Technical Rank: ❌ Disqualified / High Risk)
+- Risk Score & Level: 68 / 100 (🔴 High Risk)
+- Mandatory Clauses Status: 3 of 5 Passed (FAILED REQ-003 Mandatory OISD Safety Certificate)
+- DigiLocker Verification: FAILED / Unverified (Uploaded unauthenticated manual scan copies)
+- Local Content (MII): 38% (Required ≥ 50%) — Non-Compliant
+- Discrepancy / Contradiction Flags: 2 Major Contradictions (GST registered address Mumbai vs Experience Cert New Delhi, OEM authorization missing, potential match on GeM Debarment Watchlist)
+
+### 💡 Officer Recommendation:
+- Compliance Assessment: Omission of mandatory safety certification (Clause 4.2) and local content shortfall renders bid non-responsive under GeM STC.
+- Recommended Action: Reject bid and issue formal Disqualification / Show-Cause Notice.`,
+          tags: ['BID-C03 (Apex Marine)', 'Score: 64/100', 'High Risk (68)', 'Disqualified', 'Clause 4.2 Violation'],
+          actionLink: {
+            label: 'Inspect Apex Marine Risk Flags',
+            path: '/officer/bids/risk',
+          },
+          recommendation: 'Automatic technical disqualification recommended under Clause 4.2 due to missing mandatory safety audit certificate.',
+        };
+      }
+
+      // If activeBidId is 'ALL'
+      return {
+        text: `### 📋 Selected Tender & All Evaluated Bids Summary
+
+### 📌 Tender Details:
+- Tender ID: MOPNG-2026-001
+- Tender Title: Pipeline Maintenance & Inspection Services
+- Department: Oil & Gas Distribution Div
+- Estimated Budget: ₹ 45.0 Cr
+- Submission Deadline: 2026-03-25
+- Evaluated Submissions: 3 Technical Bids
+
+### 🏢 Vendors Details & Compliance Scores:
+- 🥇 Alpha Energy Infrastructure Pvt Ltd (BID-A01): Compliance Score 92/100, Risk Level 🟢 Low Risk (12/100), Status 5/5 Mandatory Passed, DigiLocker Verified, 0 Contradictions.
+- 🥈 Petroleum Logistics Corp (BID-B02): Compliance Score 81/100, Risk Level 🟡 Medium Risk (38/100), Status 4/5 Mandatory Passed, DigiLocker Verified, 1 Turnover Flag.
+- ❌ Apex Marine & Pipeline Services (BID-C03): Compliance Score 64/100, Risk Level 🔴 High Risk (68/100), Status 3/5 Mandatory Passed, DigiLocker Failed, 2 Major Flags + Missing OISD Cert.
+
+### 💡 Officer Recommendation:
+- BID-A01 (Alpha Energy): Recommended for Award / Commercial Envelope Opening.
+- BID-B02 (Petroleum Logistics): Seek 24-hour clarification on turnover variance.
+- BID-C03 (Apex Marine): Disqualify technically under Clause 4.2 (Missing Safety Cert).`,
+        tags: ['Tender: MOPNG-2026-001', '3 Evaluated Bids', 'H1: Alpha Energy (92%)', 'Disqualified: Apex Marine'],
+        actionLink: {
+          label: 'Open Full Bidders Compliance Matrix',
+          path: '/officer/tenders/bidders',
+        },
+        recommendation: 'Alpha Energy (BID-A01) is the leading technical rank (H1). Proceed to commercial opening for BID-A01 and BID-B02.',
+      };
+    }
 
     // 1. Specific High Risk query for Apex Marine (BID-C03)
     if (
@@ -369,10 +491,10 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
 
     // 10. Default contextual answer
     return {
-      text: `### Clause & Doubt Evaluation: "${query}"\n\nBased on the parsed tender repository for **MOPNG-2026-001** and current bidder evaluation files:\n\n- **Active Bid Context**: ${bidId === 'ALL'
+      text: `### Clause & Doubt Evaluation: "${query}"\n\nBased on the parsed tender repository for MOPNG-2026-001 and current bidder evaluation files:\n\n- Active Bid Context: ${bidId === 'ALL'
         ? 'All Bidders in Pipeline Maintenance Tender'
         : `${bidId} (${MOCK_BIDDERS_SUMMARY.find((b) => b.bidderId === bidId)?.companyName || bidId})`
-        }\n- **Applicable Legal Framework**: General Financial Rules (GFR 2017) Rule 173 & GeM Special Terms & Conditions (STC).\n- **Guidance**: All mandatory clauses (such as safety certificates, earnest money deposits, and statutory filings) are strictly evaluated on a binary **Pass / Fail** basis with zero officer discretion.\n- **Evaluation Marks**: Applicable only to qualified bidders on turnover (REQ-001) and executed technical experience (REQ-002).\n\nYou can click any of the suggested query chips or specify a clause number (e.g. *REQ-001*, *Clause 4.2*, *Turnover*, *High Risk Flags*).`,
+        }\n- Applicable Legal Framework: General Financial Rules (GFR 2017) Rule 173 & GeM Special Terms & Conditions (STC).\n- Guidance: All mandatory clauses (such as safety certificates, earnest money deposits, and statutory filings) are strictly evaluated on a binary Pass / Fail basis with zero officer discretion.\n- Evaluation Marks: Applicable only to qualified bidders on turnover (REQ-001) and executed technical experience (REQ-002).\n\nYou can ask "give details of selected bid" to view a structured breakdown of Tender Details, Vendor Details with Compliance Score, and Officer Recommendations in points.`,
       tags: ['GeM Assistant', 'GFR 2017', 'Clause Engine'],
       actionLink: {
         label: 'Open Compliance Dashboard',
@@ -422,10 +544,10 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
         id: `init-${Date.now()}`,
         sender: 'assistant',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        text: `Chat session refreshed for **${selectedBidId === 'ALL'
+        text: `Chat session refreshed for ${selectedBidId === 'ALL'
           ? 'All Bids'
           : MOCK_BIDDERS_SUMMARY.find((b) => b.bidderId === selectedBidId)?.companyName || selectedBidId
-          }**.\n\nAsk any doubt regarding technical clauses, scoring criteria, or risk verification.`,
+          }.\n\nAsk "give details of selected bid" to get a clean structured summary in points.`,
         bidContext: selectedBidId,
         tags: ['Ready', 'Clause Engine v2.4'],
       },
@@ -587,9 +709,7 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
 
                   {/* Message Content with Markdown Parsing */}
                   <div className="font-sans text-xs space-y-1.5">
-                    {msg.text.split('\n\n').map((paragraph, idx) =>
-                      renderMessageBlock(paragraph, idx, isUser)
-                    )}
+                    {renderStructuredMessage(msg.text, isUser)}
                   </div>
 
                   {/* Recommendation Callout (for assistant responses) */}
