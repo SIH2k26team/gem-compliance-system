@@ -111,13 +111,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
           </div>
         </div>
 
-        {/* Human-in-the-Loop Governance Notice */}
-        <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 text-xs text-amber-900 font-medium flex items-center gap-3 shadow-2xs">
-          <span className="text-base shrink-0">🛡️</span>
-          <div>
-            <span className="font-extrabold">Human-in-the-Loop Governance Principle:</span> AI engines and multi-source government verification checks extract evidence and flag potential risks (e.g. GST return defaults, local content deficiencies, OEM authorization gaps, and debarment watchlist matches). <span className="font-bold underline">The Procurement Officer always makes the final qualification or disqualification decision.</span>
-          </div>
-        </div>
+      
 
         {/* Filter Bar */}
         <div className="bg-white border border-slate-200 rounded-lg p-3 flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xs">
@@ -229,10 +223,10 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                           <span
                             className={`px-2 py-0.5 text-[10px] font-black rounded uppercase ${
                               flag.severity === 'Critical'
-                                ? 'bg-rose-100 text-rose-800 border border-rose-300'
+                                ? ' text-rose-800'
                                 : flag.severity === 'High'
-                                ? 'bg-rose-50 text-rose-900 border border-rose-200'
-                                : 'bg-indigo-50 text-indigo-900 border border-indigo-200'
+                                ? 'text-rose-900 '
+                                : 'text-indigo-900 '
                             }`}
                           >
                             {flag.severity} ({flag.impactScore} Score)
@@ -250,11 +244,7 @@ export default function RiskVerificationPage({ navigate, currentPath }) {
                           </div>
                         </div>
 
-                        {flag.action && (
-                          <div className="mt-1.5 p-2 bg-blue-50/70 border border-blue-200 rounded text-[11px] text-blue-900 font-medium">
-                            💡 <span className="font-bold">Recommended Action:</span> {flag.action}
-                          </div>
-                        )}
+                       
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0">

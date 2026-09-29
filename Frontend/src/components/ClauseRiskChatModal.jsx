@@ -137,9 +137,9 @@ export default function ClauseRiskChatModal({ isOpen, onClose, navigate }) {
       id: 'init-1',
       sender: 'assistant',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      text: `Greetings Officer ${CURRENT_USER_OFFICER.name}. I am your GeM Clause & Risk Intelligence Copilot.\n\nAsk "give details of selected bid" to get a clean structured summary of Tender Details, Vendor Details with Compliance Score, and Officer Recommendations in points.`,
+      text: `Greetings Officer ${CURRENT_USER_OFFICER.name}. I am your GeM Clause & Risk Intelligence Copilot.\n\n`,
       bidContext: 'ALL',
-      tags: ['Tender: MOPNG-2026-001', 'Clause Verification', 'GFR Rule 173'],
+      tags: ['Tender: MOPNG-2026-001'],
       recommendations: null,
     },
   ]);

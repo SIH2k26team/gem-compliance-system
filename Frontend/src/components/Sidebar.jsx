@@ -190,16 +190,7 @@ export default function Sidebar({ role = 'officer', currentPath = '/', navigate,
                     {item.icon}
                     <span>{item.label}</span>
                   </div>
-                  {item.badge && (
-                    <span
-                      className={`px-1.5 py-0.2 rounded text-[10px] font-bold ${isActive
-                        ? 'bg-white text-slate-900'
-                        : 'bg-rose-100 text-rose-800 border border-rose-200'
-                        }`}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
+                 
                 </button>
               );
             })}
