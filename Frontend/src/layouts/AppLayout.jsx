@@ -39,25 +39,11 @@ export default function AppLayout({ children, role = 'officer', currentPath = '/
       </div>
 
       {role === 'officer' && (
-        <>
-          <button
-            onClick={() => setIsChatOpen(true)}
-            className="fixed bottom-5 right-5 z-40 bg-gradient-to-r from-blue-900 to-blue-950 hover:from-blue-800 hover:to-blue-900 text-white font-extrabold text-xs px-4 py-3 rounded-full shadow-2xl flex items-center gap-2.5 border border-blue-400/40 transition-all hover:scale-105 cursor-pointer ring-4 ring-blue-900/15"
-            title="Ask AI Copilot for Bid & Tender Details"
-          >
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-            <svg className="w-4 h-4 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z" />
-            </svg>
-            <span>Ask AI Copilot</span>
-          </button>
-
-          <ClauseRiskChatModal
-            isOpen={isChatOpen}
-            onClose={() => setIsChatOpen(false)}
-            navigate={navigate}
-          />
-        </>
+        <ClauseRiskChatModal
+          isOpen={isChatOpen}
+          onClose={() => setIsChatOpen(false)}
+          navigate={navigate}
+        />
       )}
     </div>
   );
